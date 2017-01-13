@@ -17,6 +17,8 @@ namespace OOP_PJ
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
+//경우자리/
+
 
         }
     }
