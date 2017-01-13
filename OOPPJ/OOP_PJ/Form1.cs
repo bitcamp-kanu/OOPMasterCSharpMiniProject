@@ -17,6 +17,31 @@ namespace OOP_PJ
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e) 
+        {
+            // 폼 로드
+        }
+
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            // 마우스 다운
+
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            // 마우스 무브
+
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            // 마우스 업
+
+        }
+
+
         private void BtnLine_Click(object sender, EventArgs e)
         {
             // 선 그리기
@@ -191,5 +216,7 @@ namespace OOP_PJ
         {
             // 컬러파레트 호출버튼
         }
+
+        
     }
 }
