@@ -16,6 +16,8 @@ namespace OOP_PJ
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+			
+			//테스트 2입니다.
 
 
         }
