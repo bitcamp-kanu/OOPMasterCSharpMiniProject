@@ -29,7 +29,7 @@ namespace OOP_PJ
 
         public void Undo(Shape cancelShape)
         {
-            if (cancelShape.GetStackCount() == 0)
+            if (cancelShape.GetStackCount() - 1 == 0)
             {
                 shape.Remove(cancelShape);
             }
@@ -39,6 +39,20 @@ namespace OOP_PJ
             }
         }
 
+        public Shape ChoicedShape(Infomation newInfomation)
+        {
+            Shape theShape = null;
+
+            for (int i = shape.Count-1; i >= 0; i--)
+            {
+                if(shape[i].IsMyRange(newInfomation.Point))
+                {
+                    theShape = shape[i];
+                    return theShape;
+                }
+            }
+            return theShape;
+        }
 
         // Shape 형태로 저장해보고 되면 지우기
         //public void AddRectangle(Rectangle recParam)

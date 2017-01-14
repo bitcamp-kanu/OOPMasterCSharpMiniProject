@@ -70,14 +70,26 @@
             this.편집ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.FillCombobox = new System.Windows.Forms.ComboBox();
+            this.PenColorCombox = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ChoiceChk = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.penChk = new System.Windows.Forms.CheckBox();
+            this.FillChk = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.BtnColorCh);
             this.panel1.Controls.Add(this.BtnColor20);
             this.panel1.Controls.Add(this.BtnColor10);
@@ -244,12 +256,20 @@
             // 
             // UpDownLine
             // 
+            this.UpDownLine.Items.Add("1");
+            this.UpDownLine.Items.Add("2");
+            this.UpDownLine.Items.Add("3");
+            this.UpDownLine.Items.Add("4");
+            this.UpDownLine.Items.Add("5");
+            this.UpDownLine.Items.Add("7");
+            this.UpDownLine.Items.Add("9");
             this.UpDownLine.Location = new System.Drawing.Point(119, 34);
             this.UpDownLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.UpDownLine.Name = "UpDownLine";
             this.UpDownLine.Size = new System.Drawing.Size(56, 25);
             this.UpDownLine.TabIndex = 27;
             this.UpDownLine.Text = "1";
+            this.UpDownLine.SelectedItemChanged += new System.EventHandler(this.UpDownLine_SelectedItemChanged);
             // 
             // BtnColor15
             // 
@@ -548,7 +568,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(720, 49);
+            this.button1.Location = new System.Drawing.Point(119, 24);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(66, 31);
             this.button1.TabIndex = 39;
@@ -556,12 +576,148 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // FillCombobox
+            // 
+            this.FillCombobox.FormattingEnabled = true;
+            this.FillCombobox.Items.AddRange(new object[] {
+            "While",
+            "Blue",
+            "Red",
+            "Gray"});
+            this.FillCombobox.Location = new System.Drawing.Point(13, 128);
+            this.FillCombobox.Name = "FillCombobox";
+            this.FillCombobox.Size = new System.Drawing.Size(77, 23);
+            this.FillCombobox.TabIndex = 40;
+            this.FillCombobox.SelectedIndexChanged += new System.EventHandler(this.FillCombobox_SelectedIndexChanged);
+            // 
+            // PenColorCombox
+            // 
+            this.PenColorCombox.FormattingEnabled = true;
+            this.PenColorCombox.Items.AddRange(new object[] {
+            "Black",
+            "Red",
+            "Blue"});
+            this.PenColorCombox.Location = new System.Drawing.Point(13, 63);
+            this.PenColorCombox.Name = "PenColorCombox";
+            this.PenColorCombox.Size = new System.Drawing.Size(77, 23);
+            this.PenColorCombox.TabIndex = 41;
+            this.PenColorCombox.SelectedIndexChanged += new System.EventHandler(this.PenColorCombox_SelectedIndexChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.ChoiceChk);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.penChk);
+            this.groupBox1.Controls.Add(this.FillChk);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.FillCombobox);
+            this.groupBox1.Controls.Add(this.PenColorCombox);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(582, 101);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(211, 304);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Test용 지우지마세요";
+            // 
+            // ChoiceChk
+            // 
+            this.ChoiceChk.AutoSize = true;
+            this.ChoiceChk.Location = new System.Drawing.Point(96, 178);
+            this.ChoiceChk.Name = "ChoiceChk";
+            this.ChoiceChk.Size = new System.Drawing.Size(89, 19);
+            this.ChoiceChk.TabIndex = 48;
+            this.ChoiceChk.Text = "선택모드";
+            this.ChoiceChk.UseVisualStyleBackColor = true;
+            this.ChoiceChk.CheckedChanged += new System.EventHandler(this.ChoiceChk_CheckedChanged);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(8, 203);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 47;
+            this.button3.Text = "뒤로";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(8, 174);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 46;
+            this.button2.Text = "앞으로";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // penChk
+            // 
+            this.penChk.AutoSize = true;
+            this.penChk.Location = new System.Drawing.Point(96, 67);
+            this.penChk.Name = "penChk";
+            this.penChk.Size = new System.Drawing.Size(74, 19);
+            this.penChk.TabIndex = 45;
+            this.penChk.Text = "펜사용";
+            this.penChk.UseVisualStyleBackColor = true;
+            this.penChk.CheckedChanged += new System.EventHandler(this.penChk_CheckedChanged);
+            // 
+            // FillChk
+            // 
+            this.FillChk.AutoSize = true;
+            this.FillChk.Location = new System.Drawing.Point(96, 130);
+            this.FillChk.Name = "FillChk";
+            this.FillChk.Size = new System.Drawing.Size(104, 19);
+            this.FillChk.TabIndex = 44;
+            this.FillChk.Text = "채우기사용";
+            this.FillChk.UseVisualStyleBackColor = true;
+            this.FillChk.CheckedChanged += new System.EventHandler(this.FillChk_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 15);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Fill Color";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 15);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Pen Color";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 245);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 15);
+            this.label3.TabIndex = 49;
+            this.label3.Text = "label3";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 277);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 15);
+            this.label4.TabIndex = 50;
+            this.label4.Text = "label4";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(805, 544);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -576,6 +732,8 @@
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -624,6 +782,18 @@
         private System.Windows.Forms.Button BtnColor20;
         private System.Windows.Forms.Button BtnColor10;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox FillCombobox;
+        private System.Windows.Forms.ComboBox PenColorCombox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox penChk;
+        private System.Windows.Forms.CheckBox FillChk;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox ChoiceChk;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
 
 
     }
