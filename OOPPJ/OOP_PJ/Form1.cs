@@ -349,6 +349,7 @@ namespace OOP_PJ
             
             ComboBox tmp = (ComboBox)sender;
         }
+<<<<<<< HEAD
 
         private void FillCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -399,5 +400,7 @@ namespace OOP_PJ
 
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
+=======
+>>>>>>> 3aa222297057a16661ca3e505e83521025147b03
     }
 }
