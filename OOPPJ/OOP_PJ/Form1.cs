@@ -287,8 +287,5 @@ namespace OOP_PJ
             Invalidate();
 
         }
-
-
-
     }
 }

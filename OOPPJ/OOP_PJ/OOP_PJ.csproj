@@ -69,6 +69,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +80,42 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnChoice_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnEllipse_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnFill_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnHexa_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnImg_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnLine_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnPencil_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnPentagon_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnRec_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnStar_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnText_nomal.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnTri_nomal.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
