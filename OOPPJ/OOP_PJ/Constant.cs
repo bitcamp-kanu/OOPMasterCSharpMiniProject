@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace OOP_PJ
 {
-    class Cosntant
+    public class Constant
     {
         public enum ShapeType
         {
@@ -17,7 +19,7 @@ namespace OOP_PJ
             Triangle    // 삼각형
         }
 
-        public enum Command
+        public enum ActionType
         {
             None,
             Select,     // 선택
@@ -27,25 +29,72 @@ namespace OOP_PJ
         }
     }
 
-    public class PositionInfo
+    public class Infomation
     {
-        public List<Point> PointList;
-        public Rectangle myRectangle;
-        Color myPenColor; // 펜 색
-        Color myBrushColor; // 채우기 색
-        Cosntant.ShapeType ShapeType;
-        Cosntant.Command Command;
+        private int thickness; // 펜 굵기
+        private Color lineColor; // 선 색
+        private Color fillColor; // 도형 채우기 색
+        private Point point; // x,y 좌표
+        private Constant.ShapeType shapeType;
+        private Constant.ActionType actionType;
 
-        public PositionInfo()
+        public Infomation()
         {
-            PointList = new List<Point>();
-            myRectangle = new Rectangle();
+            thickness = 1;
+            lineColor = Color.Black;
+            fillColor = Color.Orange;
+            shapeType = Constant.ShapeType.None;
+            actionType = Constant.ActionType.None;
         }
 
+        public int Thickness
+        {
+            set { thickness = value; }
+            get { return thickness; }
+        }
+        public Color LineColor
+        {
+            set { lineColor = value; }
+            get { return lineColor; }
+        }
+        public Color FillColor
+        {
+            set { fillColor = value; }
+            get { return fillColor; }
+        }
+        public Point Point
+        {
+            set { point = value; }
+            get { return point; }
+        }
+        public Constant.ShapeType ShapeType
+        {
+            set { shapeType = value; }
+            get { return shapeType; }
+        }
+        public Constant.ActionType ActionType
+        {
+            set { actionType = value; }
+            get { return actionType; }
+        }
     }
+
+
 
     static class WIUtility
     {
+        static public Rectangle GetPositiveRectangle(Point start, Point end)
+        {
+            Rectangle rect = new Rectangle
+            {
+                X = end.X > start.X ? start.X : end.X,
+                Y = end.Y > start.Y ? start.Y : end.Y,
+                Width = Math.Abs(end.X - start.X),
+                Height = Math.Abs(end.Y - start.Y)
+            };
+            return rect;
+        }
+
         /// <summary>
         /// 입력한 x,y 값이 원 안에 있는지검사 한다. (found75)
         /// </summary>

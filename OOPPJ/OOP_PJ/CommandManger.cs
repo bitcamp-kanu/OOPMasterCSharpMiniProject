@@ -2,97 +2,94 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace OOP_PJ
 {
-
     // 명령 관리자
-    public class CommandAdmin
+    public class CommandManager
     {
-        int shapeCount = 0;
-        List<PositionInfo> positionList;
-        PositionInfo state;
+        Stack<Shape> backup;
+        Shape dummyShape;
         ShapeManager shapeManager;
+        int startX;
+        int startY;
 
-        public CommandAdmin()
+        public CommandManager()
         {
-            positionList = new List<PositionInfo>();
+            backup = new Stack<Shape>();
             shapeManager = new ShapeManager();
-            state = new PositionInfo();
+            startX = 0;
+            startY = 0;
         }
 
-        public void SaveCmd()
+        public void CreateMain(Infomation newInfomation)
         {
-            positionList.Add(state);
+            dummyShape = GetShape(newInfomation);
         }
 
-        public void ExcuterCommand(PositionInfo infoParam)
+        private Shape GetShape(Infomation newInfomation) // 도형 얻어오기
         {
-            int cmd = infoParam.Command;
-
-            switch (cmd)
+            if (newInfomation.ShapeType.Equals(Constant.ShapeType.Circle))
             {
-                case 1:
-                    //CreateDummy(infoParam);
-                    CreateShape(infoParam);
-
-                    break;
-                case 2:
-
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    Undo();
-                    break;
-
+                startX = newInfomation.Point.X;
+                startY = newInfomation.Point.Y;
+                Rectangle theRectangle = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
+                return new CCircle(theRectangle);
+            }
+            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Rectangle))
+            {
+                startX = newInfomation.Point.X;
+                startY = newInfomation.Point.Y;
+                Rectangle theRectangle = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
+                return new CRectangle(theRectangle);
+            }
+            else
+            {
+                return null;
             }
         }
 
-        public void DrawAll(Graphics e)
+        public void MoveMouse(Infomation newInfomation)
         {
+            if (dummyShape != null)
+            {
+                Rectangle myRectangle = WIUtility.GetPositiveRectangle( new Point(startX, startY), newInfomation.Point);
+                
+                dummyShape.SetRenctangle(myRectangle);
+            }
+        }
 
-            shapeManager.Draw(e);
+        public void CreateComeplete(Infomation newInformation)
+        {
+            if (dummyShape != null)
+            {
+                shapeManager.AddShape(dummyShape);
+                backup.Push(dummyShape);
+                dummyShape = null;
+            }
+        }
+
+        public void testDraw(Graphics g)    // Test용 차후 삭제
+        {
+            if (shapeManager.GetListCount() > 0)
+            {
+                shapeManager.Draw(g);
+            }
+
+            if (dummyShape != null)
+            {
+                dummyShape.Draw(g);
+            }
         }
 
         public void Undo()
         {
-            // 저장하고 커맨드가 마지막 앞 커맨드가 생성이면 삭제if()
-            shapeManager.RemoveShape(shapeCount - 1);
-            shapeCount--;
-            // 이동잉어
+            if (backup.Count > 0)
+            {
+                shapeManager.Undo(backup.Pop());
+            }
         }
 
-        private void CreateShape(PositionInfo infoParam)
-        {
-            Rectangle myRectangle;
-            if (infoParam.complete)
-            {
-                int x = infoParam.PointList[0].X;
-                int y = infoParam.PointList[0].Y;
-                int width = infoParam.PointList[infoParam.PointList.Count - 1].X - x;
-                int height = infoParam.PointList[infoParam.PointList.Count - 1].Y - y;
-
-                myRectangle = new Rectangle(x, y, width, height);
-                shapeManager.AddRectangle(myRectangle);
-                shapeCount++;
-            }
-            else
-            {
-                int x = infoParam.PointList[0].X;
-                int y = infoParam.PointList[0].Y;
-                int width = infoParam.PointList[infoParam.PointList.Count - 1].X - x;
-                int height = infoParam.PointList[infoParam.PointList.Count - 1].Y - y;
-
-                myRectangle = new Rectangle(x, y, width, height);
-                shapeManager.ChageRectanglePostion(myRectangle);
-            }
-
-            state.myRectangle = myRectangle;
-        }
-    }
-
-
-   
-
-}
+    }   // commandManger
+}   // namespace

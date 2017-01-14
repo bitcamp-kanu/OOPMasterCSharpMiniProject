@@ -11,37 +11,95 @@ namespace OOP_PJ
 {
     public partial class Form1 : Form
     {
-//깃허브 수정 테스트 입니다.
+        Infomation theInfomation;
+        CommandManager myCommandManager;
+
         public Form1()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
         }
 
-        private void Form1_Load(object sender, EventArgs e) 
+        private void Form1_Load(object sender, EventArgs e)
         {
             // 폼 로드
+            theInfomation = new Infomation();
+            myCommandManager = new CommandManager();
+
         }
 
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             // 마우스 다운
+            if (e.X >= 0 && e.X <= this.Width && e.Y >= 0 && e.Y <= this.Height) // 폼안에서 이벤트 시작
+            {
+                switch (theInfomation.ShapeType) // 도형 타입이 선택 되었을때 그리기 시작
+                {
+                    case Constant.ShapeType.Circle:
+                    case Constant.ShapeType.Rectangle:
+                        theInfomation.ActionType = Constant.ActionType.Draw;
+                        break;
+                }
 
+                if (theInfomation.ActionType.Equals(Constant.ActionType.Draw))   // 그리기 이벤트 ON
+                {
+                    //switch (theInfomation.ShapeType) // 그리기 형태
+                   // {
+                     //   case Constant.ShapeType.Circle:
+
+                            theInfomation.Point = new Point(e.X, e.Y);
+
+                            myCommandManager.CreateMain(theInfomation);
+
+                       //     break;
+
+                       // case Constant.ShapeType.Rectangle:
+                         //   break;
+
+                  //  }
+                }
+            }
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            // 마우스 무브
-
+            if (theInfomation.ActionType == Constant.ActionType.Draw)
+            {
+                theInfomation.Point = new Point(e.X, e.Y);
+                myCommandManager.MoveMouse(theInfomation);
+                
+                Invalidate();
+            }
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
             // 마우스 업
+            if (theInfomation.ActionType == Constant.ActionType.Draw)
+            {
+                
+                theInfomation.ActionType = Constant.ActionType.None;
+                theInfomation.Point = new Point(e.X, e.Y);
+                myCommandManager.MoveMouse(theInfomation);
+                myCommandManager.CreateComeplete(theInfomation);
 
+                Invalidate();
+            }
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            // 패인터
+
+            myCommandManager.testDraw(e.Graphics);
         }
 
 
+        // 버튼 이벤트들 펼쳐서 사용하세요
+        #region MyRegion
+        
+       
         private void BtnLine_Click(object sender, EventArgs e)
         {
             // 선 그리기
@@ -50,11 +108,15 @@ namespace OOP_PJ
         private void BtnEllipse_Click(object sender, EventArgs e)
         {
             // 타원그리기
+            theInfomation.ShapeType = Constant.ShapeType.Circle;
+
         }
 
         private void BtnRec_Click(object sender, EventArgs e)
         {
             // 사각형 그리기
+            theInfomation.ShapeType = Constant.ShapeType.Rectangle;
+
         }
 
         private void BtnTri_Click(object sender, EventArgs e)
@@ -216,7 +278,17 @@ namespace OOP_PJ
         {
             // 컬러파레트 호출버튼
         }
+        #endregion
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Test용 차후 삭제 예정
+            myCommandManager.Undo();
+            Invalidate();
+
+        }
+
+
+
     }
 }

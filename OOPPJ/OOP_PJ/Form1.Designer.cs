@@ -69,6 +69,7 @@
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.편집ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +77,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.BtnColorCh);
             this.panel1.Controls.Add(this.BtnColor20);
             this.panel1.Controls.Add(this.BtnColor10);
@@ -544,6 +546,16 @@
             this.보기ToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.보기ToolStripMenuItem.Text = "보기";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(720, 49);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(66, 31);
+            this.button1.TabIndex = 39;
+            this.button1.Text = "Undo";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -556,6 +568,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
@@ -610,6 +623,7 @@
         private System.Windows.Forms.Button BtnColorCh;
         private System.Windows.Forms.Button BtnColor20;
         private System.Windows.Forms.Button BtnColor10;
+        private System.Windows.Forms.Button button1;
 
 
     }
