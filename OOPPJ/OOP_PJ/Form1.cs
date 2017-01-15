@@ -104,7 +104,7 @@ namespace OOP_PJ
                 myCommandManager.MoveMouse(theInfomation);
                 myCommandManager.CreateComeplete(theInfomation);
             }
-            else if (theInfomation.ActionType == Constant.ActionType.Select)
+            else if (theInfomation.ActionType == Constant.ActionType.Select && theInfomation.Drag == Constant.DragType.Drag)
             {
                 theInfomation.Drag = Constant.DragType.None;
                 myCommandManager.CreateComeplete(theInfomation);
@@ -346,10 +346,16 @@ namespace OOP_PJ
             {
                 theInfomation.LineColor = WIUtility.colorSet[2];
             }
-            
+
+
+            if (Constant.ActionType.Select.Equals(Constant.ActionType.Select))
+            {
+                myCommandManager.ChangeLineColor(theInfomation);
+                Invalidate();
+            }
+
             ComboBox tmp = (ComboBox)sender;
         }
-<<<<<<< HEAD
 
         private void FillCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -369,6 +375,12 @@ namespace OOP_PJ
             else if (FillCombobox.SelectedIndex == 3)
             {
                 theInfomation.FillColor = WIUtility.colorSet[4]; ;
+            }
+
+            if (Constant.ActionType.Select.Equals(Constant.ActionType.Select))
+            {
+                myCommandManager.ChangeFillColor(theInfomation);
+                Invalidate();
             }
         }
 
@@ -398,9 +410,57 @@ namespace OOP_PJ
                 theInfomation.ActionType = Constant.ActionType.None;
         }
 
+        private void Forward_btn_Click(object sender, EventArgs e)  // 도형 순서 위로 이동
+        {
+
+        }
+
+        private void Backward_btn_Click(object sender, EventArgs e) // 도형 순서 뒤로 이동
+        {
+
+        }
+
+        int tmp = 0;
+        private void buttontest_Click(object sender, EventArgs e)
+        {
+            tmp++;
+            switch (tmp)
+            {
+                case 1:
+                    this.Cursor = Cursors.SizeAll;
+                    break;
+                case 2:
+                    this.Cursor = Cursors.SizeNESW;
+                    break;
+                case 3:
+                    this.Cursor = Cursors.SizeNS;
+                    break;
+                case 4:
+                    this.Cursor = Cursors.SizeNWSE;
+                    break;
+                case 5:
+                    this.Cursor = Cursors.SizeWE;
+                    break;
+                
+            }
+        }
+
+        //public void GetMouseState()
+        //{
+        //    Constant.MouseType mouseType = my
+        //    switch (mouseType)
+        //    {
+        //        case Constant.MouseType.Default:
+        //            this.Cursor = Cursors.Default;
+        //            break;
+        //        case Constant.MouseType.SizeAll:
+        //            this.Cursor = Cursors.SizeAll;
+        //            break;
+
+        //    }
+        //}
+
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> 3aa222297057a16661ca3e505e83521025147b03
     }
 }

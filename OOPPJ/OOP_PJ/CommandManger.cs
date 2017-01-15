@@ -5,13 +5,8 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 
@@ -23,6 +18,7 @@ namespace OOP_PJ
         Stack<Shape> backup;
         Shape dummyShape;
         ShapeManager shapeManager;
+//        MouseObserver mouseObserver;
         int startX; // 도형 시작 위치
         int startY;
         int startWidth;
@@ -60,10 +56,10 @@ namespace OOP_PJ
             }
         }
 
-        // TODO : 따로 파일로 빼던지 다른방법을 찾던지 함수 너무 커짐 모든 도형별 모드 추가 해야함..
+        // TODO : 따로 파일로 빼던지 다른방법을 찾던지 너무 커짐 모든 도형별 모드 추가 해야함....
         private Shape GetShape(Infomation newInfomation) // 도형 얻어오기
         {
-            if (newInfomation.ShapeType.Equals(Constant.ShapeType.Circle))
+            if (newInfomation.ShapeType.Equals(Constant.ShapeType.Circle))  // 원
             {
                 startX = newInfomation.Point.X;
                 startY = newInfomation.Point.Y;
@@ -81,7 +77,7 @@ namespace OOP_PJ
 
                 return newCircle;
             }
-            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Rectangle))
+            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Rectangle))  // 사각 형
             {
                 startX = newInfomation.Point.X;
                 startY = newInfomation.Point.Y;
@@ -99,7 +95,7 @@ namespace OOP_PJ
 
                 return newRectangle;
             }
-            else
+            else // 기타 도형 추가
             {
                 return null;
             }
@@ -119,13 +115,10 @@ namespace OOP_PJ
                     // TODO : 수정 해야함.................................
                     if (WIUtility.IsRectangleLine(dummyShape.GetRenctangle(),newInfomation.Point.X,newInfomation.Point.Y))  // 크기 조정
                     {
-                        //Rectangle sizeChageRectangle = new Rectangle(
-                        //    dummyShape.GetRenctangle().X,
-                        //    dummyShape.GetRenctangle().Y, 
-                        //    startWidth + (newInfomation.Point.X - mouseX),
-                        //    startHeight + (newInfomation.Point.Y - mouseY) 
-                        //    );
-                        Point newPoint = new Point(dummyShape.GetRenctangle().X + startWidth + (newInfomation.Point.X - mouseX), dummyShape.GetRenctangle().Y + startHeight + (newInfomation.Point.Y - mouseY));
+                        Point newPoint = new Point(
+                            dummyShape.GetRenctangle().X + startWidth + (newInfomation.Point.X - mouseX), 
+                            dummyShape.GetRenctangle().Y + startHeight + (newInfomation.Point.Y - mouseY) );
+
                         Rectangle sizeChageRectangle = WIUtility.GetPositiveRectangle(new Point(dummyShape.GetRenctangle().X, dummyShape.GetRenctangle().Y), newPoint);
                         
                         dummyShape.SetRenctangle(sizeChageRectangle);
@@ -141,31 +134,26 @@ namespace OOP_PJ
                      
                         dummyShape.SetRenctangle(moveChageRectangle);
                     }
-
-
-                    //dummyShape.SetRenctangle(myRectangle);
                 }
             }
         }
 
-        public void CreateComeplete(Infomation newInformation)
+        public void CreateComeplete(Infomation newInformation) // Form이벤트 완료
         {
             if (dummyShape != null)
             {
-                if (newInformation.ActionType.Equals(Constant.ActionType.Draw)) // 그리기 모드일때
+                if (newInformation.ActionType.Equals(Constant.ActionType.Draw)) // 그리기 모드
                 {
                     shapeManager.AddShape(dummyShape);
                     backup.Push(dummyShape);
                     dummyShape.Save();
                     dummyShape = null;
                 }
-                else if(newInformation.ActionType.Equals(Constant.ActionType.Select))
+                else if (newInformation.ActionType.Equals(Constant.ActionType.Select)) // 선택 이동 모드
                 {
-                    // 선택 이동 모드 완료 일때 처리
                     backup.Push(dummyShape);
                     dummyShape.Save();
                 }
-
             }
         }
 
@@ -192,12 +180,34 @@ namespace OOP_PJ
 
         public void Undo()
         {
+            dummyShape = null;
             if (backup.Count > 0)
             {
-                MessageBox.Show(backup.Count + " 개");
                 shapeManager.Undo(backup.Pop());
             }
         }
 
+        public void ChangeLineColor(Infomation theInfomation)   // 라인 색 변경시 이벤트
+        {
+            if (dummyShape != null)
+            {
+                dummyShape.HasLine = true;
+                dummyShape.LineColor = theInfomation.LineColor;
+                backup.Push(dummyShape);
+                dummyShape.Save();
+            }
+            
+        }
+
+        public void ChangeFillColor(Infomation theInfomation)   // 채우기 색 변경시 이벤트
+        {
+            if (dummyShape != null)
+            {
+                dummyShape.HasFill = true;
+                dummyShape.FillColor = theInfomation.FillColor;
+                backup.Push(dummyShape);
+                dummyShape.Save();
+            }
+        }
     }   // commandManger
 }   // namespace

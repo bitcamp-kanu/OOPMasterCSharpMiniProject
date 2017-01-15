@@ -14,12 +14,14 @@ namespace OOP_PJ
         private Color fillColor; // 도형 채우기 색
         private bool hasLine; // 라인 그리기 여부
         private bool hasFill; // 채우기 여부
+        private int sequenceNumber; // 상태 저장 순서 번호
         
         public bool HasFill { set { hasFill = value; } get { return hasFill; } }
         public bool HasLine { set { hasLine = value; } get { return hasLine; } }
         public int Thickness { set { thickness = value; } get { return thickness; } }
         public Color LineColor { set { lineColor = value; } get { return lineColor; } }
         public Color FillColor { set { fillColor = value; } get { return fillColor; } }
+        public int SequenceNumber { set { sequenceNumber = value; } get { return sequenceNumber; } }
 
         abstract public void Draw(Graphics g);
         abstract public Rectangle GetRenctangle();
@@ -30,7 +32,7 @@ namespace OOP_PJ
         abstract public bool IsMyRange(Point selectedPoint);    // 선택 되었는지 체크
     }
 
-    public class CCircle : Shape, ICloneable
+    public class CCircle : Shape
     {
         private Stack<CCircle> mHistory; 
         private Rectangle mRec;
@@ -42,6 +44,7 @@ namespace OOP_PJ
             mRec = new Rectangle();
             mRec = recParam;
             baseListIndex = 0;
+            SequenceNumber = 0;
         }
 
         public int ListIndex
@@ -83,36 +86,43 @@ namespace OOP_PJ
 
         public override void Save()
         {
-            CCircle tmp = (CCircle)this.Clone();
+            CCircle tmp = new CCircle(this.mRec);
+            tmp.ListIndex = this.ListIndex;
+            tmp.Thickness = this.Thickness;
+            tmp.LineColor = this.LineColor;
+            tmp.FillColor = this.FillColor;
+            tmp.HasLine = this.HasLine;
+            tmp.HasFill = this.HasFill;
+            this.SequenceNumber++;
+            tmp.SequenceNumber = this.SequenceNumber;
+            
+
             mHistory.Push(tmp);
         }
 
         public override bool Undo() // 실행 취소
         {
-            bool result = false;
-
-            if (mHistory.Count - 1 > 0)
+            if (mHistory.Count > 0)
             {
-                result = true;
-                mHistory.Pop();
                 CCircle tmp = mHistory.Pop();
+                if (tmp.SequenceNumber == this.SequenceNumber)
+                {
+                    if (mHistory.Count == 0)
+                        return false;
+                    tmp = mHistory.Pop();
+                }
+                 
+                this.mRec = tmp.mRec;
                 this.FillColor = tmp.FillColor;
                 this.Thickness = tmp.Thickness;
                 this.LineColor = tmp.LineColor;
                 this.HasLine = tmp.HasLine;
                 this.HasFill = tmp.HasFill;
                 this.ListIndex = tmp.ListIndex;
-
-                for (int i = 0; i < mHistory.Count; i++)
-                {
-                    this.mHistory.Push(tmp.mHistory.ElementAt(i));
-                }
-
-                MessageBox.Show("history stack에 값이 들어있음" + mHistory.Count);
+                
                 return true;
             }
-
-            return result;
+            return false;
         }
 
         public override bool IsMyRange(Point selectedPoint)
@@ -122,28 +132,10 @@ namespace OOP_PJ
             else
                 return false;
         }
-
-        public object Clone()
-        {
-            CCircle clone = new CCircle(mRec);
-            clone.FillColor = base.FillColor;
-            clone.Thickness = base.Thickness;
-            clone.LineColor = base.LineColor;
-            clone.HasLine = base.HasLine;
-            clone.HasFill = base.HasFill;
-            clone.ListIndex = this.ListIndex;
-
-            for (int i = 0; i < mHistory.Count; i++)
-            {
-                clone.mHistory.Push(mHistory.ElementAt(i));
-            }
-
-            return clone;
-        }
     }
 
 
-    public class CRectangle : Shape, ICloneable
+    public class CRectangle : Shape
     {
         private Stack<CRectangle> mHistory;
         private Rectangle mRec;
@@ -195,20 +187,33 @@ namespace OOP_PJ
 
         public override void Save()
         {
-            CRectangle tmp = (CRectangle)this.Clone();
+            CRectangle tmp = new CRectangle(this.mRec);
+            tmp.baseListIndex = this.baseListIndex;
+            tmp.Thickness = this.Thickness;
+            tmp.LineColor = this.LineColor;
+            tmp.FillColor = this.FillColor;
+            tmp.HasLine = this.HasLine;
+            tmp.HasFill = this.HasFill;
+            this.SequenceNumber++;
+            tmp.SequenceNumber = this.SequenceNumber;
+
             mHistory.Push(tmp);
         }
 
 
         public override bool Undo() // 실행 취소
         {
-            bool result = false;
-
-            if (mHistory.Count - 1 > 0)
+            if (mHistory.Count > 0)
             {
-                result = true;
-                //mHistory.Pop();
                 CRectangle tmp = mHistory.Pop();
+                if (tmp.SequenceNumber == this.SequenceNumber)
+                {
+                    if (mHistory.Count == 0)
+                        return false;
+                    tmp = mHistory.Pop();
+                }
+
+                this.mRec = tmp.mRec;
                 this.FillColor = tmp.FillColor;
                 this.Thickness = tmp.Thickness;
                 this.LineColor = tmp.LineColor;
@@ -216,16 +221,9 @@ namespace OOP_PJ
                 this.HasFill = tmp.HasFill;
                 this.ListIndex = tmp.ListIndex;
 
-                for (int i = 0; i < mHistory.Count; i++)
-                {
-                    this.mHistory.Push(tmp.mHistory.ElementAt(i));
-                }
-
-                MessageBox.Show("history stack에 값이 들어있음" + mHistory.Count);
                 return true;
             }
-
-            return result;
+            return false;
         }
 
         public override bool IsMyRange(Point selectedPoint)
@@ -235,24 +233,6 @@ namespace OOP_PJ
             else
                 return false;
 
-        }
-
-        public object Clone()
-        {
-            CRectangle clone = new CRectangle(mRec);
-            clone.FillColor = base.FillColor;
-            clone.Thickness = base.Thickness;
-            clone.LineColor = base.LineColor;
-            clone.HasLine = base.HasLine;
-            clone.HasFill = base.HasFill;
-            clone.ListIndex = this.ListIndex;
-            
-            for(int i=0;i<mHistory.Count;i++)
-            {
-                clone.mHistory.Push(mHistory.ElementAt(i));
-            }
-
-            return clone;
         }
     }
 }

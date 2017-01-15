@@ -35,6 +35,16 @@ namespace OOP_PJ
             Circle,     // 원
             Triangle    // 삼각형
         }
+
+        public enum MouseType
+        {
+            None,
+            SizeAll,
+            SizeNESW,
+            SizeNS,
+            SizeNWSE,
+            SizeWE
+        }
     }
 
     public class Infomation

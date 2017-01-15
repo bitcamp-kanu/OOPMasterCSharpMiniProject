@@ -29,13 +29,9 @@ namespace OOP_PJ
 
         public void Undo(Shape cancelShape)
         {
-            if (cancelShape.GetStackCount() - 1 == 0)
+            if (!cancelShape.Undo())
             {
                 shape.Remove(cancelShape);
-            }
-            else
-            {
-                cancelShape.Undo();
             }
         }
 
@@ -53,19 +49,6 @@ namespace OOP_PJ
             }
             return theShape;
         }
-
-        // Shape 형태로 저장해보고 되면 지우기
-        //public void AddRectangle(Rectangle recParam)
-        //{
-        //    shape.Add(new CCircle(recParam));
-        //}
-
-        //public void ChageRectanglePostion(Rectangle recParam)
-        //{
-        //    shape[shape.Count - 1].SetRenctangle(recParam);
-        //}
-        //-----------------------------------------------
-
 
         public void RemoveShape(int index) // 삭제 다시 구현해야함 선택후 삭제 기능으로
         {
