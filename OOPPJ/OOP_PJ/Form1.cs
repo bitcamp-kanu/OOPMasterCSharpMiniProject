@@ -181,7 +181,10 @@ namespace OOP_PJ
 
         private void BtnFill_Click(object sender, EventArgs e)
         {
+
+           // theInfomation.UseFill = !theInfomation.UseFill;
             // 채우기
+            
         }
 
         private void BtnImg_Click(object sender, EventArgs e)
@@ -197,38 +200,44 @@ namespace OOP_PJ
         private void BtnLineColor_Click(object sender, EventArgs e)
         {
             // 선 색 Default Black
-            
+            theInfomation.UseLine = !theInfomation.UseLine;
 
         }
 
         private void BtnBgColor_Click(object sender, EventArgs e)
         {
             // 전경색
+            theInfomation.UseFill = !theInfomation.UseFill;
         }
 
         private void BtnColor01_Click(object sender, EventArgs e)
         {
             // 컬러파레트 01열 01번
+            
         }
 
         private void BtnColor02_Click(object sender, EventArgs e)
         {
             // 컬러파레트 01열 02번
+
         }
 
         private void BtnColor03_Click(object sender, EventArgs e)
         {
             // 컬러파레트 01열 03번
+
         }
 
         private void BtnColor04_Click(object sender, EventArgs e)
         {
             // 컬러파레트 01열 04번
+
         }
 
         private void BtnColor05_Click(object sender, EventArgs e)
         {
             // 컬러파레트 01열 05번
+            
         }
 
         private void BtnColor06_Click(object sender, EventArgs e)
@@ -445,6 +454,22 @@ namespace OOP_PJ
                     break;
                 
             }
+        }
+
+        private void btnUseLine_Click(object sender, EventArgs e)
+        {
+            // 라인 사용
+            theInfomation.UseFill = !theInfomation.UseFill;
+         
+        }
+
+        private void btnUseFill_Click(object sender, EventArgs e)
+        {
+            // 색채우기 사용
+            if (penChk.Checked)
+                theInfomation.UseLine = true;
+            else
+                theInfomation.UseLine = false;
         }
 
         //public void GetMouseState()

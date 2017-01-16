@@ -119,7 +119,28 @@ namespace OOP_PJ
     static class WIUtility
     {
         // color 차후 추가 해야함
-        public static Color[] colorSet = {Color.Black, Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.White };
+        public static Color[] colorSet = {
+                                            Color.Black,
+                                            Color.Gray,
+                                            Color.Maroon,
+                                            Color.Red,
+                                            Color.DarkOrange,
+                                            Color.Yellow,
+                                            Color.Green,
+                                            Color.DeepSkyBlue,
+                                            Color.DodgerBlue,
+                                            Color.Purple,
+                                            Color.White,
+                                            Color.LightGray,
+                                            Color.RosyBrown,
+                                            Color.Pink,
+                                            Color.Gold,
+                                            Color.PaleGoldenrod,
+                                            Color.GreenYellow,
+                                            Color.PaleTurquoise,
+                                            Color.CadetBlue,
+                                            Color.Thistle
+                                         };
 
         static public Rectangle GetPositiveRectangle(Point start, Point end)
         {
