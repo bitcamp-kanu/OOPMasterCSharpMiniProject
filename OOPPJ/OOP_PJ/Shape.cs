@@ -13,13 +13,14 @@ namespace OOP_PJ
 
         public bool HasFill { get; set; }
         public bool HasLine { get; set; }
+        public bool IsSelected { get; set; }
         public int Thickness { get; set; }
         public Color LineColor { get; set; }
         public Color FillColor { get; set; }
         public int SequenceNumber { get; set; }
         public int ListIndex { get; set; }
         public Rectangle MyRectangle { get; set; }
-     
+
         public Shape(Rectangle recParam)
         {
             mHistory = new Stack<Shape>();
@@ -28,6 +29,7 @@ namespace OOP_PJ
 
             ListIndex = 0;
             SequenceNumber = 0;
+            IsSelected = false;
         }
 
         public abstract Shape clone();
@@ -99,82 +101,92 @@ namespace OOP_PJ
             MyRectangle = rect;
         }
 
+        public void MoveRectangle(Point start, Point startMouse, Point info)
+        {
+            Rectangle moveChageRectangle = new Rectangle(
+                            start.X + (info.X - startMouse.X),
+                            start.Y + (info.Y - startMouse.Y),
+                            MyRectangle.Width,
+                            MyRectangle.Height);
 
-        public bool IsRctangleUpLine(Rectangle rect, int x, int y)
+            MyRectangle = moveChageRectangle;
+        }
+
+        public bool IsRctangleUpLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
-            int leftX = rect.X;
-            int rightX = rect.X + rect.Width;
+            int leftX = MyRectangle.X;
+            int rightX = MyRectangle.X + MyRectangle.Width;
             int middleX = (leftX + rightX) / 2;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
             scopeRec.X = middleX - (targetWidth / 2);
-            scopeRec.Y = rect.Y - (targetHeight / 2);
+            scopeRec.Y = MyRectangle.Y - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
         }
 
-        public bool IsRctangleDownLine(Rectangle rect, int x, int y)
+        public bool IsRctangleDownLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
-            int leftX = rect.X;
-            int rightX = rect.X + rect.Width;
+            int leftX = MyRectangle.X;
+            int rightX = MyRectangle.X + MyRectangle.Width;
             int middleX = (leftX + rightX) / 2;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
             scopeRec.X = middleX - (targetWidth / 2);
-            scopeRec.Y = (rect.Y + rect.Height) - (targetHeight / 2);
+            scopeRec.Y = (MyRectangle.Y + MyRectangle.Height) - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
         }
 
-        public bool IsRctangleLeftLine(Rectangle rect, int x, int y)
+        public bool IsRctangleLeftLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
-            int upY = rect.Y;
-            int downY = rect.Y + rect.Height;
+            int upY = MyRectangle.Y;
+            int downY = MyRectangle.Y + MyRectangle.Height;
             int middleY = (upY + downY) / 2;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
-            scopeRec.X = rect.X - (targetWidth / 2);
+            scopeRec.X = MyRectangle.X - (targetWidth / 2);
             scopeRec.Y = middleY - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
         }
 
-        public bool IsRctangleRightLine(Rectangle rect, int x, int y)
+        public bool IsRctangleRightLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
-            int upY = rect.Y;
-            int downY = rect.Y + rect.Height;
+            int upY = MyRectangle.Y;
+            int downY = MyRectangle.Y + MyRectangle.Height;
             int middleY = (upY + downY) / 2;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
-            scopeRec.X = rect.X + rect.Width - (targetWidth / 2);
+            scopeRec.X = MyRectangle.X + MyRectangle.Width - (targetWidth / 2);
             scopeRec.Y = middleY - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
@@ -182,120 +194,113 @@ namespace OOP_PJ
 
 
         // 좌측 상단
-        public bool IsRctangleLeftUpPointLine(Rectangle rect, int x, int y)
+        public bool IsRctangleLeftUpPointLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
-            scopeRec.X = rect.X - (targetWidth / 2);
-            scopeRec.Y = rect.Y - (targetHeight / 2);
+            scopeRec.X = MyRectangle.X - (targetWidth / 2);
+            scopeRec.Y = MyRectangle.Y - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
         }
 
         // 좌측 하단
-        public bool IsRctangleLeftDwonPointLine(Rectangle rect, int x, int y)
+        public bool IsRctangleLeftDwonPointLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
-            scopeRec.X = rect.X - (targetWidth / 2);
-            scopeRec.Y = rect.Y + rect.Height - (targetHeight / 2);
+            scopeRec.X = MyRectangle.X - (targetWidth / 2);
+            scopeRec.Y = MyRectangle.Y + MyRectangle.Height - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
         }
 
         // 우측 상단
-        public bool IsRctangleRightUpPointLine(Rectangle rect, int x, int y)
+        public bool IsRctangleRightUpPointLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
-            scopeRec.X = rect.X + rect.Width - (targetWidth / 2);
-            scopeRec.Y = rect.Y - (targetHeight / 2);
+            scopeRec.X = MyRectangle.X + MyRectangle.Width - (targetWidth / 2);
+            scopeRec.Y = MyRectangle.Y - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
         }
 
         // 우측 하단
-        public bool IsRctangleRightDownPointLine(Rectangle rect, int x, int y)
+        public bool IsRctangleRightDownPointLine(Point newPoint)
         {
             int targetWidth = 25;
             int targetHeight = 25;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
-            scopeRec.X = rect.X + rect.Width - (targetWidth / 2);
-            scopeRec.Y = rect.Y + rect.Height - (targetHeight / 2);
+            scopeRec.X = MyRectangle.X + MyRectangle.Width - (targetWidth / 2);
+            scopeRec.Y = MyRectangle.Y + MyRectangle.Height - (targetHeight / 2);
 
-            if (IsRectangleShape(scopeRec, x, y))
+            if (IsRectangleShape(scopeRec, newPoint.X, newPoint.Y))
                 return true;
             else
                 return false;
         }
 
         // 마우스 포인터 모양 변경
-        public void MouseTypeDecision(Infomation info, object obj, Shape shape)
+        public void MouseTypeDecision(Infomation info, object obj)
         {
             Form myForm = obj as Form;
 
-            if (shape != null)
+            if (IsRctangleUpLine(info.Point))
             {
-                if (IsRctangleUpLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeNS;
-                }
-                else if (IsRctangleDownLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeNS;
-                }
-                else if (IsRctangleLeftLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeWE;
-                }
-                else if (IsRctangleRightLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeWE;
-                }
-                else if (IsRctangleLeftUpPointLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeNWSE;
-                }
-                else if (IsRctangleLeftDwonPointLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeNESW;
-                }
-                else if (IsRctangleRightUpPointLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeNESW;
-                }
-                else if (IsRctangleRightDownPointLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeNWSE;
-                }
-                else if (IsRectangleShape(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeAll;
-                }
-                else
-                {
-                    myForm.Cursor = Cursors.Default;
-                }
+                myForm.Cursor = Cursors.SizeNS;
+            }
+            else if (IsRctangleDownLine(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeNS;
+            }
+            else if (IsRctangleLeftLine(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeWE;
+            }
+            else if (IsRctangleRightLine(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeWE;
+            }
+            else if (IsRctangleLeftUpPointLine(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeNWSE;
+            }
+            else if (IsRctangleLeftDwonPointLine(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeNESW;
+            }
+            else if (IsRctangleRightUpPointLine(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeNESW;
+            }
+            else if (IsRctangleRightDownPointLine(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeNWSE;
+            }
+            else if (IsMyRange(info.Point))
+            {
+                myForm.Cursor = Cursors.SizeAll;
             }
             else
             {
@@ -303,12 +308,55 @@ namespace OOP_PJ
             }
         }
 
+        // 사이즈 조절
+        public void ResizeUpSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(MyRectangle.X, info.Y, MyRectangle.Width, MyRectangle.Height + (MyRectangle.Y - info.Y));
+            MyRectangle = rect;
+        }
+
+        public void ResizeDownSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(MyRectangle.X, MyRectangle.Y, MyRectangle.Width, info.Y -  MyRectangle.Y);
+            MyRectangle = rect;
+        }
+        public void ResizeLeftSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(info.X, MyRectangle.Y, MyRectangle.Width + MyRectangle.X - info.X, MyRectangle.Height);
+            MyRectangle = rect;
+        }
+        public void ResizeRightSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(MyRectangle.X, MyRectangle.Y, info.X - MyRectangle.X, MyRectangle.Height);
+            MyRectangle = rect;
+        }
+        public void ResizeUpLeftSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(info.X, info.Y, MyRectangle.Width + MyRectangle.X - info.X, MyRectangle.Height + (MyRectangle.Y - info.Y));
+            MyRectangle = rect;
+        }
+        public void ResizeLeftDownSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(info.X, start.Y, MyRectangle.Width + MyRectangle.X - info.X, info.Y - start.Y);
+            MyRectangle = rect;
+        }
+        public void ResizeRihgtUpSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(MyRectangle.X, info.Y, MyRectangle.Width + info.X - (MyRectangle.Width + MyRectangle.X), MyRectangle.Height + (MyRectangle.Y - info.Y));
+            MyRectangle = rect;
+        }
+        public void ResizeRightDownSide(Point start, Point info)
+        {
+            Rectangle rect = new Rectangle(MyRectangle.X, MyRectangle.Y, info.X - MyRectangle.X, info.Y - MyRectangle.Y);
+            MyRectangle = rect;
+        }
+        
     }   // shape class
 
 
     public class CCircle : Shape
     {
-        public CCircle(Rectangle recParam) : base(recParam) {  }
+        public CCircle(Rectangle recParam) : base(recParam) { }
 
         public override void Draw(Graphics g)
         {
@@ -330,11 +378,11 @@ namespace OOP_PJ
             return data;
         }
     }
-    
+
     public class CRectangle : Shape
     {
-        public CRectangle(Rectangle recParam): base(recParam) {  }
-    
+        public CRectangle(Rectangle recParam) : base(recParam) { }
+
         public override void Draw(Graphics g)
         {
             if (base.HasFill)
@@ -342,7 +390,7 @@ namespace OOP_PJ
                 SolidBrush brush = new SolidBrush(base.FillColor);
                 g.FillRectangle(brush, MyRectangle);
             }
-            if (base.HasLine) 
+            if (base.HasLine)
             {
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawRectangle(pen, MyRectangle);
@@ -356,11 +404,11 @@ namespace OOP_PJ
             return data;
         }
     }
-    
+
     public class CTriagle : Shape
     {
         public CTriagle(Rectangle recParam) : base(recParam) { }
-        
+
         public override void Draw(Graphics g)
         {
             PointF point1 = new PointF(MyRectangle.X + ((MyRectangle.Width) / 2), MyRectangle.Y);
@@ -387,4 +435,5 @@ namespace OOP_PJ
             return data;
         }
     }
+
 }

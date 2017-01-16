@@ -94,18 +94,11 @@ namespace OOP_PJ
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            myCommandManager.MoveTypeDecision(theInfomation, this);
+            myCommandManager.CursorTypeDecision(theInfomation, this);
             label4.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제예정
             // 마우스 다운
             if (e.X >= 0 && e.X <= this.Width && e.Y >= 0 && e.Y <= this.Height) // 폼안에서 이벤트 시작
             {
-                // TODO : 수정....알고리즘....
-                if (theInfomation.ActionType.Equals(Constant.ActionType.Select));
-                {
-                    // ....임시 UI 사용중 ... 대안 없을듯... 계속 사용 예정
-                    theInfomation.Drag = Constant.DragType.Drag;
-                }
-                
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
                     if (theInfomation.ActionType.Equals(Constant.ActionType.Draw))   // 그리기 이벤트 ON
@@ -113,7 +106,7 @@ namespace OOP_PJ
                         theInfomation.Point = new Point(e.X, e.Y);
                         myCommandManager.CreateMain(theInfomation);
                     }
-                    else if (theInfomation.Drag.Equals(Constant.DragType.Drag))   // 선택 Mode ON
+                    else if (theInfomation.ActionType.Equals(Constant.ActionType.Select))   // 선택 Mode ON
                     {
                         theInfomation.Point = new Point(e.X, e.Y);
                         myCommandManager.ChoiceShape(theInfomation);
@@ -131,46 +124,34 @@ namespace OOP_PJ
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             theInfomation.Point = new Point(e.X, e.Y);
-            myCommandManager.MoveTypeDecision(theInfomation, this);
+            myCommandManager.CursorTypeDecision(theInfomation, this);
 
             label3.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제 예정
 
-            if (theInfomation.ActionType == Constant.ActionType.Draw)
-            {
-                myCommandManager.MoveMouse(theInfomation, this);
-                
-            }
-            else if (theInfomation.Drag.Equals(Constant.DragType.Drag))
-            {
-                myCommandManager.MoveMouse(theInfomation, this);
-            }
+            myCommandManager.MoveMouse(theInfomation, this);
+           
             Invalidate();
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
-            myCommandManager.MoveTypeDecision(theInfomation, this);
+            myCommandManager.CursorTypeDecision(theInfomation, this);
 
-            if (theInfomation.ActionType == Constant.ActionType.Select && theInfomation.Drag == Constant.DragType.Drag)
-            {
-                theInfomation.Drag = Constant.DragType.None;
-                myCommandManager.CreateComeplete(theInfomation);
-            }
-            // 마우스 업
-            else if (theInfomation.ActionType == Constant.ActionType.Draw)
+            if (theInfomation.ActionType == Constant.ActionType.Draw)
             {
                 theInfomation.Point = new Point(e.X, e.Y);
                 myCommandManager.MoveMouse(theInfomation, this);
-                myCommandManager.CreateComeplete(theInfomation);
             }
 
+            myCommandManager.CreateComeplete(theInfomation);
+            theInfomation.MoveType = Constant.MoveType.None;
             Invalidate();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // 패인터
-            // 안티 에일리어스 아직 미적용 상황봐서... g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             myCommandManager.testDraw(e.Graphics, theInfomation);
         }
 
@@ -265,13 +246,7 @@ namespace OOP_PJ
         //        theInfomation.UseFill = false;
         //}
 
-        private void ChoiceChk_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ChoiceChk.Checked)
-                theInfomation.ActionType = Constant.ActionType.Select;
-            else
-                theInfomation.ActionType = Constant.ActionType.None;
-        }
+       
 
         private void Forward_btn_Click(object sender, EventArgs e)  // 도형 순서 위로 이동
         {
@@ -600,6 +575,10 @@ namespace OOP_PJ
                 theInfomation.UseLine = true;
             else
                 theInfomation.UseLine = false;
+
+            myCommandManager.ChangeLineColor(theInfomation);
+            Invalidate();
+
         }
 
         private void btnUseFill_CheckedChanged(object sender, EventArgs e)
@@ -609,7 +588,13 @@ namespace OOP_PJ
                 theInfomation.UseFill = true;
             else
                 theInfomation.UseFill = false;
+
+            myCommandManager.ChangeFillColor(theInfomation);
+            Invalidate();
         }
+
+
+        
 
         
 

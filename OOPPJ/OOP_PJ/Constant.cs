@@ -13,17 +13,26 @@ namespace OOP_PJ
         {
             None,
             Select,     // 선택
-            //MoveDrag,   // 선택후 드래그
             Draw,       // 그리기
             Fill,       // 채우기
             DrawAndFill,// 선 + 채우기
             Erase       // 삭제
         }
 
-        public enum DragType
+        public enum MoveType
         {
             None,   
-            Drag  // 임시대용으로 사용... 클릭 하고 드레그 구분 할 방법이 없음
+            DrawDrag,
+            Moveshape,
+            Resize, // 테스트 용
+            UpResize,
+            DownResize,
+            LeftResize,
+            RightResize,
+            LeftUpResize,
+            LeftDownResize,
+            RightUpResize,
+            RightDownResize
         }
 
         public enum ShapeType
@@ -50,70 +59,25 @@ namespace OOP_PJ
 
     public class Infomation
     {
-        private int thickness; // 펜 굵기
-        private Color lineColor; // 선 색
-        private Color fillColor; // 도형 채우기 색
-        private bool useLine; // 선 사용
-        private bool useFill; // 채우기 사용
-        private Point point; // x,y 좌표
-        private Constant.ShapeType shapeType;
-        private Constant.ActionType actionType;
-        private Constant.DragType drag;   // 임시방편 클릭 후 드레그 구분 할 방법이 없음...
+        public int Thickness { get; set; }
+        public Color LineColor { get; set; }
+        public Color FillColor { get; set; }
+        public bool UseLine { get; set; }
+        public bool UseFill { get; set; }
+        public Point Point { get; set; }
+        public Constant.ShapeType ShapeType { get; set; }
+        public Constant.ActionType ActionType { get; set; }
+        public Constant.MoveType MoveType { get; set; }
 
         public Infomation()
         {
-            useFill = false;
-            useLine = true;
-            shapeType = Constant.ShapeType.None;
-            actionType = Constant.ActionType.None;
-            drag = Constant.DragType.None;
+            UseFill = false;
+            UseLine = true;
+            ShapeType = Constant.ShapeType.None;
+            ActionType = Constant.ActionType.None;
+            MoveType = Constant.MoveType.None;
         }
-
-        public int Thickness
-        {
-            set { thickness = value; }
-            get { return thickness; }
-        }
-        public Color LineColor
-        {
-            set { lineColor = value; }
-            get { return lineColor; }
-        }
-        public Color FillColor
-        {
-            set { fillColor = value; }
-            get { return fillColor; }
-        }
-        public bool UseLine
-        {
-            set { useLine = value; }
-            get { return useLine; }
-        }
-        public bool UseFill
-        {
-            set { useFill = value; }
-            get { return useFill; }
-        }
-        public Point Point
-        {
-            set { point = value; }
-            get { return point; }
-        }
-        public Constant.ShapeType ShapeType
-        {
-            set { shapeType = value; }
-            get { return shapeType; }
-        }
-        public Constant.ActionType ActionType
-        {
-            set { actionType = value; }
-            get { return actionType; }
-        }
-        public Constant.DragType Drag // 임시 방편....
-        {
-            set { drag = value; }
-            get { return drag; }
-        }
+        
     }
 
     static class WIUtility
@@ -143,17 +107,6 @@ namespace OOP_PJ
                                             Color.Thistle
                                          };
 
-        //static public Rectangle GetPositiveRectangle(Point start, Point end)
-        //{
-        //    Rectangle rect = new Rectangle
-        //    {
-        //        X = end.X > start.X ? start.X : end.X,
-        //        Y = end.Y > start.Y ? start.Y : end.Y,
-        //        Width = Math.Abs(end.X - start.X),
-        //        Height = Math.Abs(end.Y - start.Y)
-        //    };
-        //    return rect;
-        //}
 
         /// <summary>
         /// 입력한 x,y 값이 원 안에 있는지검사 한다. (found75)
@@ -183,10 +136,6 @@ namespace OOP_PJ
             else
                 return false;
         }
-        
-        
-
-
         
 
         // 선택 이동시 클릭 한게 선인지 확인
