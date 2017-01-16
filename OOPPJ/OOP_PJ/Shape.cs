@@ -9,84 +9,59 @@ namespace OOP_PJ
 {
     public abstract class Shape
     {
-        private int thickness; // 펜 굵기
-        private Color lineColor; // 선 색
-        private Color fillColor; // 도형 채우기 색
-        private bool hasLine; // 라인 그리기 여부
-        private bool hasFill; // 채우기 여부
-        private int sequenceNumber; // 상태 저장 순서 번호
-        
-        public bool HasFill { set { hasFill = value; } get { return hasFill; } }
-        public bool HasLine { set { hasLine = value; } get { return hasLine; } }
-        public int Thickness { set { thickness = value; } get { return thickness; } }
-        public Color LineColor { set { lineColor = value; } get { return lineColor; } }
-        public Color FillColor { set { fillColor = value; } get { return fillColor; } }
-        public int SequenceNumber { set { sequenceNumber = value; } get { return sequenceNumber; } }
+        protected Stack<Shape> mHistory;
 
-        abstract public void Draw(Graphics g);
-        abstract public Rectangle GetRenctangle();
-        abstract public void SetRenctangle(Rectangle recParam);
-        abstract public bool Undo();
-        abstract public void Save();
-        abstract public int GetStackCount();
-        abstract public bool IsMyRange(Point selectedPoint);    // 선택 되었는지 체크
-    }
+        public bool HasFill { get; set; }
+        public bool HasLine { get; set; }
+        public int Thickness { get; set; }
+        public Color LineColor { get; set; }
+        public Color FillColor { get; set; }
+        public int SequenceNumber { get; set; }
+        public int ListIndex { get; set; }
+        public Rectangle MyRectangle { get; set; }
 
-    public class CCircle : Shape
-    {
-        private Stack<CCircle> mHistory; 
-        private Rectangle mRec;
-        private int baseListIndex;
-        
-        public CCircle(Rectangle recParam)
+        public Shape(Rectangle recParam)
         {
-            mHistory = new Stack<CCircle>();
-            mRec = new Rectangle();
-            mRec = recParam;
-            baseListIndex = 0;
+            mHistory = new Stack<Shape>();
+            MyRectangle = new Rectangle();
+            MyRectangle = recParam;
+
+            ListIndex = 0;
             SequenceNumber = 0;
         }
 
-        public int ListIndex
-        {
-            set { baseListIndex = value; }
-            get { return baseListIndex; }
-        }
+        //public Rectangle GetRenctangle() { return mRec; }
+        //public void SetRenctangle(Rectangle recParam) { mRec = recParam; }
 
-        public override int GetStackCount()
+        public bool Undo() // 실행 취소
         {
-            return mHistory.Count;   
-        }
-
-        public override void Draw(Graphics g)
-        {
-            if (base.HasFill)
+            if (mHistory.Count > 0)
             {
-                SolidBrush brush = new SolidBrush(base.FillColor);
-                g.FillEllipse(brush, mRec);
+                Shape tmp = mHistory.Pop();
+                if (tmp.SequenceNumber == this.SequenceNumber)
+                {
+                    if (mHistory.Count == 0)
+                        return false;
+                    tmp = mHistory.Pop();
+                }
+
+                this.MyRectangle = tmp.MyRectangle;
+                this.FillColor = tmp.FillColor;
+                this.Thickness = tmp.Thickness;
+                this.LineColor = tmp.LineColor;
+                this.HasLine = tmp.HasLine;
+                this.HasFill = tmp.HasFill;
+                this.ListIndex = tmp.ListIndex;
+
+                return true;
             }
-            
-            if(base.HasLine)
-            {
-                Pen pen = new Pen(base.LineColor, base.Thickness);
-                g.DrawEllipse(pen, mRec);
-            }
-           
+            return false;
         }
 
-        public override Rectangle GetRenctangle()
+        public void Save()
         {
-            return mRec;
-        }
-
-        public override void SetRenctangle(Rectangle recParam)
-        {
-            mRec = recParam;
-        }
-
-        public override void Save()
-        {
-            CCircle tmp = new CCircle(this.mRec);
+            //Shape tmp = new Shape(this.mRec);
+            Shape tmp = this.clone();
             tmp.ListIndex = this.ListIndex;
             tmp.Thickness = this.Thickness;
             tmp.LineColor = this.LineColor;
@@ -95,144 +70,79 @@ namespace OOP_PJ
             tmp.HasFill = this.HasFill;
             this.SequenceNumber++;
             tmp.SequenceNumber = this.SequenceNumber;
-            
 
             mHistory.Push(tmp);
         }
 
-        public override bool Undo() // 실행 취소
+        public int GetStackCount()
         {
-            if (mHistory.Count > 0)
-            {
-                CCircle tmp = mHistory.Pop();
-                if (tmp.SequenceNumber == this.SequenceNumber)
-                {
-                    if (mHistory.Count == 0)
-                        return false;
-                    tmp = mHistory.Pop();
-                }
-                 
-                this.mRec = tmp.mRec;
-                this.FillColor = tmp.FillColor;
-                this.Thickness = tmp.Thickness;
-                this.LineColor = tmp.LineColor;
-                this.HasLine = tmp.HasLine;
-                this.HasFill = tmp.HasFill;
-                this.ListIndex = tmp.ListIndex;
-                
-                return true;
-            }
-            return false;
+            return mHistory.Count;
         }
 
-        public override bool IsMyRange(Point selectedPoint)
+        public bool IsMyRange(Point selectedPoint)
         {
-            if (WIUtility.InEllipsePt(mRec, selectedPoint.X, selectedPoint.Y))
+            // if (WIUtility.InEllipsePt(mRec, selectedPoint.X, selectedPoint.Y))    // 컨셉변경 사각형으로 선택 하기로 결정
+            if (WIUtility.InRectanglePt(MyRectangle, selectedPoint.X, selectedPoint.Y))
                 return true;
             else
                 return false;
         }
+
+        public abstract Shape clone();
+        public abstract void Draw(Graphics g);
     }
 
-
-    public class CRectangle : Shape
+    public class CCircle : Shape
     {
-        private Stack<CRectangle> mHistory;
-        private Rectangle mRec;
-        private int baseListIndex;
-
-        public CRectangle(Rectangle recParam)
-        {
-            mHistory = new Stack<CRectangle>();
-            mRec = new Rectangle();
-            mRec = recParam;
-            baseListIndex = 0;
-        }
-
-        public int ListIndex
-        {
-            set { baseListIndex = value; }
-            get { return baseListIndex; }
-        }
-
-        public override int GetStackCount()
-        {
-            return mHistory.Count;
-        }
+        public CCircle(Rectangle recParam) : base(recParam) {  }
 
         public override void Draw(Graphics g)
         {
             if (base.HasFill)
             {
                 SolidBrush brush = new SolidBrush(base.FillColor);
-                g.FillRectangle(brush, mRec);
+                g.FillEllipse(brush, MyRectangle);
             }
             if(base.HasLine)
             {
                 Pen pen = new Pen(base.LineColor, base.Thickness);
-                g.DrawRectangle(pen, mRec);
+                g.DrawEllipse(pen, MyRectangle);
             }
-          
         }
 
-        public override Rectangle GetRenctangle()
+        public override Shape clone()
         {
-            return mRec;
+            Shape data = (Shape)this.MemberwiseClone();
+            return data;
+
+            //return base.clone();
         }
+    }
 
-        public override void SetRenctangle(Rectangle recParam)
+
+    public class CRectangle : Shape
+    {
+        public CRectangle(Rectangle recParam): base(recParam) {  }
+    
+        public override void Draw(Graphics g)
         {
-            mRec = recParam;
-        }
-
-        public override void Save()
-        {
-            CRectangle tmp = new CRectangle(this.mRec);
-            tmp.baseListIndex = this.baseListIndex;
-            tmp.Thickness = this.Thickness;
-            tmp.LineColor = this.LineColor;
-            tmp.FillColor = this.FillColor;
-            tmp.HasLine = this.HasLine;
-            tmp.HasFill = this.HasFill;
-            this.SequenceNumber++;
-            tmp.SequenceNumber = this.SequenceNumber;
-
-            mHistory.Push(tmp);
-        }
-
-
-        public override bool Undo() // 실행 취소
-        {
-            if (mHistory.Count > 0)
+            if (base.HasFill)
             {
-                CRectangle tmp = mHistory.Pop();
-                if (tmp.SequenceNumber == this.SequenceNumber)
-                {
-                    if (mHistory.Count == 0)
-                        return false;
-                    tmp = mHistory.Pop();
-                }
-
-                this.mRec = tmp.mRec;
-                this.FillColor = tmp.FillColor;
-                this.Thickness = tmp.Thickness;
-                this.LineColor = tmp.LineColor;
-                this.HasLine = tmp.HasLine;
-                this.HasFill = tmp.HasFill;
-                this.ListIndex = tmp.ListIndex;
-
-                return true;
+                SolidBrush brush = new SolidBrush(base.FillColor);
+                g.FillRectangle(brush, MyRectangle);
             }
-            return false;
+            if(base.HasLine)
+            {
+                Pen pen = new Pen(base.LineColor, base.Thickness);
+                g.DrawRectangle(pen, MyRectangle);
+            }
         }
 
-        public override bool IsMyRange(Point selectedPoint)
+        public override Shape clone()
         {
-            if (WIUtility.InRectanglePt(mRec, selectedPoint.X, selectedPoint.Y))
-                return true;
-            else
-                return false;
 
+            Shape data = (Shape)this.MemberwiseClone();
+            return data;
         }
     }
 }
