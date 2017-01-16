@@ -112,6 +112,23 @@ namespace OOP_PJ
 
                 return newRectangle;
             }
+            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Pentagon)) //삼각형
+            {
+                startX = newInfomation.Point.X;
+                startY = newInfomation.Point.Y;
+                Rectangle rec = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
+                CPenta newRectangle = new CPenta(rec);
+                newRectangle.FillColor = newInfomation.FillColor;
+                newRectangle.LineColor = newInfomation.LineColor;
+                newRectangle.Thickness = newInfomation.Thickness;
+
+                if (newInfomation.UseLine)
+                    newRectangle.HasLine = true;
+                if (newInfomation.UseFill)
+                    newRectangle.HasFill = true;
+
+                return newRectangle;
+            }
             else // 기타 도형 추가
             {
                 return null;

@@ -33,7 +33,8 @@ namespace OOP_PJ
             Line,       // 라인
             Rectangle,  // 사각형
             Circle,     // 원
-            Triangle    // 삼각형
+            Triangle,    // 삼각형
+            Pentagon    // 오각형
         }
 
         public enum MouseType
