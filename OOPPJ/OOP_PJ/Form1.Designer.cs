@@ -30,31 +30,43 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnUseFill = new System.Windows.Forms.RadioButton();
-            this.btnUseLine = new System.Windows.Forms.RadioButton();
-            this.BtnColor20 = new System.Windows.Forms.RadioButton();
-            this.BtnColor10 = new System.Windows.Forms.RadioButton();
-            this.BtnColor19 = new System.Windows.Forms.RadioButton();
-            this.BtnColor09 = new System.Windows.Forms.RadioButton();
-            this.BtnColor18 = new System.Windows.Forms.RadioButton();
-            this.BtnColor08 = new System.Windows.Forms.RadioButton();
-            this.BtnColor17 = new System.Windows.Forms.RadioButton();
-            this.BtnColor07 = new System.Windows.Forms.RadioButton();
-            this.BtnColor16 = new System.Windows.Forms.RadioButton();
-            this.BtnColor06 = new System.Windows.Forms.RadioButton();
+            this.btnUseFill = new System.Windows.Forms.CheckBox();
+            this.btnUseLine = new System.Windows.Forms.CheckBox();
+            this.BtnColor20 = new System.Windows.Forms.CheckBox();
+            this.BtnColor10 = new System.Windows.Forms.CheckBox();
+            this.BtnColor19 = new System.Windows.Forms.CheckBox();
+            this.BtnColor09 = new System.Windows.Forms.CheckBox();
+            this.BtnColor18 = new System.Windows.Forms.CheckBox();
+            this.BtnColor08 = new System.Windows.Forms.CheckBox();
+            this.BtnColor17 = new System.Windows.Forms.CheckBox();
+            this.BtnColor07 = new System.Windows.Forms.CheckBox();
+            this.BtnColor16 = new System.Windows.Forms.CheckBox();
+            this.BtnColor06 = new System.Windows.Forms.CheckBox();
             this.UpDownLine = new System.Windows.Forms.DomainUpDown();
-            this.BtnColor15 = new System.Windows.Forms.RadioButton();
-            this.BtnColor05 = new System.Windows.Forms.RadioButton();
-            this.BtnColor14 = new System.Windows.Forms.RadioButton();
-            this.BtnColor04 = new System.Windows.Forms.RadioButton();
-            this.BtnColor13 = new System.Windows.Forms.RadioButton();
-            this.BtnColor03 = new System.Windows.Forms.RadioButton();
-            this.BtnColor12 = new System.Windows.Forms.RadioButton();
-            this.BtnColor02 = new System.Windows.Forms.RadioButton();
-            this.BtnColor11 = new System.Windows.Forms.RadioButton();
-            this.BtnColor01 = new System.Windows.Forms.RadioButton();
-            this.BtnBgColor = new System.Windows.Forms.RadioButton();
-            this.BtnLineColor = new System.Windows.Forms.RadioButton();
+            this.BtnColor15 = new System.Windows.Forms.CheckBox();
+            this.BtnColor05 = new System.Windows.Forms.CheckBox();
+            this.BtnColor14 = new System.Windows.Forms.CheckBox();
+            this.BtnColor04 = new System.Windows.Forms.CheckBox();
+            this.BtnColor13 = new System.Windows.Forms.CheckBox();
+            this.BtnColor03 = new System.Windows.Forms.CheckBox();
+            this.BtnColor12 = new System.Windows.Forms.CheckBox();
+            this.BtnColor02 = new System.Windows.Forms.CheckBox();
+            this.BtnColor11 = new System.Windows.Forms.CheckBox();
+            this.BtnColor01 = new System.Windows.Forms.CheckBox();
+            this.BtnBgColor = new System.Windows.Forms.CheckBox();
+            this.BtnLineColor = new System.Windows.Forms.CheckBox();
+            this.BtnPencil = new System.Windows.Forms.CheckBox();
+            this.BtnImg = new System.Windows.Forms.CheckBox();
+            this.BtnFill = new System.Windows.Forms.CheckBox();
+            this.BtnChoice = new System.Windows.Forms.CheckBox();
+            this.BtnText = new System.Windows.Forms.CheckBox();
+            this.BtnStar = new System.Windows.Forms.CheckBox();
+            this.BtnHexa = new System.Windows.Forms.CheckBox();
+            this.BtnPentagon = new System.Windows.Forms.CheckBox();
+            this.BtnTri = new System.Windows.Forms.CheckBox();
+            this.BtnRec = new System.Windows.Forms.CheckBox();
+            this.BtnEllipse = new System.Windows.Forms.CheckBox();
+            this.BtnLine = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.편집ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,18 +85,6 @@
             this.FillChk = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnLine = new System.Windows.Forms.RadioButton();
-            this.BtnEllipse = new System.Windows.Forms.RadioButton();
-            this.BtnRec = new System.Windows.Forms.RadioButton();
-            this.BtnTri = new System.Windows.Forms.RadioButton();
-            this.BtnPentagon = new System.Windows.Forms.RadioButton();
-            this.BtnHexa = new System.Windows.Forms.RadioButton();
-            this.BtnStar = new System.Windows.Forms.RadioButton();
-            this.BtnText = new System.Windows.Forms.RadioButton();
-            this.BtnChoice = new System.Windows.Forms.RadioButton();
-            this.BtnFill = new System.Windows.Forms.RadioButton();
-            this.BtnImg = new System.Windows.Forms.RadioButton();
-            this.BtnPencil = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -92,6 +92,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.Controls.Add(this.btnUseFill);
             this.panel1.Controls.Add(this.btnUseLine);
@@ -131,9 +132,10 @@
             this.panel1.Controls.Add(this.BtnEllipse);
             this.panel1.Controls.Add(this.BtnLine);
             this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Location = new System.Drawing.Point(-1, -1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(705, 76);
+            this.panel1.Size = new System.Drawing.Size(863, 77);
             this.panel1.TabIndex = 0;
             // 
             // btnUseFill
@@ -145,128 +147,140 @@
             this.btnUseFill.TabIndex = 38;
             this.btnUseFill.Text = "채우기";
             this.btnUseFill.UseVisualStyleBackColor = true;
-            this.btnUseFill.Click += new System.EventHandler(this.btnUseFill_Click);
+            this.btnUseFill.CheckedChanged += new System.EventHandler(this.btnUseFill_CheckedChanged);
             // 
             // btnUseLine
             // 
             this.btnUseLine.Appearance = System.Windows.Forms.Appearance.Button;
+            this.btnUseLine.Checked = true;
+            this.btnUseLine.CheckState = System.Windows.Forms.CheckState.Checked;
             this.btnUseLine.Location = new System.Drawing.Point(178, 25);
             this.btnUseLine.Name = "btnUseLine";
             this.btnUseLine.Size = new System.Drawing.Size(65, 25);
             this.btnUseLine.TabIndex = 38;
             this.btnUseLine.Text = "윤곽선";
             this.btnUseLine.UseVisualStyleBackColor = true;
-            this.btnUseLine.Click += new System.EventHandler(this.btnUseLine_Click);
+            this.btnUseLine.CheckedChanged += new System.EventHandler(this.btnUseLine_CheckedChanged);
             // 
             // BtnColor20
             // 
             this.BtnColor20.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor20.AutoCheck = false;
             this.BtnColor20.BackColor = System.Drawing.Color.Thistle;
             this.BtnColor20.Location = new System.Drawing.Point(546, 49);
             this.BtnColor20.Name = "BtnColor20";
             this.BtnColor20.Size = new System.Drawing.Size(25, 25);
             this.BtnColor20.TabIndex = 37;
             this.BtnColor20.UseVisualStyleBackColor = false;
-            this.BtnColor20.Click += new System.EventHandler(this.BtnColor20_Click);
+            this.BtnColor20.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor10
             // 
             this.BtnColor10.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor10.AutoCheck = false;
             this.BtnColor10.BackColor = System.Drawing.Color.Purple;
             this.BtnColor10.Location = new System.Drawing.Point(546, 25);
             this.BtnColor10.Name = "BtnColor10";
             this.BtnColor10.Size = new System.Drawing.Size(25, 25);
             this.BtnColor10.TabIndex = 36;
             this.BtnColor10.UseVisualStyleBackColor = false;
-            this.BtnColor10.Click += new System.EventHandler(this.BtnColor10_Click);
+            this.BtnColor10.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor19
             // 
             this.BtnColor19.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor19.AutoCheck = false;
             this.BtnColor19.BackColor = System.Drawing.Color.CadetBlue;
             this.BtnColor19.Location = new System.Drawing.Point(522, 49);
             this.BtnColor19.Name = "BtnColor19";
             this.BtnColor19.Size = new System.Drawing.Size(25, 25);
             this.BtnColor19.TabIndex = 35;
             this.BtnColor19.UseVisualStyleBackColor = false;
-            this.BtnColor19.Click += new System.EventHandler(this.BtnColor19_Click);
+            this.BtnColor19.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor09
             // 
             this.BtnColor09.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor09.AutoCheck = false;
             this.BtnColor09.BackColor = System.Drawing.Color.DodgerBlue;
             this.BtnColor09.Location = new System.Drawing.Point(522, 25);
             this.BtnColor09.Name = "BtnColor09";
             this.BtnColor09.Size = new System.Drawing.Size(25, 25);
             this.BtnColor09.TabIndex = 34;
             this.BtnColor09.UseVisualStyleBackColor = false;
-            this.BtnColor09.Click += new System.EventHandler(this.BtnColor09_Click);
+            this.BtnColor09.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor18
             // 
             this.BtnColor18.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor18.AutoCheck = false;
             this.BtnColor18.BackColor = System.Drawing.Color.PaleTurquoise;
             this.BtnColor18.Location = new System.Drawing.Point(498, 49);
             this.BtnColor18.Name = "BtnColor18";
             this.BtnColor18.Size = new System.Drawing.Size(25, 25);
             this.BtnColor18.TabIndex = 33;
             this.BtnColor18.UseVisualStyleBackColor = false;
-            this.BtnColor18.Click += new System.EventHandler(this.BtnColor18_Click);
+            this.BtnColor18.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor08
             // 
             this.BtnColor08.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor08.AutoCheck = false;
             this.BtnColor08.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.BtnColor08.Location = new System.Drawing.Point(498, 25);
             this.BtnColor08.Name = "BtnColor08";
             this.BtnColor08.Size = new System.Drawing.Size(25, 25);
             this.BtnColor08.TabIndex = 32;
             this.BtnColor08.UseVisualStyleBackColor = false;
-            this.BtnColor08.Click += new System.EventHandler(this.BtnColor08_Click);
+            this.BtnColor08.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor17
             // 
             this.BtnColor17.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor17.AutoCheck = false;
             this.BtnColor17.BackColor = System.Drawing.Color.GreenYellow;
             this.BtnColor17.Location = new System.Drawing.Point(474, 49);
             this.BtnColor17.Name = "BtnColor17";
             this.BtnColor17.Size = new System.Drawing.Size(25, 25);
             this.BtnColor17.TabIndex = 31;
             this.BtnColor17.UseVisualStyleBackColor = false;
-            this.BtnColor17.Click += new System.EventHandler(this.BtnColor17_Click);
+            this.BtnColor17.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor07
             // 
             this.BtnColor07.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor07.AutoCheck = false;
             this.BtnColor07.BackColor = System.Drawing.Color.Green;
             this.BtnColor07.Location = new System.Drawing.Point(474, 25);
             this.BtnColor07.Name = "BtnColor07";
             this.BtnColor07.Size = new System.Drawing.Size(25, 25);
             this.BtnColor07.TabIndex = 30;
             this.BtnColor07.UseVisualStyleBackColor = false;
-            this.BtnColor07.Click += new System.EventHandler(this.BtnColor07_Click);
+            this.BtnColor07.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor16
             // 
             this.BtnColor16.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor16.AutoCheck = false;
             this.BtnColor16.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.BtnColor16.Location = new System.Drawing.Point(450, 49);
             this.BtnColor16.Name = "BtnColor16";
             this.BtnColor16.Size = new System.Drawing.Size(25, 25);
             this.BtnColor16.TabIndex = 29;
             this.BtnColor16.UseVisualStyleBackColor = false;
-            this.BtnColor16.Click += new System.EventHandler(this.BtnColor16_Click);
+            this.BtnColor16.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor06
             // 
             this.BtnColor06.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor06.AutoCheck = false;
             this.BtnColor06.BackColor = System.Drawing.Color.Yellow;
             this.BtnColor06.Location = new System.Drawing.Point(450, 25);
             this.BtnColor06.Name = "BtnColor06";
             this.BtnColor06.Size = new System.Drawing.Size(25, 25);
             this.BtnColor06.TabIndex = 28;
             this.BtnColor06.UseVisualStyleBackColor = false;
-            this.BtnColor06.Click += new System.EventHandler(this.BtnColor06_Click);
+            this.BtnColor06.Click += new System.EventHandler(this.ColorPt);
             // 
             // UpDownLine
             // 
@@ -288,116 +302,127 @@
             // BtnColor15
             // 
             this.BtnColor15.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor15.AutoCheck = false;
             this.BtnColor15.BackColor = System.Drawing.Color.Gold;
             this.BtnColor15.Location = new System.Drawing.Point(426, 49);
             this.BtnColor15.Name = "BtnColor15";
             this.BtnColor15.Size = new System.Drawing.Size(25, 25);
             this.BtnColor15.TabIndex = 26;
             this.BtnColor15.UseVisualStyleBackColor = false;
-            this.BtnColor15.Click += new System.EventHandler(this.BtnColor15_Click);
+            this.BtnColor15.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor05
             // 
             this.BtnColor05.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor05.AutoCheck = false;
             this.BtnColor05.BackColor = System.Drawing.Color.DarkOrange;
             this.BtnColor05.Location = new System.Drawing.Point(426, 25);
             this.BtnColor05.Name = "BtnColor05";
             this.BtnColor05.Size = new System.Drawing.Size(25, 25);
             this.BtnColor05.TabIndex = 25;
             this.BtnColor05.UseVisualStyleBackColor = false;
-            this.BtnColor05.Click += new System.EventHandler(this.BtnColor05_Click);
+            this.BtnColor05.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor14
             // 
             this.BtnColor14.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor14.AutoCheck = false;
             this.BtnColor14.BackColor = System.Drawing.Color.Pink;
             this.BtnColor14.Location = new System.Drawing.Point(402, 49);
             this.BtnColor14.Name = "BtnColor14";
             this.BtnColor14.Size = new System.Drawing.Size(25, 25);
             this.BtnColor14.TabIndex = 24;
             this.BtnColor14.UseVisualStyleBackColor = false;
-            this.BtnColor14.Click += new System.EventHandler(this.BtnColor14_Click);
+            this.BtnColor14.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor04
             // 
             this.BtnColor04.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor04.AutoCheck = false;
             this.BtnColor04.BackColor = System.Drawing.Color.Red;
             this.BtnColor04.Location = new System.Drawing.Point(402, 25);
             this.BtnColor04.Name = "BtnColor04";
             this.BtnColor04.Size = new System.Drawing.Size(25, 25);
             this.BtnColor04.TabIndex = 23;
             this.BtnColor04.UseVisualStyleBackColor = false;
-            this.BtnColor04.Click += new System.EventHandler(this.BtnColor04_Click);
+            this.BtnColor04.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor13
             // 
             this.BtnColor13.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor13.AutoCheck = false;
             this.BtnColor13.BackColor = System.Drawing.Color.RosyBrown;
             this.BtnColor13.Location = new System.Drawing.Point(378, 49);
             this.BtnColor13.Name = "BtnColor13";
             this.BtnColor13.Size = new System.Drawing.Size(25, 25);
             this.BtnColor13.TabIndex = 22;
             this.BtnColor13.UseVisualStyleBackColor = false;
-            this.BtnColor13.Click += new System.EventHandler(this.BtnColor13_Click);
+            this.BtnColor13.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor03
             // 
             this.BtnColor03.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor03.AutoCheck = false;
             this.BtnColor03.BackColor = System.Drawing.Color.Maroon;
             this.BtnColor03.Location = new System.Drawing.Point(378, 25);
             this.BtnColor03.Name = "BtnColor03";
             this.BtnColor03.Size = new System.Drawing.Size(25, 25);
             this.BtnColor03.TabIndex = 21;
             this.BtnColor03.UseVisualStyleBackColor = false;
-            this.BtnColor03.Click += new System.EventHandler(this.BtnColor03_Click);
+            this.BtnColor03.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor12
             // 
             this.BtnColor12.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor12.AutoCheck = false;
             this.BtnColor12.BackColor = System.Drawing.Color.LightGray;
             this.BtnColor12.Location = new System.Drawing.Point(354, 49);
             this.BtnColor12.Name = "BtnColor12";
             this.BtnColor12.Size = new System.Drawing.Size(25, 25);
             this.BtnColor12.TabIndex = 20;
             this.BtnColor12.UseVisualStyleBackColor = false;
-            this.BtnColor12.Click += new System.EventHandler(this.BtnColor12_Click);
+            this.BtnColor12.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor02
             // 
             this.BtnColor02.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor02.AutoCheck = false;
             this.BtnColor02.BackColor = System.Drawing.Color.Gray;
             this.BtnColor02.Location = new System.Drawing.Point(354, 25);
             this.BtnColor02.Name = "BtnColor02";
             this.BtnColor02.Size = new System.Drawing.Size(25, 25);
             this.BtnColor02.TabIndex = 19;
             this.BtnColor02.UseVisualStyleBackColor = false;
-            this.BtnColor02.Click += new System.EventHandler(this.BtnColor02_Click);
+            this.BtnColor02.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor11
             // 
             this.BtnColor11.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor11.AutoCheck = false;
             this.BtnColor11.BackColor = System.Drawing.Color.White;
             this.BtnColor11.Location = new System.Drawing.Point(330, 49);
             this.BtnColor11.Name = "BtnColor11";
             this.BtnColor11.Size = new System.Drawing.Size(25, 25);
             this.BtnColor11.TabIndex = 18;
             this.BtnColor11.UseVisualStyleBackColor = false;
-            this.BtnColor11.Click += new System.EventHandler(this.BtnColor11_Click);
+            this.BtnColor11.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnColor01
             // 
             this.BtnColor01.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnColor01.AutoCheck = false;
             this.BtnColor01.BackColor = System.Drawing.Color.Black;
             this.BtnColor01.Location = new System.Drawing.Point(330, 25);
             this.BtnColor01.Name = "BtnColor01";
             this.BtnColor01.Size = new System.Drawing.Size(25, 25);
             this.BtnColor01.TabIndex = 17;
             this.BtnColor01.UseVisualStyleBackColor = false;
-            this.BtnColor01.Click += new System.EventHandler(this.BtnColor01_Click);
+            this.BtnColor01.Click += new System.EventHandler(this.ColorPt);
             // 
             // BtnBgColor
             // 
             this.BtnBgColor.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnBgColor.AutoCheck = false;
             this.BtnBgColor.BackColor = System.Drawing.Color.Pink;
             this.BtnBgColor.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.BtnBgColor.Location = new System.Drawing.Point(286, 25);
@@ -406,11 +431,12 @@
             this.BtnBgColor.TabIndex = 15;
             this.BtnBgColor.Text = "Bg Color";
             this.BtnBgColor.UseVisualStyleBackColor = false;
-            this.BtnBgColor.Click += new System.EventHandler(this.BtnBgColor_Click);
+            this.BtnBgColor.Click += new System.EventHandler(this.ColorChoice);
             // 
             // BtnLineColor
             // 
             this.BtnLineColor.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnLineColor.AutoCheck = false;
             this.BtnLineColor.BackColor = System.Drawing.Color.DarkMagenta;
             this.BtnLineColor.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLineColor.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -420,7 +446,151 @@
             this.BtnLineColor.TabIndex = 14;
             this.BtnLineColor.Text = "Line Color";
             this.BtnLineColor.UseVisualStyleBackColor = false;
-            this.BtnLineColor.Click += new System.EventHandler(this.BtnLineColor_Click);
+            this.BtnLineColor.Click += new System.EventHandler(this.ColorChoice);
+            // 
+            // BtnPencil
+            // 
+            this.BtnPencil.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnPencil.AutoCheck = false;
+            this.BtnPencil.Image = ((System.Drawing.Image)(resources.GetObject("BtnPencil.Image")));
+            this.BtnPencil.Location = new System.Drawing.Point(154, 25);
+            this.BtnPencil.Name = "BtnPencil";
+            this.BtnPencil.Size = new System.Drawing.Size(25, 25);
+            this.BtnPencil.TabIndex = 13;
+            this.BtnPencil.UseVisualStyleBackColor = true;
+            this.BtnPencil.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnImg
+            // 
+            this.BtnImg.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnImg.AutoCheck = false;
+            this.BtnImg.Image = ((System.Drawing.Image)(resources.GetObject("BtnImg.Image")));
+            this.BtnImg.Location = new System.Drawing.Point(154, 49);
+            this.BtnImg.Name = "BtnImg";
+            this.BtnImg.Size = new System.Drawing.Size(25, 25);
+            this.BtnImg.TabIndex = 12;
+            this.BtnImg.UseVisualStyleBackColor = true;
+            this.BtnImg.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnFill
+            // 
+            this.BtnFill.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnFill.AutoCheck = false;
+            this.BtnFill.Image = ((System.Drawing.Image)(resources.GetObject("BtnFill.Image")));
+            this.BtnFill.Location = new System.Drawing.Point(129, 49);
+            this.BtnFill.Name = "BtnFill";
+            this.BtnFill.Size = new System.Drawing.Size(25, 25);
+            this.BtnFill.TabIndex = 1;
+            this.BtnFill.UseVisualStyleBackColor = true;
+            this.BtnFill.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnChoice
+            // 
+            this.BtnChoice.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnChoice.AutoCheck = false;
+            this.BtnChoice.Image = ((System.Drawing.Image)(resources.GetObject("BtnChoice.Image")));
+            this.BtnChoice.Location = new System.Drawing.Point(104, 49);
+            this.BtnChoice.Name = "BtnChoice";
+            this.BtnChoice.Size = new System.Drawing.Size(25, 25);
+            this.BtnChoice.TabIndex = 11;
+            this.BtnChoice.UseVisualStyleBackColor = true;
+            this.BtnChoice.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnText
+            // 
+            this.BtnText.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnText.AutoCheck = false;
+            this.BtnText.Image = ((System.Drawing.Image)(resources.GetObject("BtnText.Image")));
+            this.BtnText.Location = new System.Drawing.Point(77, 49);
+            this.BtnText.Name = "BtnText";
+            this.BtnText.Size = new System.Drawing.Size(25, 25);
+            this.BtnText.TabIndex = 9;
+            this.BtnText.UseVisualStyleBackColor = true;
+            this.BtnText.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnStar
+            // 
+            this.BtnStar.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnStar.AutoCheck = false;
+            this.BtnStar.Image = ((System.Drawing.Image)(resources.GetObject("BtnStar.Image")));
+            this.BtnStar.Location = new System.Drawing.Point(53, 49);
+            this.BtnStar.Name = "BtnStar";
+            this.BtnStar.Size = new System.Drawing.Size(25, 25);
+            this.BtnStar.TabIndex = 8;
+            this.BtnStar.UseVisualStyleBackColor = true;
+            this.BtnStar.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnHexa
+            // 
+            this.BtnHexa.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnHexa.AutoCheck = false;
+            this.BtnHexa.Image = ((System.Drawing.Image)(resources.GetObject("BtnHexa.Image")));
+            this.BtnHexa.Location = new System.Drawing.Point(29, 49);
+            this.BtnHexa.Name = "BtnHexa";
+            this.BtnHexa.Size = new System.Drawing.Size(25, 25);
+            this.BtnHexa.TabIndex = 7;
+            this.BtnHexa.UseVisualStyleBackColor = true;
+            this.BtnHexa.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnPentagon
+            // 
+            this.BtnPentagon.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnPentagon.AutoCheck = false;
+            this.BtnPentagon.Image = ((System.Drawing.Image)(resources.GetObject("BtnPentagon.Image")));
+            this.BtnPentagon.Location = new System.Drawing.Point(5, 49);
+            this.BtnPentagon.Name = "BtnPentagon";
+            this.BtnPentagon.Size = new System.Drawing.Size(25, 25);
+            this.BtnPentagon.TabIndex = 6;
+            this.BtnPentagon.UseVisualStyleBackColor = true;
+            this.BtnPentagon.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnTri
+            // 
+            this.BtnTri.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnTri.AutoCheck = false;
+            this.BtnTri.Image = ((System.Drawing.Image)(resources.GetObject("BtnTri.Image")));
+            this.BtnTri.Location = new System.Drawing.Point(77, 25);
+            this.BtnTri.Name = "BtnTri";
+            this.BtnTri.Size = new System.Drawing.Size(25, 25);
+            this.BtnTri.TabIndex = 4;
+            this.BtnTri.UseVisualStyleBackColor = true;
+            this.BtnTri.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnRec
+            // 
+            this.BtnRec.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnRec.AutoCheck = false;
+            this.BtnRec.Image = ((System.Drawing.Image)(resources.GetObject("BtnRec.Image")));
+            this.BtnRec.Location = new System.Drawing.Point(53, 25);
+            this.BtnRec.Name = "BtnRec";
+            this.BtnRec.Size = new System.Drawing.Size(25, 25);
+            this.BtnRec.TabIndex = 3;
+            this.BtnRec.UseVisualStyleBackColor = true;
+            this.BtnRec.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnEllipse
+            // 
+            this.BtnEllipse.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnEllipse.AutoCheck = false;
+            this.BtnEllipse.Image = ((System.Drawing.Image)(resources.GetObject("BtnEllipse.Image")));
+            this.BtnEllipse.Location = new System.Drawing.Point(29, 25);
+            this.BtnEllipse.Name = "BtnEllipse";
+            this.BtnEllipse.Size = new System.Drawing.Size(25, 25);
+            this.BtnEllipse.TabIndex = 2;
+            this.BtnEllipse.UseVisualStyleBackColor = true;
+            this.BtnEllipse.Click += new System.EventHandler(this.PolygonClick_Click);
+            // 
+            // BtnLine
+            // 
+            this.BtnLine.Appearance = System.Windows.Forms.Appearance.Button;
+            this.BtnLine.AutoCheck = false;
+            this.BtnLine.Image = ((System.Drawing.Image)(resources.GetObject("BtnLine.Image")));
+            this.BtnLine.Location = new System.Drawing.Point(5, 25);
+            this.BtnLine.Name = "BtnLine";
+            this.BtnLine.Size = new System.Drawing.Size(25, 25);
+            this.BtnLine.TabIndex = 1;
+            this.BtnLine.UseVisualStyleBackColor = true;
+            this.BtnLine.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
             // menuStrip1
             // 
@@ -430,7 +600,7 @@
             this.보기ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(705, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(863, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -550,7 +720,6 @@
             this.ChoiceChk.TabIndex = 48;
             this.ChoiceChk.Text = "선택모드";
             this.ChoiceChk.UseVisualStyleBackColor = true;
-            this.ChoiceChk.CheckedChanged += new System.EventHandler(this.ChoiceChk_CheckedChanged);
             // 
             // Backward_btn
             // 
@@ -581,7 +750,6 @@
             this.penChk.TabIndex = 45;
             this.penChk.Text = "펜사용";
             this.penChk.UseVisualStyleBackColor = true;
-            this.penChk.CheckedChanged += new System.EventHandler(this.penChk_CheckedChanged);
             // 
             // FillChk
             // 
@@ -592,7 +760,6 @@
             this.FillChk.TabIndex = 44;
             this.FillChk.Text = "채우기사용";
             this.FillChk.UseVisualStyleBackColor = true;
-            this.FillChk.CheckedChanged += new System.EventHandler(this.FillChk_CheckedChanged);
             // 
             // label2
             // 
@@ -611,138 +778,6 @@
             this.label1.Size = new System.Drawing.Size(61, 12);
             this.label1.TabIndex = 42;
             this.label1.Text = "Pen Color";
-            // 
-            // BtnLine
-            // 
-            this.BtnLine.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnLine.Image = ((System.Drawing.Image)(resources.GetObject("BtnLine.Image")));
-            this.BtnLine.Location = new System.Drawing.Point(5, 25);
-            this.BtnLine.Name = "BtnLine";
-            this.BtnLine.Size = new System.Drawing.Size(25, 25);
-            this.BtnLine.TabIndex = 1;
-            this.BtnLine.UseVisualStyleBackColor = true;
-            this.BtnLine.Click += new System.EventHandler(this.BtnLine_Click);
-            // 
-            // BtnEllipse
-            // 
-            this.BtnEllipse.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnEllipse.Image = ((System.Drawing.Image)(resources.GetObject("BtnEllipse.Image")));
-            this.BtnEllipse.Location = new System.Drawing.Point(29, 25);
-            this.BtnEllipse.Name = "BtnEllipse";
-            this.BtnEllipse.Size = new System.Drawing.Size(25, 25);
-            this.BtnEllipse.TabIndex = 2;
-            this.BtnEllipse.UseVisualStyleBackColor = true;
-            this.BtnEllipse.Click += new System.EventHandler(this.BtnEllipse_Click);
-            // 
-            // BtnRec
-            // 
-            this.BtnRec.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnRec.Image = ((System.Drawing.Image)(resources.GetObject("BtnRec.Image")));
-            this.BtnRec.Location = new System.Drawing.Point(53, 25);
-            this.BtnRec.Name = "BtnRec";
-            this.BtnRec.Size = new System.Drawing.Size(25, 25);
-            this.BtnRec.TabIndex = 3;
-            this.BtnRec.UseVisualStyleBackColor = true;
-            this.BtnRec.Click += new System.EventHandler(this.BtnRec_Click);
-            // 
-            // BtnTri
-            // 
-            this.BtnTri.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnTri.Image = ((System.Drawing.Image)(resources.GetObject("BtnTri.Image")));
-            this.BtnTri.Location = new System.Drawing.Point(77, 25);
-            this.BtnTri.Name = "BtnTri";
-            this.BtnTri.Size = new System.Drawing.Size(25, 25);
-            this.BtnTri.TabIndex = 4;
-            this.BtnTri.UseVisualStyleBackColor = true;
-            this.BtnTri.Click += new System.EventHandler(this.BtnTri_Click);
-            // 
-            // BtnPentagon
-            // 
-            this.BtnPentagon.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnPentagon.Image = ((System.Drawing.Image)(resources.GetObject("BtnPentagon.Image")));
-            this.BtnPentagon.Location = new System.Drawing.Point(5, 49);
-            this.BtnPentagon.Name = "BtnPentagon";
-            this.BtnPentagon.Size = new System.Drawing.Size(25, 25);
-            this.BtnPentagon.TabIndex = 6;
-            this.BtnPentagon.UseVisualStyleBackColor = true;
-            this.BtnPentagon.Click += new System.EventHandler(this.BtnPentagon_Click);
-            // 
-            // BtnHexa
-            // 
-            this.BtnHexa.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnHexa.Image = ((System.Drawing.Image)(resources.GetObject("BtnHexa.Image")));
-            this.BtnHexa.Location = new System.Drawing.Point(29, 49);
-            this.BtnHexa.Name = "BtnHexa";
-            this.BtnHexa.Size = new System.Drawing.Size(25, 25);
-            this.BtnHexa.TabIndex = 7;
-            this.BtnHexa.UseVisualStyleBackColor = true;
-            this.BtnHexa.Click += new System.EventHandler(this.BtnHexa_Click);
-            // 
-            // BtnStar
-            // 
-            this.BtnStar.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnStar.Image = ((System.Drawing.Image)(resources.GetObject("BtnStar.Image")));
-            this.BtnStar.Location = new System.Drawing.Point(53, 49);
-            this.BtnStar.Name = "BtnStar";
-            this.BtnStar.Size = new System.Drawing.Size(25, 25);
-            this.BtnStar.TabIndex = 8;
-            this.BtnStar.UseVisualStyleBackColor = true;
-            this.BtnStar.Click += new System.EventHandler(this.BtnStar_Click);
-            // 
-            // BtnText
-            // 
-            this.BtnText.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnText.Image = ((System.Drawing.Image)(resources.GetObject("BtnText.Image")));
-            this.BtnText.Location = new System.Drawing.Point(77, 49);
-            this.BtnText.Name = "BtnText";
-            this.BtnText.Size = new System.Drawing.Size(25, 25);
-            this.BtnText.TabIndex = 9;
-            this.BtnText.UseVisualStyleBackColor = true;
-            this.BtnText.Click += new System.EventHandler(this.BtnText_Click);
-            // 
-            // BtnChoice
-            // 
-            this.BtnChoice.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnChoice.Image = ((System.Drawing.Image)(resources.GetObject("BtnChoice.Image")));
-            this.BtnChoice.Location = new System.Drawing.Point(104, 49);
-            this.BtnChoice.Name = "BtnChoice";
-            this.BtnChoice.Size = new System.Drawing.Size(25, 25);
-            this.BtnChoice.TabIndex = 11;
-            this.BtnChoice.UseVisualStyleBackColor = true;
-            this.BtnChoice.Click += new System.EventHandler(this.BtnChoice_Click);
-            // 
-            // BtnFill
-            // 
-            this.BtnFill.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnFill.Image = ((System.Drawing.Image)(resources.GetObject("BtnFill.Image")));
-            this.BtnFill.Location = new System.Drawing.Point(129, 49);
-            this.BtnFill.Name = "BtnFill";
-            this.BtnFill.Size = new System.Drawing.Size(25, 25);
-            this.BtnFill.TabIndex = 1;
-            this.BtnFill.UseVisualStyleBackColor = true;
-            this.BtnFill.Click += new System.EventHandler(this.BtnFill_Click);
-            // 
-            // BtnImg
-            // 
-            this.BtnImg.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnImg.Image = ((System.Drawing.Image)(resources.GetObject("BtnImg.Image")));
-            this.BtnImg.Location = new System.Drawing.Point(154, 49);
-            this.BtnImg.Name = "BtnImg";
-            this.BtnImg.Size = new System.Drawing.Size(25, 25);
-            this.BtnImg.TabIndex = 12;
-            this.BtnImg.UseVisualStyleBackColor = true;
-            this.BtnImg.Click += new System.EventHandler(this.BtnImg_Click);
-            // 
-            // BtnPencil
-            // 
-            this.BtnPencil.Appearance = System.Windows.Forms.Appearance.Button;
-            this.BtnPencil.Image = ((System.Drawing.Image)(resources.GetObject("BtnPencil.Image")));
-            this.BtnPencil.Location = new System.Drawing.Point(154, 25);
-            this.BtnPencil.Name = "BtnPencil";
-            this.BtnPencil.Size = new System.Drawing.Size(25, 25);
-            this.BtnPencil.TabIndex = 13;
-            this.BtnPencil.UseVisualStyleBackColor = true;
-            this.BtnPencil.Click += new System.EventHandler(this.BtnPencil_Click);
             // 
             // Form1
             // 
@@ -767,6 +802,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -777,29 +813,29 @@
         private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 편집ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 보기ToolStripMenuItem;
-        private System.Windows.Forms.RadioButton BtnBgColor;
-        private System.Windows.Forms.RadioButton BtnLineColor;
-        private System.Windows.Forms.RadioButton BtnColor15;
-        private System.Windows.Forms.RadioButton BtnColor05;
-        private System.Windows.Forms.RadioButton BtnColor14;
-        private System.Windows.Forms.RadioButton BtnColor04;
-        private System.Windows.Forms.RadioButton BtnColor13;
-        private System.Windows.Forms.RadioButton BtnColor03;
-        private System.Windows.Forms.RadioButton BtnColor12;
-        private System.Windows.Forms.RadioButton BtnColor02;
-        private System.Windows.Forms.RadioButton BtnColor11;
-        private System.Windows.Forms.RadioButton BtnColor01;
+        private System.Windows.Forms.CheckBox BtnBgColor;
+        private System.Windows.Forms.CheckBox BtnLineColor;
+        private System.Windows.Forms.CheckBox BtnColor15;
+        private System.Windows.Forms.CheckBox BtnColor05;
+        private System.Windows.Forms.CheckBox BtnColor14;
+        private System.Windows.Forms.CheckBox BtnColor04;
+        private System.Windows.Forms.CheckBox BtnColor13;
+        private System.Windows.Forms.CheckBox BtnColor03;
+        private System.Windows.Forms.CheckBox BtnColor12;
+        private System.Windows.Forms.CheckBox BtnColor02;
+        private System.Windows.Forms.CheckBox BtnColor11;
+        private System.Windows.Forms.CheckBox BtnColor01;
         private System.Windows.Forms.DomainUpDown UpDownLine;
-        private System.Windows.Forms.RadioButton BtnColor19;
-        private System.Windows.Forms.RadioButton BtnColor09;
-        private System.Windows.Forms.RadioButton BtnColor18;
-        private System.Windows.Forms.RadioButton BtnColor08;
-        private System.Windows.Forms.RadioButton BtnColor17;
-        private System.Windows.Forms.RadioButton BtnColor07;
-        private System.Windows.Forms.RadioButton BtnColor16;
-        private System.Windows.Forms.RadioButton BtnColor06;
-        private System.Windows.Forms.RadioButton BtnColor20;
-        private System.Windows.Forms.RadioButton BtnColor10;
+        private System.Windows.Forms.CheckBox BtnColor19;
+        private System.Windows.Forms.CheckBox BtnColor09;
+        private System.Windows.Forms.CheckBox BtnColor18;
+        private System.Windows.Forms.CheckBox BtnColor08;
+        private System.Windows.Forms.CheckBox BtnColor17;
+        private System.Windows.Forms.CheckBox BtnColor07;
+        private System.Windows.Forms.CheckBox BtnColor16;
+        private System.Windows.Forms.CheckBox BtnColor06;
+        private System.Windows.Forms.CheckBox BtnColor20;
+        private System.Windows.Forms.CheckBox BtnColor10;
         private System.Windows.Forms.Button Undo_btn;
         private System.Windows.Forms.ComboBox FillCombobox;
         private System.Windows.Forms.ComboBox PenColorCombox;
@@ -814,20 +850,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttontest;
-        private System.Windows.Forms.RadioButton btnUseFill;
-        private System.Windows.Forms.RadioButton btnUseLine;
-        private System.Windows.Forms.RadioButton BtnPencil;
-        private System.Windows.Forms.RadioButton BtnImg;
-        private System.Windows.Forms.RadioButton BtnFill;
-        private System.Windows.Forms.RadioButton BtnChoice;
-        private System.Windows.Forms.RadioButton BtnText;
-        private System.Windows.Forms.RadioButton BtnStar;
-        private System.Windows.Forms.RadioButton BtnHexa;
-        private System.Windows.Forms.RadioButton BtnPentagon;
-        private System.Windows.Forms.RadioButton BtnTri;
-        private System.Windows.Forms.RadioButton BtnRec;
-        private System.Windows.Forms.RadioButton BtnEllipse;
-        private System.Windows.Forms.RadioButton BtnLine;
+        private System.Windows.Forms.CheckBox btnUseFill;
+        private System.Windows.Forms.CheckBox btnUseLine;
+        private System.Windows.Forms.CheckBox BtnPencil;
+        private System.Windows.Forms.CheckBox BtnImg;
+        private System.Windows.Forms.CheckBox BtnFill;
+        private System.Windows.Forms.CheckBox BtnChoice;
+        private System.Windows.Forms.CheckBox BtnText;
+        private System.Windows.Forms.CheckBox BtnStar;
+        private System.Windows.Forms.CheckBox BtnHexa;
+        private System.Windows.Forms.CheckBox BtnPentagon;
+        private System.Windows.Forms.CheckBox BtnTri;
+        private System.Windows.Forms.CheckBox BtnRec;
+        private System.Windows.Forms.CheckBox BtnEllipse;
+        private System.Windows.Forms.CheckBox BtnLine;
 
 
     }

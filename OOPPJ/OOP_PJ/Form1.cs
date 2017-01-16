@@ -14,6 +14,13 @@ namespace OOP_PJ
         Infomation theInfomation;
         CommandManager myCommandManager;
 
+        List<CheckBox> CBgrp01 = new List<CheckBox>();
+        List<CheckBox> CBgrp02 = new List<CheckBox>();
+        List<CheckBox> CBgrp03 = new List<CheckBox>();
+        List<CheckBox> CBgrp04 = new List<CheckBox>();
+
+        // List<CheckBox> _rgBth = new List<CheckBox>();
+
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +29,49 @@ namespace OOP_PJ
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // CheckBox Group 01
+            CBgrp01.Add(BtnPencil);
+            CBgrp01.Add(BtnImg);
+            CBgrp01.Add(BtnFill);
+            CBgrp01.Add(BtnChoice);
+            CBgrp01.Add(BtnText);
+            CBgrp01.Add(BtnStar);
+            CBgrp01.Add(BtnHexa);
+            CBgrp01.Add(BtnPentagon);
+            CBgrp01.Add(BtnTri);
+            CBgrp01.Add(BtnRec);
+            CBgrp01.Add(BtnEllipse);
+            CBgrp01.Add(BtnLine);
+
+            // CheckBox Group 02
+            // 윤곽선과 채우기는 개별 선택하도록
+
+            // CheckBox Group 03
+            CBgrp03.Add(BtnLineColor);
+            CBgrp03.Add(BtnBgColor);
+
+            // CheckBox Group 04
+            CBgrp04.Add(BtnColor01);
+            CBgrp04.Add(BtnColor02);
+            CBgrp04.Add(BtnColor03);
+            CBgrp04.Add(BtnColor04);
+            CBgrp04.Add(BtnColor05);
+            CBgrp04.Add(BtnColor06);
+            CBgrp04.Add(BtnColor07);
+            CBgrp04.Add(BtnColor08);
+            CBgrp04.Add(BtnColor09);
+            CBgrp04.Add(BtnColor10);
+            CBgrp04.Add(BtnColor11);
+            CBgrp04.Add(BtnColor12);
+            CBgrp04.Add(BtnColor13);
+            CBgrp04.Add(BtnColor14);
+            CBgrp04.Add(BtnColor15);
+            CBgrp04.Add(BtnColor16);
+            CBgrp04.Add(BtnColor17);
+            CBgrp04.Add(BtnColor18);
+            CBgrp04.Add(BtnColor19);
+            CBgrp04.Add(BtnColor20);
+
             // 폼 로드
             theInfomation = new Infomation();
             myCommandManager = new CommandManager();
@@ -49,7 +99,7 @@ namespace OOP_PJ
             if (e.X >= 0 && e.X <= this.Width && e.Y >= 0 && e.Y <= this.Height) // 폼안에서 이벤트 시작
             {
                 // TODO : 수정....알고리즘....
-                if (ChoiceChk.Checked)
+                if (theInfomation.ActionType.Equals(Constant.ActionType.Select));
                 {
                     // ....임시 UI 사용중 ... 대안 없을듯... 계속 사용 예정
                     theInfomation.Drag = Constant.DragType.Drag;
@@ -122,211 +172,11 @@ namespace OOP_PJ
             myCommandManager.testDraw(e.Graphics, theInfomation);
         }
 
-        // 버튼 이벤트들 펼쳐서 사용하세요
-        #region MyRegion
-        
-       
-        private void BtnLine_Click(object sender, EventArgs e)
-        {
-            // 선 그리기
-        }
-
-        private void BtnEllipse_Click(object sender, EventArgs e)
-        {
-            // 타원그리기
-            theInfomation.ActionType = Constant.ActionType.Draw;
-            theInfomation.ShapeType = Constant.ShapeType.Circle;
-
-        }
-
-        private void BtnRec_Click(object sender, EventArgs e)
-        {
-            // 사각형 그리기
-            theInfomation.ActionType = Constant.ActionType.Draw;
-            theInfomation.ShapeType = Constant.ShapeType.Rectangle;
-
-        }
-
-        private void BtnTri_Click(object sender, EventArgs e)
-        {
-            // 삼각형 그리기
-            theInfomation.ActionType = Constant.ActionType.Draw;
-            theInfomation.ShapeType = Constant.ShapeType.Triangle;
-        }
-
-        private void BtnPentagon_Click(object sender, EventArgs e)
-        {
-            // 오각형 그리기
-        }
-
-        private void BtnHexa_Click(object sender, EventArgs e)
-        {
-            // 육각형 그리기
-        }
-
-        private void BtnStar_Click(object sender, EventArgs e)
-        {
-            // 별 그리기
-        }
-
-        private void BtnText_Click(object sender, EventArgs e)
-        {
-            // 텍스트 추가
-        }
-
-        private void BtnChoice_Click(object sender, EventArgs e)
-        {
-            // 도형 선택툴
-        }
-
-        private void BtnFill_Click(object sender, EventArgs e)
-        {
-
-           // theInfomation.UseFill = !theInfomation.UseFill;
-            // 채우기
-            
-        }
-
-        private void BtnImg_Click(object sender, EventArgs e)
-        {
-            // 이미지 삽입
-        }
-
-        private void BtnPencil_Click(object sender, EventArgs e)
-        {
-            // 펜툴
-        }
-
-        private void BtnLineColor_Click(object sender, EventArgs e)
-        {
-            // 선 색 Default Black
-            theInfomation.UseLine = !theInfomation.UseLine;
-
-        }
-
-        private void BtnBgColor_Click(object sender, EventArgs e)
-        {
-            // 전경색
-            theInfomation.UseFill = !theInfomation.UseFill;
-        }
-
-        private void BtnColor01_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 01번
-            
-        }
-
-        private void BtnColor02_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 02번
-
-        }
-
-        private void BtnColor03_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 03번
-
-        }
-
-        private void BtnColor04_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 04번
-
-        }
-
-        private void BtnColor05_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 05번
-            
-        }
-
-        private void BtnColor06_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 06번
-        }
-
-        private void BtnColor07_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 07번
-        }
-
-        private void BtnColor08_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 08번
-        }
-
-        private void BtnColor09_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 09번
-        }
-
-        private void BtnColor10_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 01열 10번
-        }
-
-        private void BtnColor11_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 01번
-        }
-
-        private void BtnColor12_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 02번
-        }
-
-        private void BtnColor13_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 03번
-        }
-
-        private void BtnColor14_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 04번
-        }
-
-        private void BtnColor15_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 05번
-        }
-
-        private void BtnColor16_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 06번
-        }
-
-        private void BtnColor17_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 07번
-        }
-
-        private void BtnColor18_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 08번
-        }
-
-        private void BtnColor19_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 09번
-        }
-
-        private void BtnColor20_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 02열 10번
-        }
-
-        private void BtnColorCh_Click(object sender, EventArgs e)
-        {
-            // 컬러파레트 호출버튼
-        }
-
         private void UpDownLine_SelectedItemChanged(object sender, EventArgs e)
         {
             // 펜 굵기
             theInfomation.Thickness = Convert.ToInt32(UpDownLine.SelectedItem.ToString());
         }
-        #endregion
-
 
 
         /// <summary>
@@ -395,23 +245,23 @@ namespace OOP_PJ
             }
         }
 
-        private void penChk_CheckedChanged(object sender, EventArgs e)
-        {
-            // Line 사용
-            if(penChk.Checked)
-                theInfomation.UseLine = true;
-            else
-                theInfomation.UseLine = false;
-        }
+        //private void penChk_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    // Line 사용
+        //    if(penChk.Checked)
+        //        theInfomation.UseLine = true;
+        //    else
+        //        theInfomation.UseLine = false;
+        //}
 
-        private void FillChk_CheckedChanged(object sender, EventArgs e)
-        {
-            // 채우기 사용
-            if (FillChk.Checked)
-                theInfomation.UseFill = true;
-            else
-                theInfomation.UseFill = false;
-        }
+        //private void FillChk_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    // 채우기 사용
+        //    if (FillChk.Checked)
+        //        theInfomation.UseFill = true;
+        //    else
+        //        theInfomation.UseFill = false;
+        //}
 
         private void ChoiceChk_CheckedChanged(object sender, EventArgs e)
         {
@@ -456,21 +306,310 @@ namespace OOP_PJ
             }
         }
 
-        private void btnUseLine_Click(object sender, EventArgs e)
+        // 다른 체크 박스 해제 함수화
+        public void CheckingCheckBox(List<CheckBox> CBgrp, object sender)
         {
-            // 라인 사용
-            theInfomation.UseFill = !theInfomation.UseFill;
-         
+            foreach (CheckBox rd in CBgrp)
+            {
+                rd.Checked = false;
+            }
+            CheckBox rad = sender as CheckBox;
+            rad.Checked = true;
         }
 
-        private void btnUseFill_Click(object sender, EventArgs e)
+        private void PolygonClick_Click(object sender, EventArgs e)
         {
-            // 색채우기 사용
-            if (penChk.Checked)
+            CheckingCheckBox(CBgrp01, sender);
+
+            if (sender == BtnPencil)
+            {
+
+            }
+            else if (sender == BtnLine)
+            {
+
+            }
+            else if (sender == BtnEllipse)
+            {
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Circle;
+            }
+            else if (sender == BtnRec)
+            {
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Rectangle;
+            }
+            else if (sender == BtnTri)
+            {
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Triangle;
+            }
+            else if (sender == BtnPentagon)
+            {
+                
+            }
+            else if (sender == BtnHexa)
+            {
+                
+            }
+            else if (sender == BtnStar)
+            {
+            }
+            else if (sender == BtnText)
+            {
+            }
+            else if (sender == BtnChoice)
+            {
+                if (BtnChoice.Checked)
+                    theInfomation.ActionType = Constant.ActionType.Select;
+                else
+                    theInfomation.ActionType = Constant.ActionType.None;
+            }
+            else if (sender == BtnFill)
+            {
+            }
+            else if (sender == BtnImg)
+            {
+
+            }
+        }
+
+        private void ColorChoice(object sender, EventArgs e)
+        {
+            CheckingCheckBox(CBgrp03, sender);            
+        }
+
+        private void ColorPt(object sender, EventArgs e)
+        {
+            CheckingCheckBox(CBgrp04, sender);
+
+            if (BtnLineColor.Checked)
+            {
+                if (BtnColor01.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[0];
+                    theInfomation.LineColor = WIUtility.colorSet[0];
+                }
+                else if (BtnColor02.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[1];
+                    theInfomation.LineColor = WIUtility.colorSet[1];
+                }
+                else if (BtnColor03.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[2];
+                    theInfomation.LineColor = WIUtility.colorSet[2];
+                }
+                else if (BtnColor04.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[3];
+                    theInfomation.LineColor = WIUtility.colorSet[3];
+                }
+                else if (BtnColor05.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[4];
+                    theInfomation.LineColor = WIUtility.colorSet[4];
+                }
+                else if (BtnColor06.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[5];
+                    theInfomation.LineColor = WIUtility.colorSet[5];
+                }
+                else if (BtnColor07.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[6];
+                    theInfomation.LineColor = WIUtility.colorSet[6];
+                }
+                else if (BtnColor08.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[7];
+                    theInfomation.LineColor = WIUtility.colorSet[7];
+                }
+                else if (BtnColor09.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[8];
+                    theInfomation.LineColor = WIUtility.colorSet[8];
+                }
+                else if (BtnColor10.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[9];
+                    theInfomation.LineColor = WIUtility.colorSet[9];
+                }
+                else if (BtnColor11.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[10];
+                    theInfomation.LineColor = WIUtility.colorSet[10];
+                }
+                else if (BtnColor12.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[11];
+                    theInfomation.LineColor = WIUtility.colorSet[11];
+                }
+                else if (BtnColor13.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[12];
+                    theInfomation.LineColor = WIUtility.colorSet[12];
+                }
+                else if (BtnColor14.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[13];
+                    theInfomation.LineColor = WIUtility.colorSet[13];
+                }
+                else if (BtnColor15.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[14];
+                    theInfomation.LineColor = WIUtility.colorSet[14];
+                }
+                else if (BtnColor16.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[15];
+                    theInfomation.LineColor = WIUtility.colorSet[15];
+                }
+                else if (BtnColor17.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[16];
+                    theInfomation.LineColor = WIUtility.colorSet[16];
+                }
+                else if (BtnColor18.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[17];
+                    theInfomation.LineColor = WIUtility.colorSet[17];
+                }
+                else if (BtnColor19.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[18];
+                    theInfomation.LineColor = WIUtility.colorSet[18];
+                }
+                else if (BtnColor20.Checked)
+                {
+                    BtnLineColor.BackColor = WIUtility.colorSet[19];
+                    theInfomation.LineColor = WIUtility.colorSet[19];
+                }
+            }
+            else if (BtnBgColor.Checked)
+            {
+                if (BtnColor01.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[0];
+                    theInfomation.FillColor = WIUtility.colorSet[0];
+                }
+                else if (BtnColor02.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[1];
+                    theInfomation.FillColor = WIUtility.colorSet[1];
+                }
+                else if (BtnColor03.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[2];
+                    theInfomation.FillColor = WIUtility.colorSet[2];
+                }
+                else if (BtnColor04.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[3];
+                    theInfomation.FillColor = WIUtility.colorSet[3];
+                }
+                else if (BtnColor05.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[4];
+                    theInfomation.FillColor = WIUtility.colorSet[4];
+                }
+                else if (BtnColor06.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[5];
+                    theInfomation.FillColor = WIUtility.colorSet[5];
+                }
+                else if (BtnColor07.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[6];
+                    theInfomation.FillColor = WIUtility.colorSet[6];
+                }
+                else if (BtnColor08.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[7];
+                    theInfomation.FillColor = WIUtility.colorSet[7];
+                }
+                else if (BtnColor09.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[8];
+                    theInfomation.FillColor = WIUtility.colorSet[8];
+                }
+                else if (BtnColor10.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[9];
+                    theInfomation.FillColor = WIUtility.colorSet[9];
+                }
+                else if (BtnColor11.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[10];
+                    theInfomation.FillColor = WIUtility.colorSet[10];
+                }
+                else if (BtnColor12.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[11];
+                    theInfomation.FillColor = WIUtility.colorSet[11];
+                }
+                else if (BtnColor13.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[12];
+                    theInfomation.FillColor = WIUtility.colorSet[12];
+                }
+                else if (BtnColor14.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[13];
+                    theInfomation.FillColor = WIUtility.colorSet[13];
+                }
+                else if (BtnColor15.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[14];
+                    theInfomation.FillColor = WIUtility.colorSet[14];
+                }
+                else if (BtnColor16.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[15];
+                    theInfomation.FillColor = WIUtility.colorSet[15];
+                }
+                else if (BtnColor17.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[16];
+                    theInfomation.FillColor = WIUtility.colorSet[16];
+                }
+                else if (BtnColor18.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[17];
+                    theInfomation.FillColor = WIUtility.colorSet[17];
+                }
+                else if (BtnColor19.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[18];
+                    theInfomation.FillColor = WIUtility.colorSet[18];
+                }
+                else if (BtnColor20.Checked)
+                {
+                    BtnBgColor.BackColor = WIUtility.colorSet[19];
+                    theInfomation.FillColor = WIUtility.colorSet[19];
+                }
+            }
+        }
+
+        private void btnUseLine_CheckedChanged(object sender, EventArgs e)
+        {
+            // 라인 사용 체크
+            if (btnUseLine.Checked)
                 theInfomation.UseLine = true;
             else
                 theInfomation.UseLine = false;
         }
+
+        private void btnUseFill_CheckedChanged(object sender, EventArgs e)
+        {
+            // 전경색 사용 체크
+            if (btnUseFill.Checked)
+                theInfomation.UseFill = true;
+            else
+                theInfomation.UseFill = false;
+        }
+
+        
 
         //public void GetMouseState()
         //{
