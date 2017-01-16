@@ -51,7 +51,7 @@ namespace OOP_PJ
                 // TODO : 수정....알고리즘....
                 if (ChoiceChk.Checked)
                 {
-                    // ........ 추후 변경해야함......... 임시 UI 사용중
+                    // ....임시 UI 사용중 ... 대안 없을듯... 계속 사용 예정
                     theInfomation.Drag = Constant.DragType.Drag;
                 }
                 
@@ -80,36 +80,37 @@ namespace OOP_PJ
         // TODO : 중복 기능 확인하기
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
+            theInfomation.Point = new Point(e.X, e.Y);
+            myCommandManager.MoveTypeDecision(theInfomation, this);
+
             label3.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제 예정
             if (theInfomation.ActionType == Constant.ActionType.Draw)
             {
-                theInfomation.Point = new Point(e.X, e.Y);
-                myCommandManager.MoveMouse(theInfomation);
+                myCommandManager.MoveMouse(theInfomation, this);
                 
             }
             else if (theInfomation.Drag.Equals(Constant.DragType.Drag))
             {
-                theInfomation.Point = new Point(e.X, e.Y);
-                myCommandManager.MoveMouse(theInfomation);
+                myCommandManager.MoveMouse(theInfomation, this);
             }
             Invalidate();
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
-            // 마우스 업
-            if (theInfomation.ActionType == Constant.ActionType.Draw)
-            {
-                theInfomation.Point = new Point(e.X, e.Y);
-                myCommandManager.MoveMouse(theInfomation);
-                myCommandManager.CreateComeplete(theInfomation);
-            }
-            else if (theInfomation.ActionType == Constant.ActionType.Select && theInfomation.Drag == Constant.DragType.Drag)
+
+            if (theInfomation.ActionType == Constant.ActionType.Select && theInfomation.Drag == Constant.DragType.Drag)
             {
                 theInfomation.Drag = Constant.DragType.None;
                 myCommandManager.CreateComeplete(theInfomation);
             }
-
+            // 마우스 업
+            else if (theInfomation.ActionType == Constant.ActionType.Draw)
+            {
+                theInfomation.Point = new Point(e.X, e.Y);
+                myCommandManager.MoveMouse(theInfomation, this);
+                myCommandManager.CreateComeplete(theInfomation);
+            }
 
             Invalidate();
         }
@@ -346,7 +347,6 @@ namespace OOP_PJ
             {
                 theInfomation.LineColor = WIUtility.colorSet[2];
             }
-
 
             if (Constant.ActionType.Select.Equals(Constant.ActionType.Select))
             {

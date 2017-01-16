@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+//////////////////////
+//// 일단 사용 안함
+/////////////////////
 namespace OOP_PJ
 {
     class MouseObserver

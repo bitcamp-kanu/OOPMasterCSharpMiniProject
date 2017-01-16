@@ -39,6 +39,7 @@ namespace OOP_PJ
         public enum MouseType
         {
             None,
+            Default,
             SizeAll,
             SizeNESW,
             SizeNS,
@@ -166,12 +167,12 @@ namespace OOP_PJ
         static public bool IsRectangleLine(Rectangle rect, int x, int y)
         {
             int offset = 20;
-            //if ((InRectanglePt(rect, x,y) && !IsRectangleShape(rect, x, y)))
+            int outSide = 20;
             if(
-               ((rect.X - 20 <= x && rect.X + offset >= x) && (rect.Y <= y && rect.Y + rect.Height >= y)) ||
-               (rect.X + rect.Width + offset >= x && (rect.X + rect.Width - offset) <= x && rect.Y + rect.Height >= y) ||
-               (rect.Y - 20 <= y && (rect.Y + offset >= y) && (rect.X <= x && rect.X + rect.Width >= x)) ||
-               ((rect.Y + rect.Height + offset >= y) && (rect.Y + rect.Height - offset) <= y && (rect.X <= x && rect.X + rect.Width >= x))            
+               ((rect.X - outSide <= x && rect.X + offset >= x) && (rect.Y <= y && rect.Y + rect.Height >= y)) ||
+               (rect.X + rect.Width + outSide >= x && (rect.X + rect.Width - offset) <= x && rect.Y + rect.Height + outSide >= y) ||
+               (rect.Y - outSide <= y && (rect.Y + offset >= y) && (rect.X - outSide <= x && rect.X + rect.Width + outSide >= x)) ||
+               ((rect.Y + rect.Height + outSide >= y) && (rect.Y + rect.Height - offset) <= y && (rect.X - outSide <= x && rect.X + rect.Width >= x))            
                )
                return true;
            else
@@ -198,6 +199,46 @@ namespace OOP_PJ
         static public float CalcDistance(float mx, float my, float catx, float caty)
         {
             return (float)Math.Sqrt((double)(mx - catx) * (mx - catx) + (my - caty) * (my - caty));
+        }
+
+
+        // 마우스 포인터 모양 변경
+        static public void MouseTypeDecision(Infomation info, object obj, Shape shape)
+        {
+            Form myForm = obj as Form;
+
+            if (shape is CCircle)
+            {
+                if (WIUtility.IsRectangleLine(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                {
+                    myForm.Cursor = Cursors.SizeWE;
+
+                }
+                else if (WIUtility.IsRectangleShape(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                {
+                    myForm.Cursor = Cursors.SizeAll;
+                }
+                else
+                {
+                    myForm.Cursor = Cursors.Default;
+                }
+            }
+            else if (shape is CRectangle)
+            {
+                if (WIUtility.IsRectangleLine(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                {
+                    myForm.Cursor = Cursors.SizeWE;
+
+                }
+                else if (WIUtility.IsRectangleShape(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                {
+                    myForm.Cursor = Cursors.SizeAll;
+                }
+            }
+            else
+            {
+                myForm.Cursor = Cursors.Default;
+            }
         }
     }
 }
