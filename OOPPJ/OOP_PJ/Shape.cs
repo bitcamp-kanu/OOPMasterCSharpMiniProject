@@ -9,6 +9,7 @@ namespace OOP_PJ
 {
     public abstract class Shape
     {
+
         protected Stack<Shape> mHistory;
 
         public bool HasFill { get; set; }
@@ -19,6 +20,7 @@ namespace OOP_PJ
         public int SequenceNumber { get; set; }
         public int ListIndex { get; set; }
         public Rectangle MyRectangle { get; set; }
+     
 
         public Shape(Rectangle recParam)
         {
@@ -26,12 +28,15 @@ namespace OOP_PJ
             MyRectangle = new Rectangle();
             MyRectangle = recParam;
 
+
             ListIndex = 0;
             SequenceNumber = 0;
+
         }
 
         //public Rectangle GetRenctangle() { return mRec; }
         //public void SetRenctangle(Rectangle recParam) { mRec = recParam; }
+
 
         public bool Undo() // 실행 취소
         {
@@ -44,6 +49,7 @@ namespace OOP_PJ
                         return false;
                     tmp = mHistory.Pop();
                 }
+
 
                 this.MyRectangle = tmp.MyRectangle;
                 this.FillColor = tmp.FillColor;
@@ -103,7 +109,7 @@ namespace OOP_PJ
                 SolidBrush brush = new SolidBrush(base.FillColor);
                 g.FillEllipse(brush, MyRectangle);
             }
-            if(base.HasLine)
+            if (base.HasLine)
             {
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawEllipse(pen, MyRectangle);
@@ -114,12 +120,9 @@ namespace OOP_PJ
         {
             Shape data = (Shape)this.MemberwiseClone();
             return data;
-
-            //return base.clone();
         }
     }
-
-
+    
     public class CRectangle : Shape
     {
         public CRectangle(Rectangle recParam): base(recParam) {  }
@@ -135,6 +138,37 @@ namespace OOP_PJ
             {
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawRectangle(pen, MyRectangle);
+            }
+        }
+
+        public override Shape clone()
+        {
+
+            Shape data = (Shape)this.MemberwiseClone();
+            return data;
+        }
+    }
+    
+    public class CTriagle : Shape
+    {
+        public CTriagle(Rectangle recParam) : base(recParam) { }
+        
+        public override void Draw(Graphics g)
+        {
+            PointF point1 = new PointF(MyRectangle.X + ((MyRectangle.Width) / 2), MyRectangle.Y);
+            PointF point2 = new PointF(MyRectangle.X, MyRectangle.Y + MyRectangle.Height);
+            PointF point3 = new PointF(MyRectangle.Width + MyRectangle.X, MyRectangle.Y + MyRectangle.Height);
+            PointF[] curvePoints = { point1, point2, point3 };
+
+            if (base.HasFill)
+            {
+                SolidBrush brush = new SolidBrush(base.FillColor);
+                g.FillPolygon(brush, curvePoints);
+            }
+            if (base.HasLine)
+            {
+                Pen pen = new Pen(base.LineColor, base.Thickness);
+                g.DrawPolygon(pen, curvePoints);
             }
         }
 

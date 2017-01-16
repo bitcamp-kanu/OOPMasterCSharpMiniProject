@@ -150,6 +150,8 @@ namespace OOP_PJ
         private void BtnTri_Click(object sender, EventArgs e)
         {
             // 삼각형 그리기
+            theInfomation.ActionType = Constant.ActionType.Draw;
+            theInfomation.ShapeType = Constant.ShapeType.Triangle;
         }
 
         private void BtnPentagon_Click(object sender, EventArgs e)
