@@ -49,10 +49,10 @@ namespace OOP_PJ
                 // 도형 이동을 위한 초기 위치 저장
                 mouseX = newInfomation.Point.X; // 마우스 초기 위치
                 mouseY = newInfomation.Point.Y;
-                startX = dummyShape.GetRenctangle().X;  // 도형 초기위치
-                startY = dummyShape.GetRenctangle().Y;
-                startWidth = dummyShape.GetRenctangle().Width;  // 도형 초기 크기
-                startHeight = dummyShape.GetRenctangle().Height;
+                startX = dummyShape.MyRectangle.X;  // 도형 초기위치
+                startY = dummyShape.MyRectangle.Y;
+                startWidth = dummyShape.MyRectangle.Width;  // 도형 초기 크기
+                startHeight = dummyShape.MyRectangle.Height;
             }
         }
 
@@ -129,35 +129,34 @@ namespace OOP_PJ
             {
                 if (newInfomation.ActionType.Equals(Constant.ActionType.Draw))  // 그리기
                 {
-                    Rectangle myRectangle = WIUtility.GetPositiveRectangle(new Point(startX, startY), newInfomation.Point);
-                    dummyShape.SetRenctangle(myRectangle);
+                    Rectangle rect = WIUtility.GetPositiveRectangle(new Point(startX, startY), newInfomation.Point);
+                    dummyShape.MyRectangle = rect;
                 }
                 else if (newInfomation.Drag.Equals(Constant.DragType.Drag))   // 선택후 조작
                 {
                     // TODO : 수정 해야함.................................
-                    if (WIUtility.IsRectangleLine(dummyShape.GetRenctangle(), newInfomation.Point.X, newInfomation.Point.Y))  // Line 확인후 크기 조정
+                    if (WIUtility.IsRectangleLine(dummyShape.MyRectangle, newInfomation.Point.X, newInfomation.Point.Y))  // Line 확인후 크기 조정
                     {
                         Point newPoint = new Point(
-                            dummyShape.GetRenctangle().X + startWidth + (newInfomation.Point.X - mouseX),
-                            dummyShape.GetRenctangle().Y + startHeight + (newInfomation.Point.Y - mouseY));
+                            dummyShape.MyRectangle.X + startWidth + (newInfomation.Point.X - mouseX),
+                            dummyShape.MyRectangle.Y + startHeight + (newInfomation.Point.Y - mouseY));
 
-                        Rectangle sizeChageRectangle = WIUtility.GetPositiveRectangle(new Point(dummyShape.GetRenctangle().X, dummyShape.GetRenctangle().Y), newPoint);
+                        Rectangle sizeChageRectangle = WIUtility.GetPositiveRectangle(new Point(dummyShape.MyRectangle.X, dummyShape.MyRectangle.Y), newPoint);
 
-                        dummyShape.SetRenctangle(sizeChageRectangle);
+                        dummyShape.MyRectangle = sizeChageRectangle;
 
                     }
-                    else if (WIUtility.IsRectangleShape(dummyShape.GetRenctangle(), newInfomation.Point.X, newInfomation.Point.Y)) // 도형 범위 확인후 이동
+                    else if (WIUtility.IsRectangleShape(dummyShape.MyRectangle, newInfomation.Point.X, newInfomation.Point.Y)) // 도형 범위 확인후 이동
                     {
 
                         Rectangle moveChageRectangle = new Rectangle(
                             startX + (newInfomation.Point.X - mouseX),
                             startY + (newInfomation.Point.Y - mouseY),
-                            dummyShape.GetRenctangle().Width,
-                            dummyShape.GetRenctangle().Height);
+                            dummyShape.MyRectangle.Width,
+                            dummyShape.MyRectangle.Height);
 
-                        dummyShape.SetRenctangle(moveChageRectangle);
+                        dummyShape.MyRectangle = moveChageRectangle;
                     }
-
                 }
             }
         }
@@ -197,7 +196,7 @@ namespace OOP_PJ
                     Pen pen = new Pen(Color.Gray,1);
                     pen.DashStyle = DashStyle.Dash;
 
-                    g.DrawRectangle(pen, dummyShape.GetRenctangle());
+                    g.DrawRectangle(pen, dummyShape.MyRectangle);
                 }
             }
         }

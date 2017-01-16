@@ -118,6 +118,7 @@ namespace OOP_PJ
 
     static class WIUtility
     {
+        
         // color 차후 추가 해야함
         public static Color[] colorSet = {
                                             Color.Black,
@@ -183,6 +184,20 @@ namespace OOP_PJ
                 return false;
         }
 
+
+        static public bool IsRctangleUpLine(Rectangle rect, int x, int y)
+        {
+            int leftX = rect.X;
+            int rightX = rect.X + rect.Width;
+            int middleX = (rect.X + rect.Width) / 2;
+
+            Rectangle targetRec = new Rectangle(0, 0, 20, 20);
+
+
+            return true;
+        }
+
+
         // 선택 이동시 클릭 한게 선인지 확인
         // TODO : 알고리즘 수정 해야함... 라인 선택 과 도형선택 그리고 속도...
         static public bool IsRectangleLine(Rectangle rect, int x, int y)
@@ -230,12 +245,12 @@ namespace OOP_PJ
 
             if (shape is CCircle)
             {
-                if (WIUtility.IsRectangleLine(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                if (WIUtility.IsRectangleLine(shape.MyRectangle, info.Point.X, info.Point.Y))
                 {
                     myForm.Cursor = Cursors.SizeWE;
 
                 }
-                else if (WIUtility.IsRectangleShape(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                else if (WIUtility.IsRectangleShape(shape.MyRectangle, info.Point.X, info.Point.Y))
                 {
                     myForm.Cursor = Cursors.SizeAll;
                 }
@@ -246,12 +261,12 @@ namespace OOP_PJ
             }
             else if (shape is CRectangle)
             {
-                if (WIUtility.IsRectangleLine(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                if (WIUtility.IsRectangleLine(shape.MyRectangle, info.Point.X, info.Point.Y))
                 {
                     myForm.Cursor = Cursors.SizeWE;
 
                 }
-                else if (WIUtility.IsRectangleShape(shape.GetRenctangle(), info.Point.X, info.Point.Y))
+                else if (WIUtility.IsRectangleShape(shape.MyRectangle, info.Point.X, info.Point.Y))
                 {
                     myForm.Cursor = Cursors.SizeAll;
                 }
