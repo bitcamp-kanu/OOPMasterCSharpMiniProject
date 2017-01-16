@@ -323,7 +323,8 @@ namespace OOP_PJ
             }
             else if (sender == BtnPentagon)
             {
-                
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Pentagon;
             }
             else if (sender == BtnHexa)
             {
@@ -356,6 +357,7 @@ namespace OOP_PJ
             CheckingCheckBox(CBgrp03, sender);            
         }
 
+        // 컬러 check 너무 길다!
         private void ColorPt(object sender, EventArgs e)
         {
             CheckingCheckBox(CBgrp04, sender);
@@ -365,101 +367,121 @@ namespace OOP_PJ
                 if (BtnColor01.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[0];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[0];
                 }
                 else if (BtnColor02.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[1];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[1];
                 }
                 else if (BtnColor03.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[2];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[2];
                 }
                 else if (BtnColor04.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[3];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[3];
                 }
                 else if (BtnColor05.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[4];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[4];
                 }
                 else if (BtnColor06.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[5];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[5];
                 }
                 else if (BtnColor07.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[6];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[6];
                 }
                 else if (BtnColor08.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[7];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[7];
                 }
                 else if (BtnColor09.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[8];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[8];
                 }
                 else if (BtnColor10.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[9];
+                    BtnLineColor.ForeColor = Color.White;
                     theInfomation.LineColor = WIUtility.colorSet[9];
                 }
                 else if (BtnColor11.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[10];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[10];
                 }
                 else if (BtnColor12.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[11];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[11];
                 }
                 else if (BtnColor13.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[12];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[12];
                 }
                 else if (BtnColor14.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[13];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[13];
                 }
                 else if (BtnColor15.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[14];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[14];
                 }
                 else if (BtnColor16.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[15];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[15];
                 }
                 else if (BtnColor17.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[16];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[16];
                 }
                 else if (BtnColor18.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[17];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[17];
                 }
                 else if (BtnColor19.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[18];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[18];
                 }
                 else if (BtnColor20.Checked)
                 {
                     BtnLineColor.BackColor = WIUtility.colorSet[19];
+                    BtnLineColor.ForeColor = Color.Black;
                     theInfomation.LineColor = WIUtility.colorSet[19];
                 }
             }
@@ -468,101 +490,121 @@ namespace OOP_PJ
                 if (BtnColor01.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[0];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[0];
                 }
                 else if (BtnColor02.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[1];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[1];
                 }
                 else if (BtnColor03.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[2];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[2];
                 }
                 else if (BtnColor04.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[3];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[3];
                 }
                 else if (BtnColor05.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[4];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[4];
                 }
                 else if (BtnColor06.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[5];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[5];
                 }
                 else if (BtnColor07.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[6];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[6];
                 }
                 else if (BtnColor08.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[7];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[7];
                 }
                 else if (BtnColor09.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[8];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[8];
                 }
                 else if (BtnColor10.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[9];
+                    BtnBgColor.ForeColor = Color.White;
                     theInfomation.FillColor = WIUtility.colorSet[9];
                 }
                 else if (BtnColor11.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[10];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[10];
                 }
                 else if (BtnColor12.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[11];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[11];
                 }
                 else if (BtnColor13.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[12];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[12];
                 }
                 else if (BtnColor14.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[13];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[13];
                 }
                 else if (BtnColor15.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[14];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[14];
                 }
                 else if (BtnColor16.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[15];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[15];
                 }
                 else if (BtnColor17.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[16];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[16];
                 }
                 else if (BtnColor18.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[17];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[17];
                 }
                 else if (BtnColor19.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[18];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[18];
                 }
                 else if (BtnColor20.Checked)
                 {
                     BtnBgColor.BackColor = WIUtility.colorSet[19];
+                    BtnBgColor.ForeColor = Color.Black;
                     theInfomation.FillColor = WIUtility.colorSet[19];
                 }
             }
