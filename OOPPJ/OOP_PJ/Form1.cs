@@ -44,6 +44,7 @@ namespace OOP_PJ
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
+            myCommandManager.MoveTypeDecision(theInfomation, this);
             label4.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제예정
             // 마우스 다운
             if (e.X >= 0 && e.X <= this.Width && e.Y >= 0 && e.Y <= this.Height) // 폼안에서 이벤트 시작
@@ -68,7 +69,6 @@ namespace OOP_PJ
                         myCommandManager.ChoiceShape(theInfomation);
                         Invalidate();
                     }
-
                 }
                 else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
@@ -84,6 +84,7 @@ namespace OOP_PJ
             myCommandManager.MoveTypeDecision(theInfomation, this);
 
             label3.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제 예정
+
             if (theInfomation.ActionType == Constant.ActionType.Draw)
             {
                 myCommandManager.MoveMouse(theInfomation, this);
@@ -98,6 +99,7 @@ namespace OOP_PJ
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
+            myCommandManager.MoveTypeDecision(theInfomation, this);
 
             if (theInfomation.ActionType == Constant.ActionType.Select && theInfomation.Drag == Constant.DragType.Drag)
             {

@@ -143,17 +143,17 @@ namespace OOP_PJ
                                             Color.Thistle
                                          };
 
-        static public Rectangle GetPositiveRectangle(Point start, Point end)
-        {
-            Rectangle rect = new Rectangle
-            {
-                X = end.X > start.X ? start.X : end.X,
-                Y = end.Y > start.Y ? start.Y : end.Y,
-                Width = Math.Abs(end.X - start.X),
-                Height = Math.Abs(end.Y - start.Y)
-            };
-            return rect;
-        }
+        //static public Rectangle GetPositiveRectangle(Point start, Point end)
+        //{
+        //    Rectangle rect = new Rectangle
+        //    {
+        //        X = end.X > start.X ? start.X : end.X,
+        //        Y = end.Y > start.Y ? start.Y : end.Y,
+        //        Width = Math.Abs(end.X - start.X),
+        //        Height = Math.Abs(end.Y - start.Y)
+        //    };
+        //    return rect;
+        //}
 
         /// <summary>
         /// 입력한 x,y 값이 원 안에 있는지검사 한다. (found75)
@@ -183,20 +183,11 @@ namespace OOP_PJ
             else
                 return false;
         }
+        
+        
 
 
-        static public bool IsRctangleUpLine(Rectangle rect, int x, int y)
-        {
-            int leftX = rect.X;
-            int rightX = rect.X + rect.Width;
-            int middleX = (rect.X + rect.Width) / 2;
-
-            Rectangle targetRec = new Rectangle(0, 0, 20, 20);
-
-
-            return true;
-        }
-
+        
 
         // 선택 이동시 클릭 한게 선인지 확인
         // TODO : 알고리즘 수정 해야함... 라인 선택 과 도형선택 그리고 속도...
@@ -215,14 +206,14 @@ namespace OOP_PJ
                return false;
         }
         // 선택 이동시 클릭 한곳이 선이 아닌 도형안인지 확인
-        static public bool IsRectangleShape(Rectangle rect, int x, int y)
-        {
-            int offset = 20;
-            if (x > rect.X + offset && x < rect.X + rect.Width - offset && y > rect.Y + offset && y < rect.Y + rect.Height - offset)
-                return true;
-            else
-                return false;
-        }
+        //static public bool IsRectangleShape(Rectangle rect, int x, int y)
+        //{
+        //    int offset = 20;
+        //    if (x > rect.X + offset && x < rect.X + rect.Width - offset && y > rect.Y + offset && y < rect.Y + rect.Height - offset)
+        //        return true;
+        //    else
+        //        return false;
+        //}
 
         /// <summary>
         /// 두 점 간에 거리를 구한다. (kimsoar)
@@ -238,43 +229,6 @@ namespace OOP_PJ
         }
 
 
-        // 마우스 포인터 모양 변경
-        static public void MouseTypeDecision(Infomation info, object obj, Shape shape)
-        {
-            Form myForm = obj as Form;
-
-            if (shape is CCircle)
-            {
-                if (WIUtility.IsRectangleLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeWE;
-
-                }
-                else if (WIUtility.IsRectangleShape(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeAll;
-                }
-                else
-                {
-                    myForm.Cursor = Cursors.Default;
-                }
-            }
-            else if (shape is CRectangle)
-            {
-                if (WIUtility.IsRectangleLine(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeWE;
-
-                }
-                else if (WIUtility.IsRectangleShape(shape.MyRectangle, info.Point.X, info.Point.Y))
-                {
-                    myForm.Cursor = Cursors.SizeAll;
-                }
-            }
-            else
-            {
-                myForm.Cursor = Cursors.Default;
-            }
-        }
+        
     }
 }
