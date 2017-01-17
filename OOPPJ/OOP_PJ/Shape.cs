@@ -23,6 +23,8 @@ namespace OOP_PJ
         
         public Rectangle MyRectangle { get; set; }
         public List<Point> pointList;
+
+        protected object lockObj = new object();
         
         public Shape(Rectangle recParam)
         {
@@ -124,32 +126,50 @@ namespace OOP_PJ
 
         public void SetPositiveRectangle(Point start, Infomation newInfomation)
         {
-
-            if (newInfomation.ShapeType.Equals(Constant.ShapeType.Line))
+            lock (lockObj)
             {
-                if(pointList.Count == 0)
+                if (newInfomation.ShapeType.Equals(Constant.ShapeType.Line))
                 {
-                    Point point = new Point(start.X, start.Y);
-                    pointList.Add(point);
-                    pointList.Add(point);
+                    // 라인을 위한 처리
+                    if (pointList.Count == 0)
+                    {
+                        Point point = new Point(start.X, start.Y);
+                        pointList.Add(point);
+                        pointList.Add(point);
 
+                    }
+                    Point point1 = new Point(newInfomation.Point.X, newInfomation.Point.Y);
+                    pointList[1] = point1;
                 }
-                Point point1 = new Point(newInfomation.Point.X, newInfomation.Point.Y);
-
-                pointList[1] = point1;
-            }
-            else
-            {
-                Rectangle rect = new Rectangle
+                else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Pen))
                 {
-                    X = newInfomation.Point.X > start.X ? start.X : newInfomation.Point.X,
-                    Y = newInfomation.Point.Y > start.Y ? start.Y : newInfomation.Point.Y,
-                    Width = Math.Abs(newInfomation.Point.X - start.X),
-                    Height = Math.Abs(newInfomation.Point.Y - start.Y)
-                };
-                MyRectangle = rect;
-            }
+
+                    // 펜을 위한 처리
+                    if (pointList.Count == 0)
+                    {
+                        Point point = new Point(start.X, start.Y);
+                        pointList.Add(point);
+                        pointList.Add(point);
+                        //   Console.WriteLine("X: " + point.X + " , Y: " + point.Y);
+                    }
+                    Point point1 = new Point(newInfomation.Point.X, newInfomation.Point.Y);
+                    pointList.Add(point1);
+                    //  Console.WriteLine("X: " + point1.X + " , Y: " + point1.Y);
+                }
+                else
+                {
+                    Rectangle rect = new Rectangle
+                    {
+                        X = newInfomation.Point.X > start.X ? start.X : newInfomation.Point.X,
+                        Y = newInfomation.Point.Y > start.Y ? start.Y : newInfomation.Point.Y,
+                        Width = Math.Abs(newInfomation.Point.X - start.X),
+                        Height = Math.Abs(newInfomation.Point.Y - start.Y)
+                    };
+                    MyRectangle = rect;
+                }
             
+            }
+       
         }
 
         public void MoveRectangle(Point start, Point startMouse, Point info)
@@ -411,6 +431,7 @@ namespace OOP_PJ
 
         public override void Draw(Graphics g)
         {
+            Console.WriteLine("draw");
             if (base.HasFill)
             {
                 SolidBrush brush = new SolidBrush(base.FillColor);
@@ -781,11 +802,6 @@ namespace OOP_PJ
 
         public override void Draw(Graphics g)
         {
-            //PointF point1 = new PointF(MyRectangle.X , MyRectangle.Y);
-            //PointF point2 = new PointF(MyRectangle.X + MyRectangle.Width, MyRectangle.Y+MyRectangle.Height);
-
-            //PointF[] curvePoints = { point1, point2};
-
             if (base.HasFill)
             {
                 //SolidBrush brush = new SolidBrush(base.FillColor);
@@ -795,10 +811,124 @@ namespace OOP_PJ
             {
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawLine(pen, pointList[0].X, pointList[0].Y, pointList[1].X, pointList[1].Y);
-                // g.DrawPolygon(pen, curvePoints);
             }
         }
 
+        public override Shape clone()
+        {
+            Shape data = (Shape)this.MemberwiseClone();
+            return data;
+        }
+    }
+
+    // 별 만들자
+    public class CStar : Shape
+    {
+        public CStar(Rectangle recParam) : base(recParam) { }
+
+        public override void Draw(Graphics g)
+        {
+
+            PointF[] pts = new PointF[6];
+            PointF[] pts2 = new PointF[6];
+
+            int centerX = MyRectangle.Width / 2;
+            int centerY = MyRectangle.Height / 2;
+            int radius = MyRectangle.Width / 2;
+            int miniradius = MyRectangle.Width / 4;
+
+            Point location = new Point(centerX, centerY);
+
+            for (int i = 0; i < 5; ++i)
+            {
+                double radian = (0.8 * Math.PI * i) + (0.7 * Math.PI);
+                pts[i] = location + new Size((int)(radius * Math.Cos(radian)),
+                    (int)(radius * Math.Sin(radian)));
+            }
+
+            for (int i = 0; i < 5; ++i)
+            {
+                double radian = (0.8 * Math.PI * i) + (0.5 * Math.PI);
+                pts2[i] = location + new Size((int)(miniradius * Math.Cos(radian)),
+                    (int)(miniradius * Math.Sin(radian)));
+            }
+
+            PointF point1 = new PointF(MyRectangle.X + pts[0].X, MyRectangle.Y + pts[0].Y);
+            PointF point2 = new PointF(MyRectangle.X + pts2[0].X, MyRectangle.Y + pts2[0].Y);
+            PointF point3 = new PointF(MyRectangle.X + pts[2].X, MyRectangle.Y + pts[2].Y);
+            PointF point4 = new PointF(MyRectangle.X + pts2[2].X, MyRectangle.Y + pts2[2].Y);
+            PointF point5 = new PointF(MyRectangle.X + pts[4].X, MyRectangle.Y + pts[4].Y);
+            PointF point6 = new PointF(MyRectangle.X + pts2[4].X, MyRectangle.Y + pts2[4].Y);
+            PointF point7 = new PointF(MyRectangle.X + pts[1].X, MyRectangle.Y + pts[1].Y);
+            PointF point8 = new PointF(MyRectangle.X + pts2[1].X, MyRectangle.Y + pts2[1].Y);
+            PointF point9 = new PointF(MyRectangle.X + pts[3].X, MyRectangle.Y + pts[3].Y);
+            PointF point10 = new PointF(MyRectangle.X + pts2[3].X, MyRectangle.Y + pts2[3].Y);
+            
+            PointF[] curvePoints = { point1, point2, point3, point4, point5, 
+                                   point6, point7, point8, point9, point10 };
+
+            if (base.HasFill)
+            {
+                SolidBrush brush = new SolidBrush(base.FillColor);
+                g.FillPolygon(brush, curvePoints);
+            }
+            if (base.HasLine)
+            {
+                Pen pen = new Pen(base.LineColor, base.Thickness);
+                g.DrawPolygon(pen, curvePoints);
+            }
+        }
+
+        public override Shape clone()
+        {
+
+            Shape data = (Shape)this.MemberwiseClone();
+            return data;
+        }
+    }
+
+    ////////////////////////////////////자유곡선////////////////////////////
+    // 자유곡선 만들어볼까?
+    public class CPen : Shape
+    {
+        Pen pen = null;
+        public CPen(Rectangle recParam) : base(recParam)
+        {
+            pen = new Pen(base.LineColor, base.Thickness);
+        }
+        public override void Draw(Graphics g)
+        {
+            //SolidBrush brush = new SolidBrush(base.LineColor);
+            //Pen pen = new Pen(base.LineColor, base.Thickness);
+            //using (Pen pen = new Pen(base.LineColor, base.Thickness))
+            try
+            {
+                {
+                    if (pen != null && pointList != null)
+                    {
+                        lock (lockObj)
+                        {
+                            //pen.Width = base.Thickness;
+                            Point [] ps = pointList.ToArray();
+
+                            foreach (PointF p in ps)
+                            {
+                                System.Diagnostics.Trace.WriteLine(p.ToString());
+                            }
+
+                            //PointF[] ps = new PointF[] { new PointF(10, 10), new PointF(10, 10), new PointF(10, 10) };
+                            g.DrawLines(pen, ps);
+                        }
+                        
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
         public override Shape clone()
         {
             Shape data = (Shape)this.MemberwiseClone();

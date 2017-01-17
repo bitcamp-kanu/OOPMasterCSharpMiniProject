@@ -302,7 +302,8 @@ namespace OOP_PJ
 
             if (sender == BtnPencil)
             {
-
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Pen;
             }
             else if (sender == BtnLine)
             {
@@ -336,6 +337,8 @@ namespace OOP_PJ
             }
             else if (sender == BtnStar)
             {
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Star;
             }
             else if (sender == BtnText)
             {

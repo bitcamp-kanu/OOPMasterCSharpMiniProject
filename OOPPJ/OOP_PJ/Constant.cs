@@ -46,7 +46,8 @@ namespace OOP_PJ
             Circle,     // 원
             Triangle,    // 삼각형
             Pentagon,    // 오각형
-            Hexagon      // 육각형
+            Hexagon,    // 육각형
+            Star         // 별그리기
         }
 
         public enum MouseType
