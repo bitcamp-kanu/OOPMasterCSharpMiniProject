@@ -128,12 +128,46 @@ namespace OOP_PJ
 
                 return newRectangle;
             }
+            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Star)) //별그리기
+            {
+                startPoint.X = newInfomation.Point.X;
+                startPoint.Y = newInfomation.Point.Y;
+                Rectangle rec = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
+                CStar newRectangle = new CStar(rec);
+                newRectangle.FillColor = newInfomation.FillColor;
+                newRectangle.LineColor = newInfomation.LineColor;
+                newRectangle.Thickness = newInfomation.Thickness;
+
+                if (newInfomation.UseLine)
+                    newRectangle.HasLine = true;
+                if (newInfomation.UseFill)
+                    newRectangle.HasFill = true;
+
+                return newRectangle;
+            }
             else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Line)) // 라인그리기
             {
                 startPoint.X = newInfomation.Point.X;
                 startPoint.Y = newInfomation.Point.Y;
                 Rectangle rec = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
                 CLine newRectangle = new CLine(rec);
+                newRectangle.FillColor = newInfomation.FillColor;
+                newRectangle.LineColor = newInfomation.LineColor;
+                newRectangle.Thickness = newInfomation.Thickness;
+
+                if (newInfomation.UseLine)
+                    newRectangle.HasLine = true;
+                if (newInfomation.UseFill)
+                    newRectangle.HasFill = true;
+
+                return newRectangle;
+            }
+            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Pen)) // 자유곡선
+            {
+                startPoint.X = newInfomation.Point.X;
+                startPoint.Y = newInfomation.Point.Y;
+                Rectangle rec = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
+                CPen newRectangle = new CPen(rec);
                 newRectangle.FillColor = newInfomation.FillColor;
                 newRectangle.LineColor = newInfomation.LineColor;
                 newRectangle.Thickness = newInfomation.Thickness;
@@ -250,10 +284,34 @@ namespace OOP_PJ
 
         public void testDraw(Graphics g, Infomation newInfomation)    // Test용 차후 삭제
         {
+
+            if (dummyShape != null && (dummyShape.IsSelected))
+            {
+                dummyShape.Draw(g);
+
+                Pen pen = new Pen(Color.Gray, 1);
+                pen.DashStyle = DashStyle.Dash;
+
+                g.DrawRectangle(pen, dummyShape.MyRectangle);
+            }
+
+
             if (shapeManager.GetListCount() > 0)
             {
                 shapeManager.Draw(g);
             }
+
+
+            if (dummyShape != null)
+            {
+                dummyShape.Draw(g);
+
+                Pen pen = new Pen(Color.Gray, 1);
+                pen.DashStyle = DashStyle.Dash;
+
+                g.DrawRectangle(pen, dummyShape.MyRectangle);
+            }
+
 
             #region MyRegion
             
