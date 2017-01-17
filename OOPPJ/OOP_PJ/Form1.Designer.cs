@@ -84,9 +84,12 @@
             this.FillChk = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.statusBottom = new System.Windows.Forms.StatusStrip();
+            this.trackZooin = new System.Windows.Forms.TrackBar();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackZooin)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -767,12 +770,31 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "Pen Color";
             // 
+            // statusBottom
+            // 
+            this.statusBottom.Location = new System.Drawing.Point(0, 546);
+            this.statusBottom.Name = "statusBottom";
+            this.statusBottom.Size = new System.Drawing.Size(986, 22);
+            this.statusBottom.TabIndex = 2;
+            this.statusBottom.Text = "statusStrip1";
+            // 
+            // trackZooin
+            // 
+            this.trackZooin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackZooin.AutoSize = false;
+            this.trackZooin.Location = new System.Drawing.Point(856, 546);
+            this.trackZooin.Name = "trackZooin";
+            this.trackZooin.Size = new System.Drawing.Size(130, 22);
+            this.trackZooin.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(863, 454);
+            this.ClientSize = new System.Drawing.Size(986, 568);
+            this.Controls.Add(this.trackZooin);
+            this.Controls.Add(this.statusBottom);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
@@ -789,6 +811,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackZooin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -851,6 +874,8 @@
         private System.Windows.Forms.CheckBox BtnRec;
         private System.Windows.Forms.CheckBox BtnEllipse;
         private System.Windows.Forms.CheckBox BtnLine;
+        private System.Windows.Forms.StatusStrip statusBottom;
+        private System.Windows.Forms.TrackBar trackZooin;
 
 
     }

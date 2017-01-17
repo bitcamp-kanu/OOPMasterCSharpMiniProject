@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOP_PJ
-{
+{ 
     public abstract class Shape
     {
         protected Stack<Shape> mHistory;
@@ -18,7 +18,8 @@ namespace OOP_PJ
         public Color LineColor { get; set; }
         public Color FillColor { get; set; }
         public int SequenceNumber { get; set; }
-        public int ListIndex { get; set; }
+        public int CurListIndex { get; set; }
+        public int PreListIndex { get; set; }
         public Rectangle MyRectangle { get; set; }
         public List<Point> pointList;
         
@@ -29,7 +30,8 @@ namespace OOP_PJ
             MyRectangle = new Rectangle();
             MyRectangle = recParam;
 
-            ListIndex = 0;
+            CurListIndex = 0;
+            PreListIndex = 0;
             SequenceNumber = 0;
             IsSelected = false;
         }
@@ -54,7 +56,8 @@ namespace OOP_PJ
                 this.LineColor = tmp.LineColor;
                 this.HasLine = tmp.HasLine;
                 this.HasFill = tmp.HasFill;
-                this.ListIndex = tmp.ListIndex;
+                this.CurListIndex = tmp.CurListIndex;
+                this.PreListIndex = tmp.PreListIndex;
 
                 return true;
             }
@@ -390,6 +393,55 @@ namespace OOP_PJ
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawEllipse(pen, MyRectangle);
             }
+
+            #region MyRegion
+
+            if (this.IsSelected)
+            {
+                int miniRec = 10;
+                int offset = 5;
+                // up left 
+                Rectangle tmp = new Rectangle(MyRectangle.X - offset, MyRectangle.Y - offset, miniRec, miniRec);
+
+                g.DrawRectangle(new Pen(Color.White, 2), tmp);
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up right
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left middle
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right middle
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2 - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left down
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // down middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right down
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+            }
+            #endregion
         }
 
         public override Shape clone()
@@ -415,6 +467,55 @@ namespace OOP_PJ
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawRectangle(pen, MyRectangle);
             }
+
+            #region MyRegion
+
+            if (this.IsSelected)
+            {
+                int miniRec = 10;
+                int offset = 5;
+                // up left 
+                Rectangle tmp = new Rectangle(MyRectangle.X - offset, MyRectangle.Y - offset, miniRec, miniRec);
+
+                g.DrawRectangle(new Pen(Color.White, 2), tmp);
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up right
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left middle
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right middle
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2 - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left down
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // down middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right down
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+            }
+            #endregion
         }
 
         public override Shape clone()
@@ -446,6 +547,56 @@ namespace OOP_PJ
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawPolygon(pen, curvePoints);
             }
+
+            #region MyRegion
+            
+            if (this.IsSelected)
+            {
+                int miniRec = 10;
+                int offset = 5;
+                // up left 
+                Rectangle tmp = new Rectangle(MyRectangle.X - offset, MyRectangle.Y - offset, miniRec, miniRec);
+
+                g.DrawRectangle(new Pen(Color.White, 2), tmp);
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up right
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left middle
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right middle
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2 - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left down
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // down middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right down
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+            }
+            #endregion
+
         }
 
         public override Shape clone()
@@ -460,7 +611,6 @@ namespace OOP_PJ
     public class CPenta : Shape
     {
         public CPenta(Rectangle recParam) : base(recParam) { }
-
         public override void Draw(Graphics g)
         {
             PointF [] pts = new PointF[6];
@@ -497,6 +647,57 @@ namespace OOP_PJ
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawPolygon(pen, curvePoints);
             }
+
+            #region MyRegion
+
+
+            if (IsSelected)
+            {
+                int miniRec = 10;
+                int offset = 5;
+                // up left 
+                Rectangle tmp = new Rectangle(MyRectangle.X - offset, MyRectangle.Y - offset, miniRec, miniRec);
+
+                g.DrawRectangle(new Pen(Color.White, 2), tmp);
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // up right
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left middle
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right middle
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height / 2 - miniRec / 2 - offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // left down
+                tmp.X = MyRectangle.X - offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // down middle
+                tmp.X = (MyRectangle.X + MyRectangle.Width / 2 - miniRec / 2);
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+
+                // right down
+                tmp.X = MyRectangle.X + MyRectangle.Width - miniRec + offset;
+                tmp.Y = MyRectangle.Y + MyRectangle.Height - miniRec + offset;
+                g.FillRectangle(Brushes.Gray, tmp);
+            }
+            #endregion
+
         }
 
         public override Shape clone()
