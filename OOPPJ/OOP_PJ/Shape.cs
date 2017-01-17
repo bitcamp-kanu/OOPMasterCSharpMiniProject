@@ -114,8 +114,8 @@ namespace OOP_PJ
 
         public bool IsRctangleUpLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             int leftX = MyRectangle.X;
             int rightX = MyRectangle.X + MyRectangle.Width;
@@ -134,8 +134,8 @@ namespace OOP_PJ
 
         public bool IsRctangleDownLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             int leftX = MyRectangle.X;
             int rightX = MyRectangle.X + MyRectangle.Width;
@@ -154,8 +154,8 @@ namespace OOP_PJ
 
         public bool IsRctangleLeftLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             int upY = MyRectangle.Y;
             int downY = MyRectangle.Y + MyRectangle.Height;
@@ -174,8 +174,8 @@ namespace OOP_PJ
 
         public bool IsRctangleRightLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             int upY = MyRectangle.Y;
             int downY = MyRectangle.Y + MyRectangle.Height;
@@ -196,8 +196,8 @@ namespace OOP_PJ
         // 좌측 상단
         public bool IsRctangleLeftUpPointLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
@@ -213,8 +213,8 @@ namespace OOP_PJ
         // 좌측 하단
         public bool IsRctangleLeftDwonPointLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
@@ -230,8 +230,8 @@ namespace OOP_PJ
         // 우측 상단
         public bool IsRctangleRightUpPointLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 
@@ -247,8 +247,8 @@ namespace OOP_PJ
         // 우측 하단
         public bool IsRctangleRightDownPointLine(Point newPoint)
         {
-            int targetWidth = 25;
-            int targetHeight = 25;
+            int targetWidth = Constant.GuideOffset;
+            int targetHeight = Constant.GuideOffset;
 
             Rectangle scopeRec = new Rectangle(0, 0, targetWidth, targetHeight);
 

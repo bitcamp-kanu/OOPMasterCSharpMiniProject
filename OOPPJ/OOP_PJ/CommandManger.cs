@@ -233,35 +233,46 @@ namespace OOP_PJ
                 if (dummyShape.IsSelected)
                 {
                     int miniRec = 10;
-                    Rectangle tmp = new Rectangle(dummyShape.MyRectangle.X, dummyShape.MyRectangle.Y, miniRec, miniRec);
-                    g.FillRectangle(Brushes.Gray, tmp);
-                    
-                    tmp.X = (dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width / 2 - miniRec/2);
-                    tmp.Y = dummyShape.MyRectangle.Y;
-                    g.FillRectangle(Brushes.Gray, tmp);
-                    
-                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec;
-                    tmp.Y = dummyShape.MyRectangle.Y;
+                    int offset = 5;
+                    // up left 
+                    Rectangle tmp = new Rectangle(dummyShape.MyRectangle.X - offset, dummyShape.MyRectangle.Y - offset, miniRec, miniRec);
+
+                    g.DrawRectangle(new Pen(Color.White, 2), tmp);
                     g.FillRectangle(Brushes.Gray, tmp);
 
-                    tmp.X = dummyShape.MyRectangle.X;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2;
-                    g.FillRectangle(Brushes.Gray, tmp);
-
-                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2;
-                    g.FillRectangle(Brushes.Gray, tmp);
-
-                    tmp.X = dummyShape.MyRectangle.X;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec;
-                    g.FillRectangle(Brushes.Gray, tmp);
-
+                    // up middle
                     tmp.X = (dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width / 2 - miniRec / 2);
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec;
+                    tmp.Y = dummyShape.MyRectangle.Y - offset;
+                    g.FillRectangle(Brushes.Gray, tmp);
+                    
+                    // up right
+                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
+                    tmp.Y = dummyShape.MyRectangle.Y - offset;
                     g.FillRectangle(Brushes.Gray, tmp);
 
-                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec;
+                    // left middle
+                    tmp.X = dummyShape.MyRectangle.X - offset;
+                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2;
+                    g.FillRectangle(Brushes.Gray, tmp);
+
+                    // right middle
+                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
+                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2 - offset;
+                    g.FillRectangle(Brushes.Gray, tmp);
+
+                    // left down
+                    tmp.X = dummyShape.MyRectangle.X - offset;
+                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
+                    g.FillRectangle(Brushes.Gray, tmp);
+
+                    // down middle
+                    tmp.X = (dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width / 2 - miniRec / 2);
+                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
+                    g.FillRectangle(Brushes.Gray, tmp);
+
+                    // right down
+                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
+                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
                     g.FillRectangle(Brushes.Gray, tmp);
                 }
             }

@@ -9,6 +9,8 @@ namespace OOP_PJ
 {
     public class Constant
     {
+        public static int GuideOffset = 30;
+
         public enum ActionType
         {
             None,
