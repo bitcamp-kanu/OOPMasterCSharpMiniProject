@@ -111,6 +111,40 @@ namespace OOP_PJ
 
                 return newRectangle;
             }
+            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Hexagon)) //육각형
+            {
+                startPoint.X = newInfomation.Point.X;
+                startPoint.Y = newInfomation.Point.Y;
+                Rectangle rec = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
+                CHexa newRectangle = new CHexa(rec);
+                newRectangle.FillColor = newInfomation.FillColor;
+                newRectangle.LineColor = newInfomation.LineColor;
+                newRectangle.Thickness = newInfomation.Thickness;
+
+                if (newInfomation.UseLine)
+                    newRectangle.HasLine = true;
+                if (newInfomation.UseFill)
+                    newRectangle.HasFill = true;
+
+                return newRectangle;
+            }
+            else if (newInfomation.ShapeType.Equals(Constant.ShapeType.Line)) // 라인그리기
+            {
+                startPoint.X = newInfomation.Point.X;
+                startPoint.Y = newInfomation.Point.Y;
+                Rectangle rec = new Rectangle(newInfomation.Point.X, newInfomation.Point.Y, 0, 0);
+                CLine newRectangle = new CLine(rec);
+                newRectangle.FillColor = newInfomation.FillColor;
+                newRectangle.LineColor = newInfomation.LineColor;
+                newRectangle.Thickness = newInfomation.Thickness;
+
+                if (newInfomation.UseLine)
+                    newRectangle.HasLine = true;
+                if (newInfomation.UseFill)
+                    newRectangle.HasFill = true;
+
+                return newRectangle;
+            }
             else // 기타 도형 추가
             {
                 return null;
@@ -182,7 +216,7 @@ namespace OOP_PJ
 
         public void MoveMouse(Infomation newInfomation, object obj)
         {
-            if (newInfomation.MoveType.Equals(Constant.MoveType.DrawDrag)) { dummyShape.SetPositiveRectangle(startPoint, newInfomation.Point); }
+            if (newInfomation.MoveType.Equals(Constant.MoveType.DrawDrag)) { dummyShape.SetPositiveRectangle(startPoint, newInfomation); }
             else if (newInfomation.MoveType.Equals(Constant.MoveType.Moveshape)) { dummyShape.MoveRectangle(startPoint, mousePoint, newInfomation.Point); }
             else if (newInfomation.MoveType.Equals(Constant.MoveType.UpResize)) { dummyShape.ResizeUpSide(startPoint, newInfomation.Point); }
             else if (newInfomation.MoveType.Equals(Constant.MoveType.DownResize)) { dummyShape.ResizeDownSide(startPoint, newInfomation.Point); }

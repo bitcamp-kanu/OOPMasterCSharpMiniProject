@@ -304,7 +304,8 @@ namespace OOP_PJ
             }
             else if (sender == BtnLine)
             {
-
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Line;
             }
             else if (sender == BtnEllipse)
             {
@@ -328,7 +329,8 @@ namespace OOP_PJ
             }
             else if (sender == BtnHexa)
             {
-                
+                theInfomation.ActionType = Constant.ActionType.Draw;
+                theInfomation.ShapeType = Constant.ShapeType.Hexagon;
             }
             else if (sender == BtnStar)
             {

@@ -20,9 +20,11 @@ namespace OOP_PJ
         public int SequenceNumber { get; set; }
         public int ListIndex { get; set; }
         public Rectangle MyRectangle { get; set; }
-
+        public List<Point> pointList;
+        
         public Shape(Rectangle recParam)
         {
+            pointList = new List<Point>();
             mHistory = new Stack<Shape>();
             MyRectangle = new Rectangle();
             MyRectangle = recParam;
@@ -89,16 +91,34 @@ namespace OOP_PJ
                 return false;
         }
 
-        public void SetPositiveRectangle(Point start, Point end)
+        public void SetPositiveRectangle(Point start, Infomation newInfomation)
         {
-            Rectangle rect = new Rectangle
+
+            if (newInfomation.ShapeType.Equals(Constant.ShapeType.Line))
             {
-                X = end.X > start.X ? start.X : end.X,
-                Y = end.Y > start.Y ? start.Y : end.Y,
-                Width = Math.Abs(end.X - start.X),
-                Height = Math.Abs(end.Y - start.Y)
-            };
-            MyRectangle = rect;
+                if(pointList.Count == 0)
+                {
+                    Point point = new Point(start.X, start.Y);
+                    pointList.Add(point);
+                    pointList.Add(point);
+
+                }
+                Point point1 = new Point(newInfomation.Point.X, newInfomation.Point.Y);
+
+                pointList[1] = point1;
+            }
+            else
+            {
+                Rectangle rect = new Rectangle
+                {
+                    X = newInfomation.Point.X > start.X ? start.X : newInfomation.Point.X,
+                    Y = newInfomation.Point.Y > start.Y ? start.Y : newInfomation.Point.Y,
+                    Width = Math.Abs(newInfomation.Point.X - start.X),
+                    Height = Math.Abs(newInfomation.Point.Y - start.Y)
+                };
+                MyRectangle = rect;
+            }
+            
         }
 
         public void MoveRectangle(Point start, Point startMouse, Point info)
@@ -436,7 +456,7 @@ namespace OOP_PJ
         }
     }
 
-
+    // 오각형
     public class CPenta : Shape
     {
         public CPenta(Rectangle recParam) : base(recParam) { }
@@ -455,7 +475,7 @@ namespace OOP_PJ
             {
                 double radian = (0.8 * Math.PI * i) + (0.7 * Math.PI);
                 pts[i] = location + new Size((int)(radius * Math.Cos(radian)),
-                    (int)(radius * Math.Sin(radian)));;
+                    (int)(radius * Math.Sin(radian)));
             }
 
             PointF point1 = new PointF(MyRectangle.X + pts[0].X, MyRectangle.Y + pts[0].Y);
@@ -463,6 +483,7 @@ namespace OOP_PJ
             PointF point3 = new PointF(MyRectangle.X + pts[4].X, MyRectangle.Y + pts[4].Y);
             PointF point4 = new PointF(MyRectangle.X + pts[1].X, MyRectangle.Y + pts[1].Y);
             PointF point5 = new PointF(MyRectangle.X + pts[3].X, MyRectangle.Y + pts[3].Y);            
+
 
             PointF[] curvePoints = { point1, point2, point3, point4, point5 };
 
@@ -480,7 +501,77 @@ namespace OOP_PJ
 
         public override Shape clone()
         {
+            Shape data = (Shape)this.MemberwiseClone();
+            return data;
+        }
+    }
 
+    // 육각형 만들자
+    public class CHexa : Shape
+    {
+        public CHexa(Rectangle recParam) : base(recParam) { }
+
+        public override void Draw(Graphics g)
+        {
+            int HexaWidthSide = MyRectangle.Width / 4;
+            PointF point1 = new PointF(MyRectangle.X + HexaWidthSide, MyRectangle.Y);
+            PointF point2 = new PointF(MyRectangle.X + (MyRectangle.Width - HexaWidthSide), MyRectangle.Y);
+            PointF point3 = new PointF(MyRectangle.X + MyRectangle.Width, MyRectangle.Y+(MyRectangle.Height/2));
+            PointF point4 = new PointF(MyRectangle.X + (MyRectangle.Width - HexaWidthSide), MyRectangle.Y+MyRectangle.Height);
+            PointF point5 = new PointF(MyRectangle.X + HexaWidthSide, MyRectangle.Y + MyRectangle.Height);
+            PointF point6 = new PointF(MyRectangle.X, MyRectangle.Y+(MyRectangle.Height/2));
+
+            PointF[] curvePoints = { point1, point2, point3, point4, point5, point6 };
+
+            if (base.HasFill)
+            {
+                SolidBrush brush = new SolidBrush(base.FillColor);
+                g.FillPolygon(brush, curvePoints);
+            }
+            if (base.HasLine)
+            {
+                Pen pen = new Pen(base.LineColor, base.Thickness);
+                g.DrawPolygon(pen, curvePoints);
+            }
+        }
+
+        public override Shape clone()
+        {
+
+            Shape data = (Shape)this.MemberwiseClone();
+            return data;
+        }
+    }
+
+    // 라인 만들자
+    public class CLine : Shape
+    {
+       public CLine(Rectangle recParam) : base(recParam) { 
+        
+        }
+
+        public override void Draw(Graphics g)
+        {
+            //PointF point1 = new PointF(MyRectangle.X , MyRectangle.Y);
+            //PointF point2 = new PointF(MyRectangle.X + MyRectangle.Width, MyRectangle.Y+MyRectangle.Height);
+
+            //PointF[] curvePoints = { point1, point2};
+
+            if (base.HasFill)
+            {
+                //SolidBrush brush = new SolidBrush(base.FillColor);
+                //g.FillPolygon(brush, curvePoints);
+            }
+            if (base.HasLine)
+            {
+                Pen pen = new Pen(base.LineColor, base.Thickness);
+                g.DrawLine(pen, pointList[0].X, pointList[0].Y, pointList[1].X, pointList[1].Y);
+                // g.DrawPolygon(pen, curvePoints);
+            }
+        }
+
+        public override Shape clone()
+        {
             Shape data = (Shape)this.MemberwiseClone();
             return data;
         }

@@ -45,7 +45,8 @@ namespace OOP_PJ
             Rectangle,  // 사각형
             Circle,     // 원
             Triangle,    // 삼각형
-            Pentagon    // 오각형
+            Pentagon,    // 오각형
+            Hexagon      // 육각형
         }
 
         public enum MouseType
@@ -178,9 +179,6 @@ namespace OOP_PJ
         static public float CalcDistance(float mx, float my, float catx, float caty)
         {
             return (float)Math.Sqrt((double)(mx - catx) * (mx - catx) + (my - caty) * (my - caty));
-        }
-
-
-        
+        }        
     }
 }
