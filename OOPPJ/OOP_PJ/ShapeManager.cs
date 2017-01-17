@@ -19,6 +19,7 @@ namespace OOP_PJ
 
         public void AddShape(Shape newShape)
         {
+            newShape.CurListIndex = GetListCount() - 1;
             shape.Add(newShape);
         }
 
@@ -29,6 +30,7 @@ namespace OOP_PJ
 
         public void Undo(Shape cancelShape)
         {
+            // 여기서 인덱스 관련 처리 해줘야함..
             if (!cancelShape.Undo())
             {
                 shape.Remove(cancelShape);
@@ -62,6 +64,43 @@ namespace OOP_PJ
                 cs.Draw(g);
             }
         }
-    }
 
+        public bool MoveShapeBackOneStep(Shape movedShape)  // 도형 뒤로 보내기
+        {
+            for (int i = 0; i < shape.Count; i++)
+            {
+                if (movedShape == shape[i])
+                {
+                    if (i == 0)
+                        return false;
+
+                    Shape tmp = shape[i];
+                    shape[i] = shape[i - 1];
+                    shape[i - 1] = tmp;
+                    shape[i].CurListIndex--;
+                    shape[i - 1].CurListIndex++;
+                }
+            }
+            return true;
+        }
+
+        public bool MoveShapeFrontOneStep(Shape movedShape)  // 도형 뒤로 보내기
+        {
+            for (int i = 0; i < shape.Count; i++)
+            {
+                if (movedShape == shape[i])
+                {
+                    if (i == shape.Count - 1)
+                        return false;
+
+                    Shape tmp = shape[i];
+                    shape[i] = shape[i + 1];
+                    shape[i + 1] = tmp;
+                    shape[i].CurListIndex++;
+                    shape[i + 1].CurListIndex--;
+                }
+            }
+            return true;
+        }
+    }
 }

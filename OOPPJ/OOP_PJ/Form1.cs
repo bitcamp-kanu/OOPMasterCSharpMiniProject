@@ -250,12 +250,14 @@ namespace OOP_PJ
 
         private void Forward_btn_Click(object sender, EventArgs e)  // 도형 순서 위로 이동
         {
-
+            myCommandManager.MoveShapeFrontOneStep();
+            Invalidate();
         }
 
         private void Backward_btn_Click(object sender, EventArgs e) // 도형 순서 뒤로 이동
         {
-
+            myCommandManager.MoveShapeBackOneStep();
+            Invalidate();
         }
 
         int tmp = 0;

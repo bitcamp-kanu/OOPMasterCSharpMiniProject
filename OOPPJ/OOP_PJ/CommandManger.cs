@@ -221,61 +221,65 @@ namespace OOP_PJ
                 shapeManager.Draw(g);
             }
 
-            if (dummyShape != null && (dummyShape.IsSelected || newInfomation.ActionType.Equals(Constant.ActionType.Draw)))
-            {
-                dummyShape.Draw(g);
+            #region MyRegion
+            
+           
+            //if (dummyShape != null && (dummyShape.IsSelected || newInfomation.ActionType.Equals(Constant.ActionType.Draw)))
+            //{
+            //    dummyShape.Draw(g);
 
-                Pen pen = new Pen(Color.Gray, 1);
-                pen.DashStyle = DashStyle.Dash;
+            //    Pen pen = new Pen(Color.Gray, 1);
+            //    pen.DashStyle = DashStyle.Dash;
 
-                g.DrawRectangle(pen, dummyShape.MyRectangle);
+            //    g.DrawRectangle(pen, dummyShape.MyRectangle);
 
-                if (dummyShape.IsSelected)
-                {
-                    int miniRec = 10;
-                    int offset = 5;
-                    // up left 
-                    Rectangle tmp = new Rectangle(dummyShape.MyRectangle.X - offset, dummyShape.MyRectangle.Y - offset, miniRec, miniRec);
+            //    if (dummyShape.IsSelected)
+            //    {
+            //        int miniRec = 10;
+            //        int offset = 5;
+            //        // up left 
+            //        Rectangle tmp = new Rectangle(dummyShape.MyRectangle.X - offset, dummyShape.MyRectangle.Y - offset, miniRec, miniRec);
 
-                    g.DrawRectangle(new Pen(Color.White, 2), tmp);
-                    g.FillRectangle(Brushes.Gray, tmp);
+            //        g.DrawRectangle(new Pen(Color.White, 2), tmp);
+            //        g.FillRectangle(Brushes.Gray, tmp);
 
-                    // up middle
-                    tmp.X = (dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width / 2 - miniRec / 2);
-                    tmp.Y = dummyShape.MyRectangle.Y - offset;
-                    g.FillRectangle(Brushes.Gray, tmp);
+            //        // up middle
+            //        tmp.X = (dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width / 2 - miniRec / 2);
+            //        tmp.Y = dummyShape.MyRectangle.Y - offset;
+            //        g.FillRectangle(Brushes.Gray, tmp);
                     
-                    // up right
-                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
-                    tmp.Y = dummyShape.MyRectangle.Y - offset;
-                    g.FillRectangle(Brushes.Gray, tmp);
+            //        // up right
+            //        tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
+            //        tmp.Y = dummyShape.MyRectangle.Y - offset;
+            //        g.FillRectangle(Brushes.Gray, tmp);
 
-                    // left middle
-                    tmp.X = dummyShape.MyRectangle.X - offset;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2;
-                    g.FillRectangle(Brushes.Gray, tmp);
+            //        // left middle
+            //        tmp.X = dummyShape.MyRectangle.X - offset;
+            //        tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2;
+            //        g.FillRectangle(Brushes.Gray, tmp);
 
-                    // right middle
-                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2 - offset;
-                    g.FillRectangle(Brushes.Gray, tmp);
+            //        // right middle
+            //        tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
+            //        tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height / 2 - miniRec / 2 - offset;
+            //        g.FillRectangle(Brushes.Gray, tmp);
 
-                    // left down
-                    tmp.X = dummyShape.MyRectangle.X - offset;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
-                    g.FillRectangle(Brushes.Gray, tmp);
+            //        // left down
+            //        tmp.X = dummyShape.MyRectangle.X - offset;
+            //        tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
+            //        g.FillRectangle(Brushes.Gray, tmp);
 
-                    // down middle
-                    tmp.X = (dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width / 2 - miniRec / 2);
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
-                    g.FillRectangle(Brushes.Gray, tmp);
+            //        // down middle
+            //        tmp.X = (dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width / 2 - miniRec / 2);
+            //        tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
+            //        g.FillRectangle(Brushes.Gray, tmp);
 
-                    // right down
-                    tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
-                    tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
-                    g.FillRectangle(Brushes.Gray, tmp);
-                }
-            }
+            //        // right down
+            //        tmp.X = dummyShape.MyRectangle.X + dummyShape.MyRectangle.Width - miniRec + offset;
+            //        tmp.Y = dummyShape.MyRectangle.Y + dummyShape.MyRectangle.Height - miniRec + offset;
+            //        g.FillRectangle(Brushes.Gray, tmp);
+            //    }
+            //}
+            #endregion
         }
 
         public void Undo()
@@ -316,5 +320,30 @@ namespace OOP_PJ
                 dummyShape.Save();
             }
         }
+
+        public void MoveShapeBackOneStep()  // 화면 뒤쪽으로 도형 이동
+        {
+            if (dummyShape != null)
+            {
+                if (shapeManager.MoveShapeBackOneStep(dummyShape))
+                {
+                    backup.Push(dummyShape);
+                    dummyShape.Save();
+                }
+            }
+        }
+
+        public void MoveShapeFrontOneStep() // 화면 앞쪽으로 도형 이동
+        {
+            if (dummyShape != null)
+            {
+                if (shapeManager.MoveShapeFrontOneStep(dummyShape))
+                {
+                    backup.Push(dummyShape);
+                    dummyShape.Save();
+                }
+            }
+        }
+
     }   // commandManger
 }   // namespace
