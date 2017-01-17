@@ -29,6 +29,9 @@ namespace OOP_PJ
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // 폼로드시 버튼 올리기
+            #region
+
             // CheckBox Group 01
             CBgrp01.Add(BtnPencil);
             CBgrp01.Add(BtnImg);
@@ -72,7 +75,8 @@ namespace OOP_PJ
             CBgrp04.Add(BtnColor19);
             CBgrp04.Add(BtnColor20);
 
-            // 폼 로드
+            #endregion
+
             theInfomation = new Infomation();
             myCommandManager = new CommandManager();
             theInfomation.Thickness = 1;
@@ -81,10 +85,6 @@ namespace OOP_PJ
             this.AllowDrop = true;
             
 
-            //////// 테스트용 삭제예정///////
-            FillCombobox.SelectedIndex = 0;
-            PenColorCombox.SelectedIndex = 0;
-            
             //// 수정후 사용 예정 //////
              theInfomation.LineColor = WIUtility.colorSet[0];
              theInfomation.FillColor = WIUtility.colorSet[5];
@@ -94,58 +94,85 @@ namespace OOP_PJ
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            myCommandManager.CursorTypeDecision(theInfomation, this);
-            label4.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제예정
-            // 마우스 다운
-            if (e.X >= 0 && e.X <= this.Width && e.Y >= 0 && e.Y <= this.Height) // 폼안에서 이벤트 시작
+            try
             {
-                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                
+                myCommandManager.CursorTypeDecision(theInfomation, this);
+                label4.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제예정
+                // 마우스 다운
+                if (e.X >= 0 && e.X <= this.Width && e.Y >= 0 && e.Y <= this.Height) // 폼안에서 이벤트 시작
                 {
-                    if (theInfomation.ActionType.Equals(Constant.ActionType.Draw))   // 그리기 이벤트 ON
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
                     {
-                        theInfomation.Point = new Point(e.X, e.Y);
-                        myCommandManager.CreateMain(theInfomation);
+
+                        if (theInfomation.ActionType.Equals(Constant.ActionType.Draw))   // 그리기 이벤트 ON
+                        {
+                            theInfomation.Point = new Point(e.X, e.Y);
+                            myCommandManager.CreateMain(theInfomation);
+                        }
+                        else if (theInfomation.ActionType.Equals(Constant.ActionType.Select))   // 선택 Mode ON
+                        {
+                            theInfomation.Point = new Point(e.X, e.Y);
+                            myCommandManager.ChoiceShape(theInfomation);
+                            Invalidate();
+                        }
+
                     }
-                    else if (theInfomation.ActionType.Equals(Constant.ActionType.Select))   // 선택 Mode ON
+                    else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                     {
-                        theInfomation.Point = new Point(e.X, e.Y);
-                        myCommandManager.ChoiceShape(theInfomation);
-                        Invalidate();
+                        // 마우스 우측 클릭시 ContextMenu 사용
                     }
+
+                    
                 }
-                else if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                {
-                    // 마우스 우측 클릭시 ContextMenu 사용
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("마우스 다운: " + ex.Message);
             }
         }
 
         // TODO : 중복 기능 확인하기
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            theInfomation.Point = new Point(e.X, e.Y);
-            myCommandManager.CursorTypeDecision(theInfomation, this);
+            try
+            {
 
-            label3.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제 예정
+                theInfomation.Point = new Point(e.X, e.Y);
+                myCommandManager.CursorTypeDecision(theInfomation, this);
 
-            myCommandManager.MoveMouse(theInfomation, this);
-           
-            Invalidate();
+                myCommandManager.MoveMouse(theInfomation, this);
+
+
+                Invalidate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("마우스 무브 메세지박스 : " + ex.Message);
+            }
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
-            myCommandManager.CursorTypeDecision(theInfomation, this);
-
-            if (theInfomation.ActionType == Constant.ActionType.Draw)
+            try
             {
-                theInfomation.Point = new Point(e.X, e.Y);
-                myCommandManager.MoveMouse(theInfomation, this);
-            }
+                myCommandManager.CursorTypeDecision(theInfomation, this);
 
-            myCommandManager.CreateComeplete(theInfomation);
-            theInfomation.MoveType = Constant.MoveType.None;
-            Invalidate();
+                if (theInfomation.ActionType == Constant.ActionType.Draw)
+                {
+                    theInfomation.Point = new Point(e.X, e.Y);
+                    myCommandManager.MoveMouse(theInfomation, this);
+                }
+
+                myCommandManager.CreateComeplete(theInfomation);
+                theInfomation.MoveType = Constant.MoveType.None;
+
+                Invalidate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -162,129 +189,7 @@ namespace OOP_PJ
         }
 
 
-        /// <summary>
-        /// Test Form 용입니다. 메뉴들 차후 삭제 예정이오니 삭제 금지!!
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Undo Test용 차후 삭제 예정
-            myCommandManager.Undo();
-
-            Invalidate();
-        }
-
-        // TODO : 색 선택 함수로 빼자
-        private void PenColorCombox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*       Black, Red, Blue         */
-            if (PenColorCombox.SelectedIndex == 0)
-            {
-                theInfomation.LineColor = WIUtility.colorSet[0];
-            }
-            else if (PenColorCombox.SelectedIndex == 1)
-            {
-                theInfomation.LineColor = WIUtility.colorSet[1];
-            }
-            else if (PenColorCombox.SelectedIndex == 2)
-            {
-                theInfomation.LineColor = WIUtility.colorSet[2];
-            }
-
-            if (Constant.ActionType.Select.Equals(Constant.ActionType.Select))
-            {
-                myCommandManager.ChangeLineColor(theInfomation);
-                Invalidate();
-            }
-
-            ComboBox tmp = (ComboBox)sender;
-        }
-
-        private void FillCombobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*While,Blue,Red,yello*/
-            if (FillCombobox.SelectedIndex == 0)
-            {
-                theInfomation.FillColor = WIUtility.colorSet[5];
-            }
-            else if (FillCombobox.SelectedIndex == 1)
-            {
-                theInfomation.FillColor = WIUtility.colorSet[2];
-            }
-            else if (FillCombobox.SelectedIndex == 2)
-            {
-                theInfomation.FillColor = WIUtility.colorSet[1];
-            }
-            else if (FillCombobox.SelectedIndex == 3)
-            {
-                theInfomation.FillColor = WIUtility.colorSet[4]; ;
-            }
-
-            if (Constant.ActionType.Select.Equals(Constant.ActionType.Select))
-            {
-                myCommandManager.ChangeFillColor(theInfomation);
-                Invalidate();
-            }
-        }
-
-        //private void penChk_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    // Line 사용
-        //    if(penChk.Checked)
-        //        theInfomation.UseLine = true;
-        //    else
-        //        theInfomation.UseLine = false;
-        //}
-
-        //private void FillChk_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    // 채우기 사용
-        //    if (FillChk.Checked)
-        //        theInfomation.UseFill = true;
-        //    else
-        //        theInfomation.UseFill = false;
-        //}
-
-       
-
-        private void Forward_btn_Click(object sender, EventArgs e)  // 도형 순서 위로 이동
-        {
-            myCommandManager.MoveShapeFrontOneStep();
-            Invalidate();
-        }
-
-        private void Backward_btn_Click(object sender, EventArgs e) // 도형 순서 뒤로 이동
-        {
-            myCommandManager.MoveShapeBackOneStep();
-            Invalidate();
-        }
-
-        int tmp = 0;
-        private void buttontest_Click(object sender, EventArgs e)
-        {
-            tmp++;
-            switch (tmp)
-            {
-                case 1:
-                    this.Cursor = Cursors.SizeAll;
-                    break;
-                case 2:
-                    this.Cursor = Cursors.SizeNESW;
-                    break;
-                case 3:
-                    this.Cursor = Cursors.SizeNS;
-                    break;
-                case 4:
-                    this.Cursor = Cursors.SizeNWSE;
-                    break;
-                case 5:
-                    this.Cursor = Cursors.SizeWE;
-                    break;
-                
-            }
-        }
-
+     
         // 다른 체크 박스 해제 함수화
         public void CheckingCheckBox(List<CheckBox> CBgrp, object sender)
         {
@@ -648,26 +553,51 @@ namespace OOP_PJ
         }
 
 
-        
 
-        
 
-        //public void GetMouseState()
-        //{
-        //    Constant.MouseType mouseType = my
-        //    switch (mouseType)
-        //    {
-        //        case Constant.MouseType.Default:
-        //            this.Cursor = Cursors.Default;
-        //            break;
-        //        case Constant.MouseType.SizeAll:
-        //            this.Cursor = Cursors.SizeAll;
-        //            break;
+        /// <summary>
+        /// Test Form 용입니다. 메뉴들 차후 삭제 예정이오니 삭제 금지!!
+        /// </summary>
 
-        //    }
-        //}
+        private void button1_Click(object sender, EventArgs e)  // 완료 : 언두 기능
+        {
+            // Undo Test용 차후 삭제 예정
+            myCommandManager.Undo();
 
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
+            Invalidate();
+        }
+
+
+        private void Forward_btn_Click(object sender, EventArgs e)  // 완료 : 도형 순서 앞으로 이동
+        {
+            myCommandManager.MoveShapeFrontOneStep();
+            Invalidate();
+        }
+
+        private void Backward_btn_Click(object sender, EventArgs e) // 완료 : 도형 순서 뒤로이동
+        {
+            myCommandManager.MoveShapeBackOneStep();
+            Invalidate();
+        }
+
+        private void delete_btn_Click(object sender, EventArgs e)   // 완료 : 도형 삭제 
+        {
+            myCommandManager.DeleteShape();
+            Invalidate();
+        }
+
+        private void gotop_btn_Click(object sender, EventArgs e)    // 제일 위로 미 구현
+        {
+         //   myCommandManager.MoveShapeFrontDirect();
+            Invalidate();
+        }
+
+        private void gobottom_btn_Click(object sender, EventArgs e) // 제일 아래로 미구현
+        {
+        //    myCommandManager.MoveShapeBackDirect();
+            Invalidate();
+        }
+
+   
     }
 }

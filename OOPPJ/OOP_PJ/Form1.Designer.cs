@@ -72,20 +72,18 @@
             this.편집ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Undo_btn = new System.Windows.Forms.Button();
-            this.FillCombobox = new System.Windows.Forms.ComboBox();
-            this.PenColorCombox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttontest = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Backward_btn = new System.Windows.Forms.Button();
             this.Forward_btn = new System.Windows.Forms.Button();
             this.penChk = new System.Windows.Forms.CheckBox();
             this.FillChk = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.statusBottom = new System.Windows.Forms.StatusStrip();
             this.trackZooin = new System.Windows.Forms.TrackBar();
+            this.delete_btn = new System.Windows.Forms.Button();
+            this.gotop_btn = new System.Windows.Forms.Button();
+            this.gobottom_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -674,68 +672,26 @@
             this.Undo_btn.UseVisualStyleBackColor = true;
             this.Undo_btn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // FillCombobox
-            // 
-            this.FillCombobox.FormattingEnabled = true;
-            this.FillCombobox.Items.AddRange(new object[] {
-            "While",
-            "Blue",
-            "Red",
-            "Gray"});
-            this.FillCombobox.Location = new System.Drawing.Point(14, 105);
-            this.FillCombobox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.FillCombobox.Name = "FillCombobox";
-            this.FillCombobox.Size = new System.Drawing.Size(87, 23);
-            this.FillCombobox.TabIndex = 40;
-            this.FillCombobox.SelectedIndexChanged += new System.EventHandler(this.FillCombobox_SelectedIndexChanged);
-            // 
-            // PenColorCombox
-            // 
-            this.PenColorCombox.FormattingEnabled = true;
-            this.PenColorCombox.Items.AddRange(new object[] {
-            "Black",
-            "Red",
-            "Blue"});
-            this.PenColorCombox.Location = new System.Drawing.Point(14, 59);
-            this.PenColorCombox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.PenColorCombox.Name = "PenColorCombox";
-            this.PenColorCombox.Size = new System.Drawing.Size(87, 23);
-            this.PenColorCombox.TabIndex = 41;
-            this.PenColorCombox.SelectedIndexChanged += new System.EventHandler(this.PenColorCombox_SelectedIndexChanged);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttontest);
+            this.groupBox1.Controls.Add(this.gobottom_btn);
+            this.groupBox1.Controls.Add(this.gotop_btn);
+            this.groupBox1.Controls.Add(this.delete_btn);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.Backward_btn);
             this.groupBox1.Controls.Add(this.Forward_btn);
             this.groupBox1.Controls.Add(this.penChk);
             this.groupBox1.Controls.Add(this.FillChk);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.FillCombobox);
-            this.groupBox1.Controls.Add(this.PenColorCombox);
             this.groupBox1.Controls.Add(this.Undo_btn);
             this.groupBox1.Location = new System.Drawing.Point(665, 126);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(241, 320);
+            this.groupBox1.Size = new System.Drawing.Size(307, 320);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test용 지우지마세요";
-            // 
-            // buttontest
-            // 
-            this.buttontest.Location = new System.Drawing.Point(150, 242);
-            this.buttontest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttontest.Name = "buttontest";
-            this.buttontest.Size = new System.Drawing.Size(75, 22);
-            this.buttontest.TabIndex = 51;
-            this.buttontest.Text = "button1";
-            this.buttontest.UseVisualStyleBackColor = true;
-            this.buttontest.Click += new System.EventHandler(this.buttontest_Click);
             // 
             // label4
             // 
@@ -760,7 +716,7 @@
             this.Backward_btn.Location = new System.Drawing.Point(6, 206);
             this.Backward_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Backward_btn.Name = "Backward_btn";
-            this.Backward_btn.Size = new System.Drawing.Size(134, 29);
+            this.Backward_btn.Size = new System.Drawing.Size(116, 29);
             this.Backward_btn.TabIndex = 47;
             this.Backward_btn.Text = "도형순서 뒤로";
             this.Backward_btn.UseVisualStyleBackColor = true;
@@ -771,7 +727,7 @@
             this.Forward_btn.Location = new System.Drawing.Point(6, 169);
             this.Forward_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Forward_btn.Name = "Forward_btn";
-            this.Forward_btn.Size = new System.Drawing.Size(134, 29);
+            this.Forward_btn.Size = new System.Drawing.Size(116, 29);
             this.Forward_btn.TabIndex = 46;
             this.Forward_btn.Text = "도형순서 위로";
             this.Forward_btn.UseVisualStyleBackColor = true;
@@ -780,7 +736,7 @@
             // penChk
             // 
             this.penChk.AutoSize = true;
-            this.penChk.Location = new System.Drawing.Point(107, 62);
+            this.penChk.Location = new System.Drawing.Point(197, 86);
             this.penChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.penChk.Name = "penChk";
             this.penChk.Size = new System.Drawing.Size(74, 19);
@@ -791,31 +747,13 @@
             // FillChk
             // 
             this.FillChk.AutoSize = true;
-            this.FillChk.Location = new System.Drawing.Point(107, 109);
+            this.FillChk.Location = new System.Drawing.Point(197, 113);
             this.FillChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FillChk.Name = "FillChk";
             this.FillChk.Size = new System.Drawing.Size(104, 19);
             this.FillChk.TabIndex = 44;
             this.FillChk.Text = "채우기사용";
             this.FillChk.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 15);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "Fill Color";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 15);
-            this.label1.TabIndex = 42;
-            this.label1.Text = "Pen Color";
             // 
             // statusBottom
             // 
@@ -835,6 +773,36 @@
             this.trackZooin.Name = "trackZooin";
             this.trackZooin.Size = new System.Drawing.Size(149, 28);
             this.trackZooin.TabIndex = 3;
+            // 
+            // delete_btn
+            // 
+            this.delete_btn.Location = new System.Drawing.Point(6, 25);
+            this.delete_btn.Name = "delete_btn";
+            this.delete_btn.Size = new System.Drawing.Size(75, 23);
+            this.delete_btn.TabIndex = 51;
+            this.delete_btn.Text = "삭제";
+            this.delete_btn.UseVisualStyleBackColor = true;
+            this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
+            // 
+            // gotop_btn
+            // 
+            this.gotop_btn.Location = new System.Drawing.Point(6, 78);
+            this.gotop_btn.Name = "gotop_btn";
+            this.gotop_btn.Size = new System.Drawing.Size(116, 31);
+            this.gotop_btn.TabIndex = 52;
+            this.gotop_btn.Text = "도형 제일 위로";
+            this.gotop_btn.UseVisualStyleBackColor = true;
+            this.gotop_btn.Click += new System.EventHandler(this.gotop_btn_Click);
+            // 
+            // gobottom_btn
+            // 
+            this.gobottom_btn.Location = new System.Drawing.Point(6, 115);
+            this.gobottom_btn.Name = "gobottom_btn";
+            this.gobottom_btn.Size = new System.Drawing.Size(116, 36);
+            this.gobottom_btn.TabIndex = 53;
+            this.gobottom_btn.Text = "도형 제일 뒤로";
+            this.gobottom_btn.UseVisualStyleBackColor = true;
+            this.gobottom_btn.Click += new System.EventHandler(this.gobottom_btn_Click);
             // 
             // Form1
             // 
@@ -898,18 +866,13 @@
         private System.Windows.Forms.CheckBox BtnColor20;
         private System.Windows.Forms.CheckBox BtnColor10;
         private System.Windows.Forms.Button Undo_btn;
-        private System.Windows.Forms.ComboBox FillCombobox;
-        private System.Windows.Forms.ComboBox PenColorCombox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox penChk;
         private System.Windows.Forms.CheckBox FillChk;
         private System.Windows.Forms.Button Backward_btn;
         private System.Windows.Forms.Button Forward_btn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button buttontest;
         private System.Windows.Forms.CheckBox btnUseFill;
         private System.Windows.Forms.CheckBox btnUseLine;
         private System.Windows.Forms.CheckBox BtnPencil;
@@ -926,6 +889,9 @@
         private System.Windows.Forms.CheckBox BtnLine;
         private System.Windows.Forms.StatusStrip statusBottom;
         private System.Windows.Forms.TrackBar trackZooin;
+        private System.Windows.Forms.Button delete_btn;
+        private System.Windows.Forms.Button gobottom_btn;
+        private System.Windows.Forms.Button gotop_btn;
 
 
     }
