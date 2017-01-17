@@ -639,6 +639,11 @@ namespace OOP_PJ
             Invalidate();
         }
 
+        private void BtnFill_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
         
 

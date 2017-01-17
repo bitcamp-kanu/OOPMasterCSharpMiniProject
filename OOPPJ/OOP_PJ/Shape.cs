@@ -20,6 +20,7 @@ namespace OOP_PJ
         public int SequenceNumber { get; set; }
         public int CurListIndex { get; set; }
         public int PreListIndex { get; set; }
+        
         public Rectangle MyRectangle { get; set; }
         public List<Point> pointList;
         
@@ -39,29 +40,56 @@ namespace OOP_PJ
         public abstract Shape clone();
         public abstract void Draw(Graphics g);
 
-        public bool Undo() // 실행 취소
+        public UndoInfo Undo() // 실행 취소
         {
+            UndoInfo undoinfo = new UndoInfo();
+
             if (mHistory.Count > 0)
             {
                 Shape tmp = mHistory.Pop();
+
                 if (tmp.SequenceNumber == this.SequenceNumber)
                 {
                     if (mHistory.Count == 0)
-                        return false;
+                    {
+                        undoinfo.Success = false;
+                
+                        return undoinfo;
+                    }
+                     
                     tmp = mHistory.Pop();
                 }
+                
                 this.MyRectangle = tmp.MyRectangle;
                 this.FillColor = tmp.FillColor;
                 this.Thickness = tmp.Thickness;
                 this.LineColor = tmp.LineColor;
                 this.HasLine = tmp.HasLine;
                 this.HasFill = tmp.HasFill;
-                this.CurListIndex = tmp.CurListIndex;
-                this.PreListIndex = tmp.PreListIndex;
 
-                return true;
+                List<Point> point = new List<Point>();
+                
+                foreach (Point p in tmp.pointList)
+                {
+                    point.Add(p);
+                }
+
+                this.pointList = point;
+
+                if (this.CurListIndex != tmp.CurListIndex)
+                {
+                    undoinfo.PreIndex = tmp.CurListIndex;
+                    undoinfo.CurIndex = this.CurListIndex;
+                    undoinfo.Movement = true;
+                    this.CurListIndex = tmp.CurListIndex;
+                }
+                undoinfo.Success = true;
+
+                return undoinfo;
             }
-            return false;
+            undoinfo.Success = false;
+
+            return undoinfo;
         }
 
         public void Save()

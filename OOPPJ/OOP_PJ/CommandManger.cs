@@ -250,23 +250,36 @@ namespace OOP_PJ
 
         public void testDraw(Graphics g, Infomation newInfomation)    // Test용 차후 삭제
         {
+            if (dummyShape != null && dummyShape.IsSelected)
+            {
+                dummyShape.Draw(g);
+
+                Pen pen = new Pen(Color.Gray, 1);
+                pen.DashStyle = DashStyle.Dash;
+
+                g.DrawRectangle(pen, dummyShape.MyRectangle);
+            }
+
+            
+
             if (shapeManager.GetListCount() > 0)
             {
                 shapeManager.Draw(g);
             }
 
+
+            if (dummyShape != null && newInfomation.ActionType.Equals(Constant.ActionType.Draw))
+            {
+                dummyShape.Draw(g);
+
+                Pen pen = new Pen(Color.Gray, 1);
+                pen.DashStyle = DashStyle.Dash;
+
+                g.DrawRectangle(pen, dummyShape.MyRectangle);
+            }
+
+
             #region MyRegion
-            
-           
-            //if (dummyShape != null && (dummyShape.IsSelected || newInfomation.ActionType.Equals(Constant.ActionType.Draw)))
-            //{
-            //    dummyShape.Draw(g);
-
-            //    Pen pen = new Pen(Color.Gray, 1);
-            //    pen.DashStyle = DashStyle.Dash;
-
-            //    g.DrawRectangle(pen, dummyShape.MyRectangle);
-
             //    if (dummyShape.IsSelected)
             //    {
             //        int miniRec = 10;
@@ -362,6 +375,7 @@ namespace OOP_PJ
                 if (shapeManager.MoveShapeBackOneStep(dummyShape))
                 {
                     backup.Push(dummyShape);
+                    Console.WriteLine("Backup Push: " + backup.Count);
                     dummyShape.Save();
                 }
             }
@@ -374,6 +388,7 @@ namespace OOP_PJ
                 if (shapeManager.MoveShapeFrontOneStep(dummyShape))
                 {
                     backup.Push(dummyShape);
+                    Console.WriteLine("Backup Push: " + backup.Count);
                     dummyShape.Save();
                 }
             }

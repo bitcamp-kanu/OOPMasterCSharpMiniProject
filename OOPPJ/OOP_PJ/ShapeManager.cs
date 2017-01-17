@@ -19,7 +19,8 @@ namespace OOP_PJ
 
         public void AddShape(Shape newShape)
         {
-            newShape.CurListIndex = GetListCount() - 1;
+            newShape.CurListIndex = shape.Count;
+            Console.WriteLine("List Shape :" + shape.Count);
             shape.Add(newShape);
         }
 
@@ -31,10 +32,20 @@ namespace OOP_PJ
         public void Undo(Shape cancelShape)
         {
             // 여기서 인덱스 관련 처리 해줘야함..
-            if (!cancelShape.Undo())
+            UndoInfo undoInfo = cancelShape.Undo().CloneEX(); // 깊은복사.....
+
+            if (!undoInfo.Success)
             {
                 shape.Remove(cancelShape);
             }
+            else if(undoInfo.Movement)
+            {
+                Console.WriteLine("undoInfo.PreIndex: " + undoInfo.PreIndex + " ,undoInfo.CurIndex : " + undoInfo.CurIndex);
+                Shape tmp = shape[undoInfo.PreIndex];
+                shape[undoInfo.PreIndex] = shape[undoInfo.CurIndex];
+                shape[undoInfo.CurIndex] = tmp;
+            }
+
         }
 
         public Shape ChoicedShape(Infomation newInfomation)
@@ -74,11 +85,15 @@ namespace OOP_PJ
                     if (i == 0)
                         return false;
 
+                    shape[i].PreListIndex = i;
+                    shape[i].CurListIndex = i - 1;
+
+                    shape[i - 1].CurListIndex = i;
+                    shape[i - 1].PreListIndex = i - 1;
+
                     Shape tmp = shape[i];
                     shape[i] = shape[i - 1];
                     shape[i - 1] = tmp;
-                    shape[i].CurListIndex--;
-                    shape[i - 1].CurListIndex++;
                 }
             }
             return true;
@@ -93,11 +108,17 @@ namespace OOP_PJ
                     if (i == shape.Count - 1)
                         return false;
 
+                    shape[i].CurListIndex = i+1;
+                    shape[i].PreListIndex = i;
+
+                    shape[i + 1].CurListIndex = i;
+                    shape[i + 1].PreListIndex = i+1;
+
                     Shape tmp = shape[i];
                     shape[i] = shape[i + 1];
                     shape[i + 1] = tmp;
-                    shape[i].CurListIndex++;
-                    shape[i + 1].CurListIndex--;
+
+                    
                 }
             }
             return true;

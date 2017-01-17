@@ -84,6 +84,21 @@ namespace OOP_PJ
         
     }
 
+    public struct UndoInfo
+    {
+        public bool Success { get; set; }
+        public bool Movement { get; set; }
+        public int PreIndex { get; set; }
+        public int CurIndex { get; set; }
+
+        public UndoInfo CloneEX()
+        {
+            UndoInfo info = (UndoInfo)this.MemberwiseClone();
+
+            return info;
+        }
+    }
+
     static class WIUtility
     {
         
