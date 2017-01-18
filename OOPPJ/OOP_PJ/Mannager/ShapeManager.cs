@@ -138,9 +138,7 @@ namespace OOP_PJ
 
                                 return true;
                             }
-
                         }
-
                     }
                 }
             }
@@ -152,71 +150,23 @@ namespace OOP_PJ
             deleteshape.IsDeleted = true;
         }
 
-        //public bool MoveShapeBackDirect(Shape movedShape)  // 화면 제일 뒤로 이동
-        //{
-        //    for (int i = shape.Count-1; i >=0; i--)
-        //    {
-        //        if (movedShape == shape[i])
-        //        {
-        //            if (i == 0)
-        //            {
-        //                return false;
-        //            }
-        //            else
-        //            {
-        //                for (int j = i - 1; j >= 1; j--)
-        //                {
-        //                    if (!shape[j].IsDeleted)
-        //                    {
-        //                        movedShape.PreListIndex = movedShape.CurListIndex;
-        //                        movedShape.CurListIndex = -1;
-        //                        shape.Insert(0, movedShape);
-        //                        shape.RemoveAt(i);
+        public List<Shape> Magnification()
+        {
+            Rectangle magRect;
 
-        //                        for (int k = 1; k <= i; j++)
-        //                        {
-        //                            shape[j].CurListIndex++;
-        //                            shape[j].PreListIndex++;
-        //                        }
+            foreach (Shape s in shape)
+            {
+                if (!s.IsDeleted)
+                {
 
-        //                        return true;
+                    magRect = new Rectangle(s.MyRectangle.X, s.MyRectangle.Y, (int)(s.MyRectangle.Width * Shape.Magnification), (int)(s.MyRectangle.Height * Shape.Magnification));
 
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return false;
-        //}
+                    s.MyRectangle = magRect;
 
-        //public bool MoveShapeFrontDirect(Shape movedShape)
-        //{
-
-        //    for (int i = 0; i < shape.Count; i++)
-        //    {
-        //        if (!shape[i].IsDeleted)
-        //        {
-        //            if (movedShape == shape[i])
-        //            {
-        //                return false;
-        //            }
-        //            else
-        //            {
-        //                movedShape.PreListIndex = movedShape.CurListIndex;
-        //                movedShape.CurListIndex = i;
-
-        //                shape[i].PreListIndex = i;
-        //                shape[i].CurListIndex = movedShape.CurListIndex;
-
-        //                Shape tmp = shape[i];
-        //                shape[i] = movedShape;
-        //                movedShape = tmp;
-
-        //                return true;
-        //            }
-        //        }
-        //    }
-        //    return false;
-        //}
+                    s.Save();
+                }
+            }
+            return shape;
+        }
     }
 }

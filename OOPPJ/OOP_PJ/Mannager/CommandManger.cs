@@ -598,6 +598,18 @@ namespace OOP_PJ
             _serverEx.AddSendData(Packet.Serialize(new SocketBase.LastPacket()));
         }
 
+        public void Magnification()
+        {
+            List<Shape> saveList = shapeManager.Magnification();
 
+            foreach (Shape s in saveList)
+            {
+                if (!s.IsDeleted)
+                {
+                    backup.Push(s);
+                }
+            }
+
+        }
     }   // commandManger
 }   // namespace

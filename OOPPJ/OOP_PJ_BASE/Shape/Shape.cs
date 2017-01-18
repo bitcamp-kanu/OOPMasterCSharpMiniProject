@@ -12,6 +12,8 @@ namespace OOP_PJ
     {
         protected Stack<Shape> mHistory;
 
+        public static float Magnification;
+
         public bool HasFill { get; set; }
         public bool HasLine { get; set; }
         public bool IsSelected { get; set; }
@@ -427,40 +429,8 @@ namespace OOP_PJ
         {
             Rectangle rect = new Rectangle(MyRectangle.X, info.Y, MyRectangle.Width, MyRectangle.Height + (MyRectangle.Y - info.Y));
             MyRectangle = rect;
-
-            Point p1 = new Point();
-            Point p2 = new Point();
-
-
-            if (penStart.X < penEnd.X && penStart.Y < penEnd.Y || penEnd.X < penStart.X && penEnd.Y < penStart.Y) 
-            {
-                p1.X = penStart.X < penEnd.X ? penStart.X : penEnd.X;
-                p1.Y = info.Y;
-                p2.X = penEnd.X > penStart.X ? penStart.X : penEnd.X;
-                p2.Y = penEnd.Y > penStart.Y ? penEnd.Y : penStart.Y;
-            }
-            else if (penStart.X < penEnd.X && penStart.Y > penEnd.Y)
-            {
-                p1.X = penStart.X ;
-                p1.Y = penStart.Y > penEnd.Y ? penStart.Y : penEnd.Y;
-                p2.X = penEnd.X;
-                p2.Y = info.X;
-
-            }
-
-
-
-
-
-
-            this.pointList[0] = p1;
-            this.pointList[1] = p2;
-
-
-
-
-
         }
+
         public void ResizeDownSide(Point start, Point info)
         {
             Rectangle rect = new Rectangle(MyRectangle.X, MyRectangle.Y, MyRectangle.Width, info.Y -  MyRectangle.Y);

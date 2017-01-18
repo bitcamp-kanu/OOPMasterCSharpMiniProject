@@ -14,6 +14,7 @@ namespace OOP_PJ
     {
         Infomation theInfomation;
         CommandManager myCommandManager;
+        bool wheelDirection;
 
         List<CheckBox> CBgrp01 = new List<CheckBox>();
         List<CheckBox> CBgrp02 = new List<CheckBox>();
@@ -29,6 +30,30 @@ namespace OOP_PJ
             this.DoubleBuffered = true;
             this.MouseClick += new MouseEventHandler(Form1_MouseClick);
             this.KeyPreview = true;
+            this.MouseWheel += new MouseEventHandler(Form1_MouseWheel);
+
+            Shape.Magnification = 1;
+            wheelDirection = true;  // 업
+        }
+
+        void Form1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            float tmp = e.Delta;
+
+
+            if ((e.Delta / 120) > 0)
+            {
+                // 업 - 축소
+                if (wheelDirection)
+                    Shape.Magnification = 0.9f;
+            }
+            else
+            {
+                if (wheelDirection)
+                    Shape.Magnification = 1.1f;
+            }
+            myCommandManager.Magnification();
+            Invalidate();
         }
 
         private void Form1_KeyDown_1(object sender, KeyEventArgs e)
@@ -182,8 +207,6 @@ namespace OOP_PJ
                         //Point point = new Point(e.X, e.Y);
                         RightClickMenu.Show(new Point(e.X, e.Y));
                     }
-
-                    
                 }
             }
             catch (Exception ex)
@@ -703,6 +726,31 @@ namespace OOP_PJ
             _serverEx.SendExit();
             _serverEx.Exit();
             //종료 이면 클라이언트에 접속 종료 명령을 보낸가.
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            // 확대
+
+            Shape.Magnification += 0.1f;
+
+            myCommandManager.Magnification();
+
+
+            Invalidate();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 축소
+
+            Shape.Magnification -= 0.1f;
+            if(Shape.Magnification == 0)
+                Shape.Magnification += 0.1f;
+            myCommandManager.Magnification();
+            Invalidate();
+
         }
     }
 }
