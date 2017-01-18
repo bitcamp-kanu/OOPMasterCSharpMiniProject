@@ -3,6 +3,7 @@ using System.Drawing;
 
 namespace OOP_PJ
 {
+    [Serializable]
      public class CTriagle : Shape
     {
         public CTriagle(Rectangle recParam) : base(recParam) { }

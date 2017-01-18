@@ -27,10 +27,12 @@ namespace SocketBase
         System.Threading.Thread _thQueue = null;
 
         ManualResetEvent _eventQuene = new ManualResetEvent(false);
-        
 
+        public bool IsAcive { get; set;}
+       
         public UDPServerEx()
         {
+            IsAcive = false;
         }
         public void SetIRecevieCallBack(IReceiveEvent inter)
         {
@@ -59,6 +61,7 @@ namespace SocketBase
                 _thQueue = new System.Threading.Thread(_thSend);
                 _thQueue.Start();
             }
+            IsAcive = true;
             return true;
         }
         public bool Stop()
@@ -92,29 +95,38 @@ namespace SocketBase
                 }
                 catch(SocketException ex)
                 {
-                    System.Diagnostics.Trace.WriteLine(ex.ToString());
                     _bExit = true;
+                    System.Diagnostics.Trace.WriteLine(ex.ToString());
                 }
-                string key = clients.ToString();
+                string key = string.Empty;
+                if(clients != null)
+                {
+                    key = clients.ToString();
+                }
 
-                //처음 접속된 클라이언트 이면 리스트에 추가 한다. 
-                if (!_dicClient.ContainsKey(key))
-                {
-                    System.Diagnostics.Trace.WriteLine(clients.ToString() + " 접속 되었습니다.");
-                    _dicClient.Add(key, clients);
-                }
-                
-                if (_data.Length != 0)
-                {
-                    if (_IRecevieEvnet != null)
+                if (!_bExit)
+                {                
+                    //처음 접속된 클라이언트 이면 리스트에 추가 한다. 
+                    if (!_dicClient.ContainsKey(key))
                     {
-                        string msg = Encoding.Default.GetString(_data);
-                        _IRecevieEvnet.ReveiveEvent(this, _data, _data.Length, msg);
+                        System.Diagnostics.Trace.WriteLine(clients.ToString() + " 접속 되었습니다.");
+                        _dicClient.Add(key, clients);
+                    }
+                    if (_data.Length != 0)
+                    {
+                        if (_IRecevieEvnet != null)
+                        {
+                            object o = Packet.Deserialize(_data);
+                            if (o is Login) // 로그인 일때만 데이를 콜백 한다.
+                            {
+                                _IRecevieEvnet.ReveiveEvent(this, _data, _data.Length, key);
+                            }
+
+                        }
                     }
                 }
             }
         }
-
         void _thSend()
         {
             while(!_bExit)
@@ -195,6 +207,26 @@ namespace SocketBase
         public void Close()
         {
             _server.Close();
+        }
+
+        public void SendExit()
+        {
+            AddSendData(Packet.Serialize(new Exit()));
+        }
+
+        public void Exit()
+        {
+            _bExit = true;
+            _eventQuene.Set();
+            _server.Close();
+            if (_thReceive != null)
+            {
+                _thReceive.Join();
+            }
+            if (_thQueue != null)
+            {
+                _thQueue.Join();
+            }
         }
     }
 }

@@ -850,6 +850,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(986, 568);
+            this.ContextMenuStrip = this.RightClickMenu;
             this.Controls.Add(this.trackZooin);
             this.Controls.Add(this.statusBottom);
             this.Controls.Add(this.groupBox1);

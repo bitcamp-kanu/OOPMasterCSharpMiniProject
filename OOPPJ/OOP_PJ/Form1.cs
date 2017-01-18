@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SocketBase;
 
 namespace OOP_PJ
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, IReceiveEvent
     {
         Infomation theInfomation;
         CommandManager myCommandManager;
@@ -19,6 +20,7 @@ namespace OOP_PJ
         List<CheckBox> CBgrp03 = new List<CheckBox>();
         List<CheckBox> CBgrp04 = new List<CheckBox>();
 
+        SocketBase.UDPServerEx _serverEx = new UDPServerEx();
         // List<CheckBox> _rgBth = new List<CheckBox>();
 
         public Form1()
@@ -45,6 +47,7 @@ namespace OOP_PJ
 
         void Form1_MouseClick(object sender, MouseEventArgs e)      // ContextBox
         {
+            
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 //RightClickMenu.Parent = this;
@@ -56,13 +59,15 @@ namespace OOP_PJ
                     // 선택모드일때 
                     도형순서위로ToolStripMenuItem1.Enabled = true;
                     도형순서뒤로ToolStripMenuItem1.Enabled = true;
-                    RightClickMenu.Show(new Point(e.X, e.Y));
+                    //RightClickMenu.Show(new Point(e.X, e.Y));
+                    RightClickMenu.Show();
                 }
                 else
                 {
                     도형순서위로ToolStripMenuItem1.Enabled = false;
                     도형순서뒤로ToolStripMenuItem1.Enabled = false;
-                    RightClickMenu.Show(new Point(e.X, e.Y));
+                    //RightClickMenu.Show(new Point(e.X, e.Y));
+                    RightClickMenu.Show();
                 }
                 
             }
@@ -118,17 +123,28 @@ namespace OOP_PJ
 
             #endregion
 
+            _serverEx.InitSocket();
+            _serverEx.StartRecevie();
+            _serverEx.StartQueue();
+            _serverEx.SetIRecevieCallBack(this);
+
             theInfomation = new Infomation();
-            myCommandManager = new CommandManager();
+            myCommandManager = new CommandManager(_serverEx);
             theInfomation.Thickness = 1;
             theInfomation.LineColor = Color.Black; // 선 색 Default Black
             theInfomation.FillColor = Color.White; // 채우기 색 Default White
             this.AllowDrop = true;
-            
-            
         }
 
-
+        protected override void OnLayout(LayoutEventArgs levent)
+        {
+            if (_serverEx != null && _serverEx.IsAcive)
+            {
+                _serverEx.AddSendData(Packet.Serialize(new SizeChange(this.Width,this.Height)));
+            }
+            base.OnLayout(levent);
+        }
+        
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             try
@@ -299,11 +315,11 @@ namespace OOP_PJ
             else if (sender == BtnFill)
             {
                 // 페인트 채우기
-                //if (BtnFill.Checked)
-                //{
-                theInfomation.UseFill = true;
-                theInfomation.ActionType = Constant.ActionType.Fill;
-                //}
+                if (BtnFill.Checked)
+                {
+                    theInfomation.UseFill = true;
+                    theInfomation.ActionType = Constant.ActionType.Fill;
+                }
             }
             else if (sender == BtnImg)
             {
@@ -607,7 +623,6 @@ namespace OOP_PJ
             Invalidate();
         }
 
-
         private void Forward_btn_Click(object sender, EventArgs e)  // 완료 : 도형 순서 앞으로 이동
         {
             myCommandManager.MoveShapeFrontOneStep();
@@ -662,9 +677,29 @@ namespace OOP_PJ
 
         }
 
-       
+        public void ReveiveEvent(object obj, byte[] data, int len, string key)
+        {
+            object o = Packet.Deserialize(data);
+            if (o is Login) //로그인 메세지가 들어 오면 클라이언트에 데이터를 전송 한다.
+            {
+                if (_serverEx != null && _serverEx.IsAcive)
+                {
+                    _serverEx.AddSendData(Packet.Serialize(new SizeChange(this.Width, this.Height)));
+                }
+                //모든 클라이언트에 데이터를 전송한. 처음 접속한 클라이언트에만 전송 하게
+                //변경 해야함.
+                myCommandManager.PublishData();
+            }
+        }
 
-   
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            _serverEx.SendExit();
+            _serverEx.Exit();
+            //종료 이면 클라이언트에 접속 종료 명령을 보낸가.
+        }
     }
 }
 

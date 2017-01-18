@@ -1,6 +1,6 @@
 ﻿namespace OOP_PJ_CLIENT
 {
-    partial class Form1
+    partial class frmClint
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.

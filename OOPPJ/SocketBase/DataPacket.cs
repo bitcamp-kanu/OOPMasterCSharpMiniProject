@@ -8,7 +8,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 
-
 namespace SocketBase
 {
     [Serializable]
@@ -23,8 +22,9 @@ namespace SocketBase
                 bf.Serialize(ms, data);
                 return ms.ToArray();
             }
-            catch
+            catch(Exception ex)
             {
+                System.Diagnostics.Trace.WriteLine(ex.ToString());
                 return null;
             }
         }
@@ -74,5 +74,38 @@ namespace SocketBase
     public class LastPacket
     {
         public int totolCnt;
+    }
+
+    [Serializable]
+    public class SizeChange
+    {
+        public int _width = 0;
+        public int _heigth = 0;
+        public SizeChange(int width, int heigth)
+        {
+            _width = width;
+            _heigth = heigth;
+        }
+        public SizeChange()
+        {
+            _width = 0;
+            _heigth = 0;
+        }
+    }
+
+    [Serializable]
+    public class Login
+    {
+        
+        public Login()
+        {
+        }
+    }
+    [Serializable]
+    public class Exit
+    {
+        public Exit()
+        {
+        }
     }
 }

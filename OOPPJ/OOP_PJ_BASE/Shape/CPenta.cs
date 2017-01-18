@@ -4,6 +4,7 @@ using System.Drawing;
 namespace OOP_PJ
 {
     // 오각형
+    [Serializable]
     public class CPenta : Shape
     {
         public CPenta(Rectangle recParam) : base(recParam) { }

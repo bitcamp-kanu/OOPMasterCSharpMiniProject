@@ -4,6 +4,7 @@ using System.Drawing;
 namespace OOP_PJ
 {
     // 별 만들자
+    [Serializable]
     public class CStar : Shape
     {
         public CStar(Rectangle recParam) : base(recParam) { }
