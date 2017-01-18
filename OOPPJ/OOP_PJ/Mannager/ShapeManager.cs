@@ -72,7 +72,6 @@ namespace OOP_PJ
             }
         }
 
-
         public bool MoveShapeBackOneStep(Shape movedShape)  // 도형 뒤로 보내기
         {
             for (int i = shape.Count - 1; i >= 0; i--)
@@ -158,12 +157,19 @@ namespace OOP_PJ
             {
                 if (!s.IsDeleted)
                 {
+                    if (!(s is CPen) && !(s is CLine))
+                    {
+                        magRect = new Rectangle(s.MyRectangle.X, s.MyRectangle.Y, (int)(s.MyRectangle.Width * Shape.Magnification), (int)(s.MyRectangle.Height * Shape.Magnification));
 
-                    magRect = new Rectangle(s.MyRectangle.X, s.MyRectangle.Y, (int)(s.MyRectangle.Width * Shape.Magnification), (int)(s.MyRectangle.Height * Shape.Magnification));
+                        s.MyRectangle = magRect;
 
-                    s.MyRectangle = magRect;
-
-                    s.Save();
+                        s.Save();
+                    }
+                    else if (s is CLine)
+                    {
+                        s.Thickness *= Shape.Magnification;
+                        s.Save();
+                    }
                 }
             }
             return shape;

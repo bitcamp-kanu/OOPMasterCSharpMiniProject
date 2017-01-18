@@ -20,7 +20,8 @@ namespace OOP_PJ
         public bool IsDeleted { get; set; }
         public Color LineColor { get; set; }
         public Color FillColor { get; set; }
-        public int Thickness { get; set; }
+        //public int Thickness { get; set; }
+        public float Thickness { get; set; }
         public int SequenceNumber { get; set; }
         public int CurListIndex { get; set; }
         public int PreListIndex { get; set; }

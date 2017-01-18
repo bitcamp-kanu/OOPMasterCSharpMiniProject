@@ -30,7 +30,7 @@ namespace SocketBase
 
         public bool IsAcive { get; set;}
        
-        public UDPServerEx()
+        public UDPServer-Ex()
         {
             IsAcive = false;
         }

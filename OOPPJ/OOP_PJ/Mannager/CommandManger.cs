@@ -609,7 +609,11 @@ namespace OOP_PJ
             {
                 if (!s.IsDeleted)
                 {
-                    backup.Push(s);
+                    //if (!(s is CPen) && !(s is CLine))
+                    if (!(s is CPen))
+                    {
+                        backup.Push(s);
+                    }
                 }
             }
 
