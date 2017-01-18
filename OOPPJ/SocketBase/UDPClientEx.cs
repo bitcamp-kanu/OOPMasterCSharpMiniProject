@@ -38,9 +38,7 @@ namespace SocketBase
         public bool InitSocket()
         {
             _client = new UdpClient(Ip, _port);
-            IsExit = false;
-            //지정된 아이피와 포트 에서만 데이터를 받는다.
-            //IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            IsExit = false;            
             _sender = new IPEndPoint(IPAddress.Parse(Ip), _port);
             return true;
         }
@@ -80,7 +78,6 @@ namespace SocketBase
                     {
                         System.Diagnostics.Debug.Assert(true,ex.ToString());
                     }
-                    //Thread 를 종료 한다.
                     IsExit = true;
                 }
                 
@@ -99,6 +96,16 @@ namespace SocketBase
         {
             byte[] data = Encoding.Default.GetBytes(str);
             return _client.Send(data, data.Length);
+        }
+
+        public void Exit()
+        {
+            IsExit = true;
+            _client.Close();
+            if (_thReceive != null)
+            {
+                _thReceive.Join();
+            }
         }
 
         public void Close()

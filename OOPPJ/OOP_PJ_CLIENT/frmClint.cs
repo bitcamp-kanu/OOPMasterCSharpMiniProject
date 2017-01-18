@@ -52,6 +52,17 @@ namespace OOP_PJ_CLIENT
             }
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (_clientEx != null)
+            {
+                _clientEx.Exit();
+                _clientEx.Close();
+
+            }
+            base.OnClosing(e);
+        }
+
         public void ReveiveEvent(object ojb, byte[] data, int len, string msg)
         {
             object o = Packet.Deserialize(data);

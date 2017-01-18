@@ -257,6 +257,7 @@ namespace OOP_PJ
                 dummyShape.FillColor = newInfomation.FillColor;
                 backup.Push(dummyShape);
                 dummyShape.Save();
+                PublishData();
             }
             else
             {
@@ -264,6 +265,7 @@ namespace OOP_PJ
                 myForm.BackColor = paint.FillColor;
                 backup.Push(paint);
                 paint.Save();
+                PublishData();
             }
         }
 
@@ -471,6 +473,7 @@ namespace OOP_PJ
                     shapeManager.Undo(undoShape);
                 }
             }
+            PublishData();
         }
          
         public void ChangeLineColor(Infomation theInfomation)   // 라인 색 변경시 이벤트

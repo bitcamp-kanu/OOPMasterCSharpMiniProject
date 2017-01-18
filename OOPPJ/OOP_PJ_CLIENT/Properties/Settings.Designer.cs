@@ -25,19 +25,19 @@ namespace OOP_PJ_CLIENT.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string ConnetcIP {
+        [global::System.Configuration.DefaultSettingValueAttribute("9000")]
+        public int ConnetcPORT {
             get {
-                return ((string)(this["ConnetcIP"]));
+                return ((int)(this["ConnetcPORT"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9000")]
-        public int ConnetcPORT {
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string ConnetcIP {
             get {
-                return ((int)(this["ConnetcPORT"]));
+                return ((string)(this["ConnetcIP"]));
             }
         }
     }
