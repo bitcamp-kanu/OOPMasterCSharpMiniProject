@@ -4,6 +4,7 @@ using System.Drawing;
 
 namespace OOP_PJ
 {
+    [Serializable]
      public class CRectangle : Shape
     {
         public CRectangle(Rectangle recParam) : base(recParam) { }

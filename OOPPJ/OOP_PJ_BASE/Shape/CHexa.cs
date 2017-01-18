@@ -5,6 +5,7 @@ using System.Drawing;
 namespace OOP_PJ
 {
     // 육각형 만들자
+    [Serializable]
     public class CHexa : Shape
     {
         public CHexa(Rectangle recParam) : base(recParam) { }

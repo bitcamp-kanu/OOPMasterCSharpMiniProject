@@ -9,6 +9,7 @@ using System.IO;
 
 
 
+
 namespace SocketBase
 {
     [Serializable]
@@ -23,8 +24,9 @@ namespace SocketBase
                 bf.Serialize(ms, data);
                 return ms.ToArray();
             }
-            catch
+            catch(Exception ex)
             {
+                System.Diagnostics.Trace.WriteLine(ex.ToString());
                 return null;
             }
         }

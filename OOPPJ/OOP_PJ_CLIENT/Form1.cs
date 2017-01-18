@@ -26,10 +26,19 @@ namespace OOP_PJ_CLIENT
             _clientEx.Ip = Properties.Settings.Default.ConnetcIP;
             _clientEx.SetIRecevieCallBack(this);
             _clientEx.InitSocket();
-            _clientEx.StartRecevie();
 
-            MessagePacket pack = new MessagePacket();
-            _clientEx.Send(Packet.Serialize(pack));
+            try
+            {
+                MessagePacket pack = new MessagePacket();
+                _clientEx.Send(Packet.Serialize(pack));
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show("오류가 발생 하여 프로그램을 종료 합니다.");
+                this.Close();
+            }
+            _clientEx.StartRecevie();            
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -43,7 +52,6 @@ namespace OOP_PJ_CLIENT
 
         public void ReveiveEvent(object ojb, byte[] data, int len, string msg)
         {
-
             object o = Packet.Deserialize(data);
             if (o is StartPacket)
             {

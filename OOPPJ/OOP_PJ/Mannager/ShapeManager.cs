@@ -10,7 +10,6 @@ namespace OOP_PJ
     public class ShapeManager
     {
         List<Shape> shape;
-
         //List<Shape> shape Property
         public List<Shape> Shapes
         {

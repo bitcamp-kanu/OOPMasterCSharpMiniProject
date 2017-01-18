@@ -18,6 +18,12 @@ namespace SocketBase
 
         IReceiveEvent _IRecevieEvnet = null;
         System.Threading.Thread _thReceive = null;
+        event System.EventHandler SocketErrorHandler;
+        public bool IsExit
+        {
+            get;
+            set;
+        }
 
         public string Ip
         {
@@ -32,6 +38,7 @@ namespace SocketBase
         public bool InitSocket()
         {
             _client = new UdpClient(Ip, _port);
+            IsExit = false;
             //지정된 아이피와 포트 에서만 데이터를 받는다.
             //IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
             _sender = new IPEndPoint(IPAddress.Parse(Ip), _port);
@@ -49,17 +56,30 @@ namespace SocketBase
         }
         void _thRun()
         {
-            while(true)
+            while (!IsExit)
             {
-                _data = _client.Receive(ref _sender);
-                if(_data.Length != 0)
+                try
                 {
-                    if(_IRecevieEvnet != null)
+                    _data = _client.Receive(ref _sender);
+                    if (_data.Length != 0)
                     {
-                        string msg = Encoding.Default.GetString(_data);
-                        _IRecevieEvnet.ReveiveEvent(this,_data, _data.Length, msg);
+                        if (_IRecevieEvnet != null)
+                        {
+                            string msg = Encoding.Default.GetString(_data);
+                            _IRecevieEvnet.ReveiveEvent(this, _data, _data.Length, msg);
+                        }
                     }
                 }
+                catch (System.Exception ex)
+                {
+                    if (SocketErrorHandler != null)
+                    {
+
+                    }
+                    //Thread 를 종료 한다.
+                    IsExit = true;
+                }
+                
             }
         }        
         public int Send(byte [] data,int len)

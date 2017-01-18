@@ -34,6 +34,9 @@ namespace OOP_PJ
             shapeManager = new ShapeManager();
             startPoint.X = 0;
             startPoint.Y = 0;
+            _serverEx.InitSocket();
+            _serverEx.StartRecevie();
+            _serverEx.StartQueue();
         }
 
         public void CreateMain(Infomation newInfomation)
@@ -277,11 +280,13 @@ namespace OOP_PJ
                     backup.Push(dummyShape);
                     dummyShape.Save();
                     dummyShape = null;
+                    PublishData();
                 }
                 else if (newInformation.ActionType.Equals(Constant.ActionType.Select)) // 선택 이동 모드
                 {
                     backup.Push(dummyShape);
                     dummyShape.Save();
+                    PublishData();
                 }
             }
         }
@@ -400,6 +405,7 @@ namespace OOP_PJ
                 dummyShape.LineColor = theInfomation.LineColor;
                 backup.Push(dummyShape);
                 dummyShape.Save();
+                PublishData();
             }
         }
 
@@ -415,6 +421,7 @@ namespace OOP_PJ
                 dummyShape.FillColor = theInfomation.FillColor;
                 backup.Push(dummyShape);
                 dummyShape.Save();
+                PublishData();
             }
         }
 
@@ -426,6 +433,7 @@ namespace OOP_PJ
                 {
                     backup.Push(dummyShape);
                     dummyShape.Save();
+                    PublishData();
                 }
             }
         }
@@ -438,6 +446,7 @@ namespace OOP_PJ
                 {
                     backup.Push(dummyShape);
                     dummyShape.Save();
+                    PublishData();
                 }
             }
         }
@@ -450,6 +459,7 @@ namespace OOP_PJ
                 backup.Push(dummyShape);
                 dummyShape.Save();
                 dummyShape = null;
+                PublishData();
             }
             
         }

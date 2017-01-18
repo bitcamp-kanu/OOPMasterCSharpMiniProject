@@ -261,8 +261,6 @@ namespace OOP_PJ
                     theInfomation.UseFill = true;
                     theInfomation.ActionType = Constant.ActionType.Fill;
                 }
-
-
             }
             else if (sender == BtnImg)
             {
@@ -565,7 +563,6 @@ namespace OOP_PJ
 
             Invalidate();
         }
-
 
         private void Forward_btn_Click(object sender, EventArgs e)  // 완료 : 도형 순서 앞으로 이동
         {
