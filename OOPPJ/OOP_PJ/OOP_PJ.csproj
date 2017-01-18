@@ -123,6 +123,10 @@
       <Project>{CF9B7EBA-9470-48F2-B156-A34E2C914930}</Project>
       <Name>OOP_PJ_BASE</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SocketBase\SocketBase.csproj">
+      <Project>{B3329C3D-84D6-41A5-B0D8-9D3E0C789A88}</Project>
+      <Name>SocketBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -26,6 +26,21 @@ namespace OOP_PJ
             InitializeComponent();
             this.DoubleBuffered = true;
             this.MouseClick += new MouseEventHandler(Form1_MouseClick);
+            this.KeyPreview = true;
+        }
+
+        private void Form1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if(e.Modifiers == Keys.Control)    // Ctrl 키 조합
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Z:
+                        myCommandManager.Undo();
+                        Invalidate();
+                        break;
+                }
+            }
         }
 
         void Form1_MouseClick(object sender, MouseEventArgs e)      // ContextBox
@@ -233,6 +248,7 @@ namespace OOP_PJ
             {
                 theInfomation.ActionType = Constant.ActionType.Draw;
                 theInfomation.ShapeType = Constant.ShapeType.Pen;
+                
             }
             else if (sender == BtnLine)
             {
@@ -645,6 +661,8 @@ namespace OOP_PJ
         {
 
         }
+
+       
 
    
     }
