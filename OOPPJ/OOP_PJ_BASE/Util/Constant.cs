@@ -106,7 +106,7 @@ namespace OOP_PJ
         }
     }
 
-    static class WIUtility
+    public static class WIUtility
     {
         
         // color 차후 추가 해야함
