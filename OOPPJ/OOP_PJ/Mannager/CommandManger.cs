@@ -612,6 +612,7 @@ namespace OOP_PJ
                     backup.Push(s);
                 }
             }
+            PublishData();
 
         }
     }   // commandManger

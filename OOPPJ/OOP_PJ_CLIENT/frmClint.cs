@@ -56,14 +56,13 @@ namespace OOP_PJ_CLIENT
         {
             if (_clientEx != null)
             {
-                _clientEx.Exit();
-                _clientEx.Close();
-
+                //_clientEx.Exit();
+                //_clientEx.Close();
             }
             base.OnClosing(e);
         }
 
-        public void ReveiveEvent(object ojb, byte[] data, int len, string msg)
+        public bool ReveiveEvent(object ojb, byte[] data, int len, string msg)
         {
             object o = Packet.Deserialize(data);
             if (o is StartPacket)
@@ -95,16 +94,14 @@ namespace OOP_PJ_CLIENT
             }
             else if (o is Exit)
             {
-                Action action = delegate() { this.Close(); };
-                if (this.InvokeRequired)
+                Action action = delegate() 
                 {
-                    this.Invoke(action);
-                }
-                else
-                {
-                    action();
-                }
+                    this.Close(); 
+                };
+                this.BeginInvoke(action);//비동기로 호출 한다.
+                return false ;
             }
+            return true;
         }
     }
 }

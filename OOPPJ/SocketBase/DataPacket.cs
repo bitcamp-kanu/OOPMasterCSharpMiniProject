@@ -96,7 +96,6 @@ namespace SocketBase
     [Serializable]
     public class Login
     {
-        
         public Login()
         {
         }
