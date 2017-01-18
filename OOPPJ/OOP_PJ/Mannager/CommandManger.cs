@@ -450,7 +450,6 @@ namespace OOP_PJ
             }
             
         }
-
         //public void MoveShapeFrontDirect()  // 도형 제일 앞으로
         //{
         //    if (dummyShape != null)
@@ -477,5 +476,18 @@ namespace OOP_PJ
         //    }
             
         //}
+
+        public bool ShowContextBox(Infomation newInfomation)
+        {
+             dummyShape = shapeManager.ChoicedShape(newInfomation);
+
+             if (dummyShape != null)
+             {
+                 dummyShape.IsSelected = true;
+
+                 return true;
+             }
+             return false;
+        }
     }   // commandManger
 }   // namespace
