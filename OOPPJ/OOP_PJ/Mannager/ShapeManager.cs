@@ -30,7 +30,7 @@ namespace OOP_PJ
         public void Undo(Shape cancelShape)
         {
             UndoInfo undoInfo = cancelShape.Undo().CloneEX();
-         
+
             if (!undoInfo.Success)
             {
                 shape.Remove(cancelShape);

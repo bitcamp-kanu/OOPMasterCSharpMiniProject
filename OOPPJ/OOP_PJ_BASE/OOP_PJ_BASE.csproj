@@ -8,7 +8,7 @@
     <ProjectGuid>{CF9B7EBA-9470-48F2-B156-A34E2C914930}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OOP_PJ_BASE</RootNamespace>
+    <RootNamespace>OOP_PJ</RootNamespace>
     <AssemblyName>OOP_PJ_BASE</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -46,6 +46,7 @@
     <Compile Include="Shape\CCircle.cs" />
     <Compile Include="Shape\CHexa.cs" />
     <Compile Include="Shape\CLine.cs" />
+    <Compile Include="Shape\CPaint.cs" />
     <Compile Include="Shape\CPen.cs" />
     <Compile Include="Shape\CPenta.cs" />
     <Compile Include="Shape\CRectangle.cs" />

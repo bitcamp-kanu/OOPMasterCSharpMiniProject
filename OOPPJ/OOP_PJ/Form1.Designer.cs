@@ -147,6 +147,7 @@
             this.btnUseFill.Name = "btnUseFill";
             this.btnUseFill.Size = new System.Drawing.Size(74, 31);
             this.btnUseFill.TabIndex = 38;
+            this.btnUseFill.TabStop = false;
             this.btnUseFill.Text = "채우기";
             this.btnUseFill.UseVisualStyleBackColor = true;
             this.btnUseFill.CheckedChanged += new System.EventHandler(this.btnUseFill_CheckedChanged);
@@ -161,6 +162,7 @@
             this.btnUseLine.Name = "btnUseLine";
             this.btnUseLine.Size = new System.Drawing.Size(74, 31);
             this.btnUseLine.TabIndex = 38;
+            this.btnUseLine.TabStop = false;
             this.btnUseLine.Text = "윤곽선";
             this.btnUseLine.UseVisualStyleBackColor = true;
             this.btnUseLine.CheckedChanged += new System.EventHandler(this.btnUseLine_CheckedChanged);
@@ -175,6 +177,7 @@
             this.BtnColor20.Name = "BtnColor20";
             this.BtnColor20.Size = new System.Drawing.Size(29, 31);
             this.BtnColor20.TabIndex = 37;
+            this.BtnColor20.TabStop = false;
             this.BtnColor20.UseVisualStyleBackColor = false;
             this.BtnColor20.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -188,6 +191,7 @@
             this.BtnColor10.Name = "BtnColor10";
             this.BtnColor10.Size = new System.Drawing.Size(29, 31);
             this.BtnColor10.TabIndex = 36;
+            this.BtnColor10.TabStop = false;
             this.BtnColor10.UseVisualStyleBackColor = false;
             this.BtnColor10.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -201,6 +205,7 @@
             this.BtnColor19.Name = "BtnColor19";
             this.BtnColor19.Size = new System.Drawing.Size(29, 31);
             this.BtnColor19.TabIndex = 35;
+            this.BtnColor19.TabStop = false;
             this.BtnColor19.UseVisualStyleBackColor = false;
             this.BtnColor19.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -214,6 +219,7 @@
             this.BtnColor09.Name = "BtnColor09";
             this.BtnColor09.Size = new System.Drawing.Size(29, 31);
             this.BtnColor09.TabIndex = 34;
+            this.BtnColor09.TabStop = false;
             this.BtnColor09.UseVisualStyleBackColor = false;
             this.BtnColor09.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -227,6 +233,7 @@
             this.BtnColor18.Name = "BtnColor18";
             this.BtnColor18.Size = new System.Drawing.Size(29, 31);
             this.BtnColor18.TabIndex = 33;
+            this.BtnColor18.TabStop = false;
             this.BtnColor18.UseVisualStyleBackColor = false;
             this.BtnColor18.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -240,6 +247,7 @@
             this.BtnColor08.Name = "BtnColor08";
             this.BtnColor08.Size = new System.Drawing.Size(29, 31);
             this.BtnColor08.TabIndex = 32;
+            this.BtnColor08.TabStop = false;
             this.BtnColor08.UseVisualStyleBackColor = false;
             this.BtnColor08.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -253,6 +261,7 @@
             this.BtnColor17.Name = "BtnColor17";
             this.BtnColor17.Size = new System.Drawing.Size(29, 31);
             this.BtnColor17.TabIndex = 31;
+            this.BtnColor17.TabStop = false;
             this.BtnColor17.UseVisualStyleBackColor = false;
             this.BtnColor17.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -266,6 +275,7 @@
             this.BtnColor07.Name = "BtnColor07";
             this.BtnColor07.Size = new System.Drawing.Size(29, 31);
             this.BtnColor07.TabIndex = 30;
+            this.BtnColor07.TabStop = false;
             this.BtnColor07.UseVisualStyleBackColor = false;
             this.BtnColor07.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -279,6 +289,7 @@
             this.BtnColor16.Name = "BtnColor16";
             this.BtnColor16.Size = new System.Drawing.Size(29, 31);
             this.BtnColor16.TabIndex = 29;
+            this.BtnColor16.TabStop = false;
             this.BtnColor16.UseVisualStyleBackColor = false;
             this.BtnColor16.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -292,6 +303,7 @@
             this.BtnColor06.Name = "BtnColor06";
             this.BtnColor06.Size = new System.Drawing.Size(29, 31);
             this.BtnColor06.TabIndex = 28;
+            this.BtnColor06.TabStop = false;
             this.BtnColor06.UseVisualStyleBackColor = false;
             this.BtnColor06.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -309,6 +321,7 @@
             this.UpDownLine.Name = "UpDownLine";
             this.UpDownLine.Size = new System.Drawing.Size(56, 25);
             this.UpDownLine.TabIndex = 27;
+            this.UpDownLine.TabStop = false;
             this.UpDownLine.Text = "1";
             this.UpDownLine.SelectedItemChanged += new System.EventHandler(this.UpDownLine_SelectedItemChanged);
             // 
@@ -322,6 +335,7 @@
             this.BtnColor15.Name = "BtnColor15";
             this.BtnColor15.Size = new System.Drawing.Size(29, 31);
             this.BtnColor15.TabIndex = 26;
+            this.BtnColor15.TabStop = false;
             this.BtnColor15.UseVisualStyleBackColor = false;
             this.BtnColor15.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -335,6 +349,7 @@
             this.BtnColor05.Name = "BtnColor05";
             this.BtnColor05.Size = new System.Drawing.Size(29, 31);
             this.BtnColor05.TabIndex = 25;
+            this.BtnColor05.TabStop = false;
             this.BtnColor05.UseVisualStyleBackColor = false;
             this.BtnColor05.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -348,6 +363,7 @@
             this.BtnColor14.Name = "BtnColor14";
             this.BtnColor14.Size = new System.Drawing.Size(29, 31);
             this.BtnColor14.TabIndex = 24;
+            this.BtnColor14.TabStop = false;
             this.BtnColor14.UseVisualStyleBackColor = false;
             this.BtnColor14.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -361,6 +377,7 @@
             this.BtnColor04.Name = "BtnColor04";
             this.BtnColor04.Size = new System.Drawing.Size(29, 31);
             this.BtnColor04.TabIndex = 23;
+            this.BtnColor04.TabStop = false;
             this.BtnColor04.UseVisualStyleBackColor = false;
             this.BtnColor04.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -374,6 +391,7 @@
             this.BtnColor13.Name = "BtnColor13";
             this.BtnColor13.Size = new System.Drawing.Size(29, 31);
             this.BtnColor13.TabIndex = 22;
+            this.BtnColor13.TabStop = false;
             this.BtnColor13.UseVisualStyleBackColor = false;
             this.BtnColor13.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -387,6 +405,7 @@
             this.BtnColor03.Name = "BtnColor03";
             this.BtnColor03.Size = new System.Drawing.Size(29, 31);
             this.BtnColor03.TabIndex = 21;
+            this.BtnColor03.TabStop = false;
             this.BtnColor03.UseVisualStyleBackColor = false;
             this.BtnColor03.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -400,6 +419,7 @@
             this.BtnColor12.Name = "BtnColor12";
             this.BtnColor12.Size = new System.Drawing.Size(29, 31);
             this.BtnColor12.TabIndex = 20;
+            this.BtnColor12.TabStop = false;
             this.BtnColor12.UseVisualStyleBackColor = false;
             this.BtnColor12.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -413,6 +433,7 @@
             this.BtnColor02.Name = "BtnColor02";
             this.BtnColor02.Size = new System.Drawing.Size(29, 31);
             this.BtnColor02.TabIndex = 19;
+            this.BtnColor02.TabStop = false;
             this.BtnColor02.UseVisualStyleBackColor = false;
             this.BtnColor02.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -426,6 +447,7 @@
             this.BtnColor11.Name = "BtnColor11";
             this.BtnColor11.Size = new System.Drawing.Size(29, 31);
             this.BtnColor11.TabIndex = 18;
+            this.BtnColor11.TabStop = false;
             this.BtnColor11.UseVisualStyleBackColor = false;
             this.BtnColor11.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -439,6 +461,7 @@
             this.BtnColor01.Name = "BtnColor01";
             this.BtnColor01.Size = new System.Drawing.Size(29, 31);
             this.BtnColor01.TabIndex = 17;
+            this.BtnColor01.TabStop = false;
             this.BtnColor01.UseVisualStyleBackColor = false;
             this.BtnColor01.Click += new System.EventHandler(this.ColorPt);
             // 
@@ -453,6 +476,7 @@
             this.BtnBgColor.Name = "BtnBgColor";
             this.BtnBgColor.Size = new System.Drawing.Size(51, 61);
             this.BtnBgColor.TabIndex = 15;
+            this.BtnBgColor.TabStop = false;
             this.BtnBgColor.Text = "Bg Color";
             this.BtnBgColor.UseVisualStyleBackColor = false;
             this.BtnBgColor.Click += new System.EventHandler(this.ColorChoice);
@@ -469,6 +493,7 @@
             this.BtnLineColor.Name = "BtnLineColor";
             this.BtnLineColor.Size = new System.Drawing.Size(51, 61);
             this.BtnLineColor.TabIndex = 14;
+            this.BtnLineColor.TabStop = false;
             this.BtnLineColor.Text = "Line Color";
             this.BtnLineColor.UseVisualStyleBackColor = false;
             this.BtnLineColor.Click += new System.EventHandler(this.ColorChoice);
@@ -483,6 +508,7 @@
             this.BtnPencil.Name = "BtnPencil";
             this.BtnPencil.Size = new System.Drawing.Size(29, 31);
             this.BtnPencil.TabIndex = 13;
+            this.BtnPencil.TabStop = false;
             this.BtnPencil.UseVisualStyleBackColor = true;
             this.BtnPencil.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -496,6 +522,7 @@
             this.BtnImg.Name = "BtnImg";
             this.BtnImg.Size = new System.Drawing.Size(29, 31);
             this.BtnImg.TabIndex = 12;
+            this.BtnImg.TabStop = false;
             this.BtnImg.UseVisualStyleBackColor = true;
             this.BtnImg.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -509,6 +536,7 @@
             this.BtnFill.Name = "BtnFill";
             this.BtnFill.Size = new System.Drawing.Size(29, 31);
             this.BtnFill.TabIndex = 1;
+            this.BtnFill.TabStop = false;
             this.BtnFill.UseVisualStyleBackColor = true;
             this.BtnFill.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -522,6 +550,7 @@
             this.BtnChoice.Name = "BtnChoice";
             this.BtnChoice.Size = new System.Drawing.Size(29, 31);
             this.BtnChoice.TabIndex = 11;
+            this.BtnChoice.TabStop = false;
             this.BtnChoice.UseVisualStyleBackColor = true;
             this.BtnChoice.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -535,6 +564,7 @@
             this.BtnText.Name = "BtnText";
             this.BtnText.Size = new System.Drawing.Size(29, 31);
             this.BtnText.TabIndex = 9;
+            this.BtnText.TabStop = false;
             this.BtnText.UseVisualStyleBackColor = true;
             this.BtnText.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -548,6 +578,7 @@
             this.BtnStar.Name = "BtnStar";
             this.BtnStar.Size = new System.Drawing.Size(29, 31);
             this.BtnStar.TabIndex = 8;
+            this.BtnStar.TabStop = false;
             this.BtnStar.UseVisualStyleBackColor = true;
             this.BtnStar.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -561,6 +592,7 @@
             this.BtnHexa.Name = "BtnHexa";
             this.BtnHexa.Size = new System.Drawing.Size(29, 31);
             this.BtnHexa.TabIndex = 7;
+            this.BtnHexa.TabStop = false;
             this.BtnHexa.UseVisualStyleBackColor = true;
             this.BtnHexa.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -574,6 +606,7 @@
             this.BtnPentagon.Name = "BtnPentagon";
             this.BtnPentagon.Size = new System.Drawing.Size(29, 31);
             this.BtnPentagon.TabIndex = 6;
+            this.BtnPentagon.TabStop = false;
             this.BtnPentagon.UseVisualStyleBackColor = true;
             this.BtnPentagon.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -587,6 +620,7 @@
             this.BtnTri.Name = "BtnTri";
             this.BtnTri.Size = new System.Drawing.Size(29, 31);
             this.BtnTri.TabIndex = 4;
+            this.BtnTri.TabStop = false;
             this.BtnTri.UseVisualStyleBackColor = true;
             this.BtnTri.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -600,6 +634,7 @@
             this.BtnRec.Name = "BtnRec";
             this.BtnRec.Size = new System.Drawing.Size(29, 31);
             this.BtnRec.TabIndex = 3;
+            this.BtnRec.TabStop = false;
             this.BtnRec.UseVisualStyleBackColor = true;
             this.BtnRec.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -613,6 +648,7 @@
             this.BtnEllipse.Name = "BtnEllipse";
             this.BtnEllipse.Size = new System.Drawing.Size(29, 31);
             this.BtnEllipse.TabIndex = 2;
+            this.BtnEllipse.TabStop = false;
             this.BtnEllipse.UseVisualStyleBackColor = true;
             this.BtnEllipse.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -626,6 +662,7 @@
             this.BtnLine.Name = "BtnLine";
             this.BtnLine.Size = new System.Drawing.Size(29, 31);
             this.BtnLine.TabIndex = 1;
+            this.BtnLine.TabStop = false;
             this.BtnLine.UseVisualStyleBackColor = true;
             this.BtnLine.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
@@ -667,6 +704,7 @@
             this.Undo_btn.Name = "Undo_btn";
             this.Undo_btn.Size = new System.Drawing.Size(75, 39);
             this.Undo_btn.TabIndex = 39;
+            this.Undo_btn.TabStop = false;
             this.Undo_btn.Text = "Undo";
             this.Undo_btn.UseVisualStyleBackColor = true;
             this.Undo_btn.Click += new System.EventHandler(this.button1_Click);
@@ -698,6 +736,7 @@
             this.gobottom_btn.Name = "gobottom_btn";
             this.gobottom_btn.Size = new System.Drawing.Size(116, 36);
             this.gobottom_btn.TabIndex = 53;
+            this.gobottom_btn.TabStop = false;
             this.gobottom_btn.Text = "도형 제일 뒤로";
             this.gobottom_btn.UseVisualStyleBackColor = true;
             this.gobottom_btn.Click += new System.EventHandler(this.gobottom_btn_Click);
@@ -708,6 +747,7 @@
             this.gotop_btn.Name = "gotop_btn";
             this.gotop_btn.Size = new System.Drawing.Size(116, 31);
             this.gotop_btn.TabIndex = 52;
+            this.gotop_btn.TabStop = false;
             this.gotop_btn.Text = "도형 제일 위로";
             this.gotop_btn.UseVisualStyleBackColor = true;
             this.gotop_btn.Click += new System.EventHandler(this.gotop_btn_Click);
@@ -718,6 +758,7 @@
             this.delete_btn.Name = "delete_btn";
             this.delete_btn.Size = new System.Drawing.Size(75, 23);
             this.delete_btn.TabIndex = 51;
+            this.delete_btn.TabStop = false;
             this.delete_btn.Text = "삭제";
             this.delete_btn.UseVisualStyleBackColor = true;
             this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
@@ -747,6 +788,7 @@
             this.Backward_btn.Name = "Backward_btn";
             this.Backward_btn.Size = new System.Drawing.Size(116, 29);
             this.Backward_btn.TabIndex = 47;
+            this.Backward_btn.TabStop = false;
             this.Backward_btn.Text = "도형순서 뒤로";
             this.Backward_btn.UseVisualStyleBackColor = true;
             this.Backward_btn.Click += new System.EventHandler(this.Backward_btn_Click);
@@ -758,6 +800,7 @@
             this.Forward_btn.Name = "Forward_btn";
             this.Forward_btn.Size = new System.Drawing.Size(116, 29);
             this.Forward_btn.TabIndex = 46;
+            this.Forward_btn.TabStop = false;
             this.Forward_btn.Text = "도형순서 위로";
             this.Forward_btn.UseVisualStyleBackColor = true;
             this.Forward_btn.Click += new System.EventHandler(this.Forward_btn_Click);
@@ -770,6 +813,7 @@
             this.penChk.Name = "penChk";
             this.penChk.Size = new System.Drawing.Size(74, 19);
             this.penChk.TabIndex = 45;
+            this.penChk.TabStop = false;
             this.penChk.Text = "펜사용";
             this.penChk.UseVisualStyleBackColor = true;
             // 
@@ -781,6 +825,7 @@
             this.FillChk.Name = "FillChk";
             this.FillChk.Size = new System.Drawing.Size(104, 19);
             this.FillChk.TabIndex = 44;
+            this.FillChk.TabStop = false;
             this.FillChk.Text = "채우기사용";
             this.FillChk.UseVisualStyleBackColor = true;
             // 
@@ -802,6 +847,7 @@
             this.trackZooin.Name = "trackZooin";
             this.trackZooin.Size = new System.Drawing.Size(149, 28);
             this.trackZooin.TabIndex = 3;
+            this.trackZooin.TabStop = false;
             // 
             // Form1
             // 
@@ -819,6 +865,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);

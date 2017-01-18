@@ -84,7 +84,6 @@ namespace OOP_PJ
             ActionType = Constant.ActionType.None;
             MoveType = Constant.MoveType.None;
         }
-        
     }
 
     public struct UndoInfo

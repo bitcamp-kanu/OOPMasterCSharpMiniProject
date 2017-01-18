@@ -63,7 +63,6 @@ namespace OOP_PJ
 
         public override Shape clone()
         {
-
             Shape data = (Shape)this.MemberwiseClone();
             return data;
         }

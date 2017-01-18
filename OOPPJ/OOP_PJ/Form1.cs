@@ -113,7 +113,12 @@ namespace OOP_PJ
                             myCommandManager.ChoiceShape(theInfomation);
                             Invalidate();
                         }
-
+                        else if (theInfomation.ActionType.Equals(Constant.ActionType.Fill))   // Fill Mode ON
+                        {
+                            theInfomation.Point = new Point(e.X, e.Y);
+                            myCommandManager.FillShape(theInfomation, this);
+                            Invalidate();
+                        }
                     }
                     else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                     {
@@ -134,7 +139,6 @@ namespace OOP_PJ
         {
             try
             {
-
                 theInfomation.Point = new Point(e.X, e.Y);
                 myCommandManager.CursorTypeDecision(theInfomation, this);
 
@@ -561,7 +565,7 @@ namespace OOP_PJ
         private void button1_Click(object sender, EventArgs e)  // 완료 : 언두 기능
         {
             // Undo Test용 차후 삭제 예정
-            myCommandManager.Undo();
+            myCommandManager.Undo(theInfomation, this);
 
             Invalidate();
         }
@@ -597,6 +601,13 @@ namespace OOP_PJ
             Invalidate();
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show("111");
+        }
+
+
+        
    
     }
 }

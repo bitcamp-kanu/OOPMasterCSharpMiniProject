@@ -15,9 +15,9 @@ namespace OOP_PJ
         public bool HasLine { get; set; }
         public bool IsSelected { get; set; }
         public bool IsDeleted { get; set; }
-        public int Thickness { get; set; }
         public Color LineColor { get; set; }
         public Color FillColor { get; set; }
+        public int Thickness { get; set; }
         public int SequenceNumber { get; set; }
         public int CurListIndex { get; set; }
         public int PreListIndex { get; set; }
@@ -42,6 +42,7 @@ namespace OOP_PJ
         }
 
         public abstract Shape clone();
+
         public abstract void Draw(Graphics g);
 
         public UndoInfo Undo() // 실행 취소
@@ -52,6 +53,7 @@ namespace OOP_PJ
             {
                 Shape tmp = mHistory.Pop();
 
+                #region
                 //if (tmp.CurListIndex == -1) // -1 화면 제일 뒤로 이동
                 //{
                 //    undoinfo.DirectFrontMovement = true;
@@ -80,6 +82,8 @@ namespace OOP_PJ
 
                 //    return undoinfo;
                 //}
+                #endregion
+
                 if (tmp.SequenceNumber == this.SequenceNumber) // 현재상태면 이전껄로
                 {
                     if (mHistory.Count == 0)
@@ -88,10 +92,9 @@ namespace OOP_PJ
                 
                         return undoinfo;
                     }
-                     
+                    
                     tmp = mHistory.Pop();
                 }
-
 
                 // 이전 상태로
                 this.MyRectangle = tmp.MyRectangle;
@@ -109,10 +112,6 @@ namespace OOP_PJ
                     pointTmp2.Add(p);
                 }
                 this.pointList = pointTmp2;
-
-                // TODO: 스스로 복사는 어떻게 ?
-                //this. = tmp.clone();
-
 
                 if (this.CurListIndex != tmp.CurListIndex) // 앞 뒤로 한 스탭 이동
                 {
@@ -145,6 +144,7 @@ namespace OOP_PJ
             return mHistory.Count;
         }
 
+        // 마우스 도형 위치 체크
         public bool IsMyRange(Point selectedPoint)
         {
             if (IsDeleted)
@@ -154,7 +154,6 @@ namespace OOP_PJ
             else
                 return false;
         }
-
         public bool IsRectangleShape(Rectangle rect, int x, int y)
         {
             if (IsDeleted)
@@ -165,7 +164,7 @@ namespace OOP_PJ
                 return false;
         }
 
-        
+        // 도형 셋팅
         public void SetPositiveRectangle(Point start, Infomation newInfomation)
         {
             lock (lockObj)
@@ -192,7 +191,6 @@ namespace OOP_PJ
                     }
                     Point point = new Point( newInfomation.Point.X, newInfomation.Point.Y);
                     
-                    
                     pointList.Add(point);
                 }
                 else
@@ -208,20 +206,33 @@ namespace OOP_PJ
                 }
             
             }
-       
         }
 
-        public void MoveRectangle(Point start, Point startMouse, Point info)
+        // TODO : 무브
+        public void MoveRectangle(Point start, Point startMouse, Point info, Point penStart, Point penEnd)
         {
             Rectangle moveChageRectangle = new Rectangle(
                             start.X + (info.X - startMouse.X),
                             start.Y + (info.Y - startMouse.Y),
                             MyRectangle.Width,
                             MyRectangle.Height);
-
             MyRectangle = moveChageRectangle;
-        }
 
+            if (this is CLine)
+            {
+                Point p1 = new Point(penStart.X + (info.X - startMouse.X), penStart.Y + (info.Y - startMouse.Y));
+                Point p2 = new Point(penEnd.X + (info.X - startMouse.X), penEnd.Y + (info.Y - startMouse.Y));
+
+                pointList[0] = p1;
+                pointList[1] = p2;
+            }
+            else if (this is CPen)
+            {
+
+            }
+            
+        }
+        // 라인 체크
         public bool IsRctangleUpLine(Point newPoint)
         {
             int targetWidth = Constant.GuideOffset;
@@ -241,7 +252,6 @@ namespace OOP_PJ
             else
                 return false;
         }
-
         public bool IsRctangleDownLine(Point newPoint)
         {
             int targetWidth = Constant.GuideOffset;
@@ -261,7 +271,6 @@ namespace OOP_PJ
             else
                 return false;
         }
-
         public bool IsRctangleLeftLine(Point newPoint)
         {
             int targetWidth = Constant.GuideOffset;
@@ -281,7 +290,6 @@ namespace OOP_PJ
             else
                 return false;
         }
-
         public bool IsRctangleRightLine(Point newPoint)
         {
             int targetWidth = Constant.GuideOffset;
@@ -301,11 +309,9 @@ namespace OOP_PJ
             else
                 return false;
         }
-
-
-        // 좌측 상단
         public bool IsRctangleLeftUpPointLine(Point newPoint)
         {
+            // 좌측 상단
             int targetWidth = Constant.GuideOffset;
             int targetHeight = Constant.GuideOffset;
 
@@ -319,10 +325,9 @@ namespace OOP_PJ
             else
                 return false;
         }
-
-        // 좌측 하단
         public bool IsRctangleLeftDwonPointLine(Point newPoint)
         {
+            // 좌측 하단
             int targetWidth = Constant.GuideOffset;
             int targetHeight = Constant.GuideOffset;
 
@@ -336,10 +341,9 @@ namespace OOP_PJ
             else
                 return false;
         }
-
-        // 우측 상단
         public bool IsRctangleRightUpPointLine(Point newPoint)
         {
+            // 우측 상단
             int targetWidth = Constant.GuideOffset;
             int targetHeight = Constant.GuideOffset;
 
@@ -353,10 +357,9 @@ namespace OOP_PJ
             else
                 return false;
         }
-
-        // 우측 하단
         public bool IsRctangleRightDownPointLine(Point newPoint)
         {
+            // 우측 하단
             int targetWidth = Constant.GuideOffset;
             int targetHeight = Constant.GuideOffset;
 
@@ -419,12 +422,44 @@ namespace OOP_PJ
         }
 
         // 사이즈 조절
-        public void ResizeUpSide(Point start, Point info)
+        public void ResizeUpSide(Point start, Point info, Point penStart, Point penEnd)
         {
             Rectangle rect = new Rectangle(MyRectangle.X, info.Y, MyRectangle.Width, MyRectangle.Height + (MyRectangle.Y - info.Y));
             MyRectangle = rect;
-        }
 
+            Point p1 = new Point();
+            Point p2 = new Point();
+
+
+            if (penStart.X < penEnd.X && penStart.Y < penEnd.Y || penEnd.X < penStart.X && penEnd.Y < penStart.Y) 
+            {
+                p1.X = penStart.X < penEnd.X ? penStart.X : penEnd.X;
+                p1.Y = info.Y;
+                p2.X = penEnd.X > penStart.X ? penStart.X : penEnd.X;
+                p2.Y = penEnd.Y > penStart.Y ? penEnd.Y : penStart.Y;
+            }
+            else if (penStart.X < penEnd.X && penStart.Y > penEnd.Y)
+            {
+                p1.X = penStart.X ;
+                p1.Y = penStart.Y > penEnd.Y ? penStart.Y : penEnd.Y;
+                p2.X = penEnd.X;
+                p2.Y = info.X;
+
+            }
+
+
+
+
+
+
+            this.pointList[0] = p1;
+            this.pointList[1] = p2;
+
+
+
+
+
+        }
         public void ResizeDownSide(Point start, Point info)
         {
             Rectangle rect = new Rectangle(MyRectangle.X, MyRectangle.Y, MyRectangle.Width, info.Y -  MyRectangle.Y);

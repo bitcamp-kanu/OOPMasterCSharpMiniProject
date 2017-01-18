@@ -20,6 +20,11 @@ namespace OOP_PJ
         ShapeManager shapeManager;
         Point startPoint;
         Point mousePoint;
+        Shape paint;
+
+        Point penStartPoint;
+        Point penEndPoint;
+
 
         int startWidth;
         int startHeight;
@@ -29,8 +34,13 @@ namespace OOP_PJ
         {
             backup = new Stack<Shape>();
             shapeManager = new ShapeManager();
+            paint = new CPaint(new Rectangle());
             startPoint.X = 0;
             startPoint.Y = 0;
+
+            paint.FillColor = Color.White;
+
+            paint.Save();
         }
 
         public void CreateMain(Infomation newInfomation)
@@ -38,7 +48,6 @@ namespace OOP_PJ
             newInfomation.MoveType = Constant.MoveType.DrawDrag;
             dummyShape = GetShape(newInfomation);
         }
-
 
 
         // TODO : 따로 파일로 빼던지 다른방법을 찾던지 너무 커짐 모든 도형별 모드 추가 해야함....
@@ -179,7 +188,6 @@ namespace OOP_PJ
                 if (newInfomation.UseFill)
                     newRectangle.HasFill = true;
 
-
                 return newRectangle;
             }
             else // 기타 도형 추가
@@ -220,10 +228,38 @@ namespace OOP_PJ
                 startPoint.Y = dummyShape.MyRectangle.Y;
                 startWidth = dummyShape.MyRectangle.Width;  // 도형 초기 크기
                 startHeight = dummyShape.MyRectangle.Height;
+
+                if (dummyShape is CLine)
+                {
+                    penStartPoint = dummyShape.pointList[0];
+                    penEndPoint = dummyShape.pointList[1];
+                }
             }
             else
             {
                 newInfomation.MoveType = Constant.MoveType.None;
+            }
+        }
+
+        public void FillShape(Infomation newInfomation, object obj) // 페인터 채우기
+        {
+            Form myForm = obj as Form;
+
+            dummyShape = shapeManager.ChoicedShape(newInfomation);
+
+            if (dummyShape != null)
+            {
+                dummyShape.HasFill = true;
+                dummyShape.FillColor = newInfomation.FillColor;
+                backup.Push(dummyShape);
+                dummyShape.Save();
+            }
+            else
+            {
+                paint.FillColor = newInfomation.FillColor;
+                myForm.BackColor = paint.FillColor;
+                backup.Push(paint);
+                paint.Save();
             }
         }
 
@@ -238,7 +274,7 @@ namespace OOP_PJ
                     break;
 
                 case Constant.ActionType.Fill:
-                    myForm.Cursor = Cursors.WaitCursor;
+                    myForm.Cursor = Cursors.Hand;
                     // 페인트 아이콘
                     break;
 
@@ -249,11 +285,12 @@ namespace OOP_PJ
             }
         }
 
+        // 무브 관련 함수
         public void MoveMouse(Infomation newInfomation, object obj)
         {
             if (newInfomation.MoveType.Equals(Constant.MoveType.DrawDrag)) { dummyShape.SetPositiveRectangle(startPoint, newInfomation); }
-            else if (newInfomation.MoveType.Equals(Constant.MoveType.Moveshape)) { dummyShape.MoveRectangle(startPoint, mousePoint, newInfomation.Point); }
-            else if (newInfomation.MoveType.Equals(Constant.MoveType.UpResize)) { dummyShape.ResizeUpSide(startPoint, newInfomation.Point); }
+            else if (newInfomation.MoveType.Equals(Constant.MoveType.Moveshape)) { dummyShape.MoveRectangle(startPoint, mousePoint, newInfomation.Point, penStartPoint, penEndPoint); }
+            else if (newInfomation.MoveType.Equals(Constant.MoveType.UpResize)) { dummyShape.ResizeUpSide(startPoint, newInfomation.Point, penStartPoint, penEndPoint); }
             else if (newInfomation.MoveType.Equals(Constant.MoveType.DownResize)) { dummyShape.ResizeDownSide(startPoint, newInfomation.Point); }
             else if (newInfomation.MoveType.Equals(Constant.MoveType.LeftResize)) { dummyShape.ResizeLeftSide(startPoint, newInfomation.Point); }
             else if (newInfomation.MoveType.Equals(Constant.MoveType.RightResize)) { dummyShape.ResizeRightSide(startPoint, newInfomation.Point); }
@@ -270,6 +307,26 @@ namespace OOP_PJ
             {
                 if (newInformation.ActionType.Equals(Constant.ActionType.Draw)) // 그리기 모드
                 {
+                    // TODO : 여기 수정중
+                    if (newInformation.ShapeType.Equals(Constant.ShapeType.Line))   // 라인모드 그리기 완료
+                    {
+                        Rectangle rect = new Rectangle
+                        {
+                            X = dummyShape.pointList[0].X < dummyShape.pointList[1].X ? dummyShape.pointList[0].X : dummyShape.pointList[1].X,
+                            Y = dummyShape.pointList[0].Y < dummyShape.pointList[1].Y ? dummyShape.pointList[0].Y : dummyShape.pointList[1].Y,
+                            Width = Math.Abs(dummyShape.pointList[1].X - dummyShape.pointList[0].X),
+                            Height = Math.Abs(dummyShape.pointList[1].Y - dummyShape.pointList[0].Y)
+                        };
+
+                        dummyShape.MyRectangle = rect;
+                    }
+                    else if (newInformation.ShapeType.Equals(Constant.ShapeType.Line))  // 펜모드 그리기 완료
+                    {
+                    }
+                    else
+                    {
+                    }
+                    
                     shapeManager.AddShape(dummyShape);
                     backup.Push(dummyShape);
                     dummyShape.Save();
@@ -376,15 +433,40 @@ namespace OOP_PJ
             #endregion
         }
 
-        public void Undo()
+        public void Undo(Infomation newInformation, object obj)
         {
-            dummyShape = null;
+            Form myForm = obj as Form;
+
+            if (dummyShape != null)
+            {
+                dummyShape.IsSelected = false;
+                dummyShape = null;
+            }
+            
             if (backup.Count > 0)
             {
-                shapeManager.Undo(backup.Pop());
+                Shape undoShape = backup.Pop();
+                
+                if (undoShape is CPaint)    // 백그라운드
+                {
+                    undoShape.Undo();
+
+                    myForm.BackColor = undoShape.FillColor;
+
+                    if (undoShape.GetStackCount() == 0)
+                    {
+                        paint.FillColor = Color.White;
+
+                        paint.Save();
+                    }
+                }
+                else
+                {
+                    shapeManager.Undo(undoShape);
+                }
             }
         }
-
+         
         public void ChangeLineColor(Infomation theInfomation)   // 라인 색 변경시 이벤트
         {
             if (dummyShape != null)
@@ -477,5 +559,7 @@ namespace OOP_PJ
         //    }
             
         //}
+
+      
     }   // commandManger
 }   // namespace
