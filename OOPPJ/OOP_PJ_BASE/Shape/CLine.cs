@@ -16,12 +16,7 @@ namespace OOP_PJ
 
         public override void Draw(Graphics g)
         {
-            if (base.HasFill)
-            {
-                //SolidBrush brush = new SolidBrush(base.FillColor);
-                //g.FillPolygon(brush, curvePoints);
-            }
-            if (base.HasLine)
+            if (pointList.Count != 0)
             {
                 Pen pen = new Pen(base.LineColor, base.Thickness);
                 g.DrawLine(pen, pointList[0].X, pointList[0].Y, pointList[1].X, pointList[1].Y);

@@ -25,6 +25,32 @@ namespace OOP_PJ
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            this.MouseClick += new MouseEventHandler(Form1_MouseClick);
+        }
+
+        void Form1_MouseClick(object sender, MouseEventArgs e)      // ContextBox
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                //RightClickMenu.Parent = this;
+                theInfomation.Point = new Point(e.X, e.Y);
+                myCommandManager.ShowContextBox(theInfomation);
+
+                if (myCommandManager.ShowContextBox(theInfomation))
+                {
+                    // 선택모드일때 
+                    도형순서위로ToolStripMenuItem1.Enabled = true;
+                    도형순서뒤로ToolStripMenuItem1.Enabled = true;
+                    RightClickMenu.Show(new Point(e.X, e.Y));
+                }
+                else
+                {
+                    도형순서위로ToolStripMenuItem1.Enabled = false;
+                    도형순서뒤로ToolStripMenuItem1.Enabled = false;
+                    RightClickMenu.Show(new Point(e.X, e.Y));
+                }
+                
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -117,7 +143,8 @@ namespace OOP_PJ
                     }
                     else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                     {
-                        // 마우스 우측 클릭시 ContextMenu 사용
+                        //Point point = new Point(e.X, e.Y);
+                        RightClickMenu.Show(new Point(e.X, e.Y));
                     }
 
                     
@@ -594,6 +621,31 @@ namespace OOP_PJ
             Invalidate();
         }
 
+        // ContextMenuStrip 상세 정보
+        private void 실행취소ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+             myCommandManager.Undo();
+            Invalidate();
+        }
+
+        private void 도형순서위로ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            myCommandManager.MoveShapeFrontOneStep();
+            Invalidate();
+        }
+
+        private void 도형순서뒤로ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            myCommandManager.MoveShapeBackOneStep();
+            Invalidate();
+        }
+
+        private void RightClickMenu_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
    
     }
 }
+

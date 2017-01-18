@@ -463,7 +463,6 @@ namespace OOP_PJ
             }
             
         }
-
         //public void MoveShapeFrontDirect()  // 도형 제일 앞으로
         //{
         //    if (dummyShape != null)
@@ -490,6 +489,20 @@ namespace OOP_PJ
         //    }
             
         //}
+
+
+        public bool ShowContextBox(Infomation newInfomation)
+        {
+             dummyShape = shapeManager.ChoicedShape(newInfomation);
+
+             if (dummyShape != null)
+             {
+                 dummyShape.IsSelected = true;
+
+                 return true;
+             }
+             return false;
+        }
 
         //PublishData 함수 추가 각각의 클라이언트에 데이터를 전송 한다.
         public void PublishData()
