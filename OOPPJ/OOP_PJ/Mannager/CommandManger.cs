@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using SocketBase;
 
 
 namespace OOP_PJ
@@ -15,6 +16,8 @@ namespace OOP_PJ
     // 명령 관리자
     public class CommandManager
     {
+        SocketBase.UDPServerEx _serverEx = new UDPServerEx();
+
         Stack<Shape> backup;
         Shape dummyShape;
         ShapeManager shapeManager;
@@ -477,6 +480,7 @@ namespace OOP_PJ
             
         //}
 
+
         public bool ShowContextBox(Infomation newInfomation)
         {
              dummyShape = shapeManager.ChoicedShape(newInfomation);
@@ -489,5 +493,19 @@ namespace OOP_PJ
              }
              return false;
         }
+
+        //PublishData 함수 추가 각각의 클라이언트에 데이터를 전송 한다.
+        public void PublishData()
+        {
+            SocketBase.StartPacket sta = new SocketBase.StartPacket();
+            sta.totolCnt = shapeManager.GetListCount();
+            _serverEx.AddSendData(Packet.Serialize(new SocketBase.StartPacket()));
+            foreach (Shape sh in shapeManager.Shapes)
+            {
+                _serverEx.AddSendData(Packet.Serialize(sh));
+            }
+            _serverEx.AddSendData(Packet.Serialize(new SocketBase.LastPacket()));
+        }
+
     }   // commandManger
 }   // namespace
