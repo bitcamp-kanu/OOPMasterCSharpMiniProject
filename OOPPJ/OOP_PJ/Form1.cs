@@ -704,7 +704,7 @@ namespace OOP_PJ
 
         }
 
-        public void ReveiveEvent(object obj, byte[] data, int len, string key)
+        public bool ReveiveEvent(object obj, byte[] data, int len, string key)
         {
             object o = Packet.Deserialize(data);
             if (o is Login) //로그인 메세지가 들어 오면 클라이언트에 데이터를 전송 한다.
@@ -717,6 +717,7 @@ namespace OOP_PJ
                 //변경 해야함.
                 myCommandManager.PublishData();
             }
+            return true;
         }
 
 

@@ -8,6 +8,6 @@ namespace SocketBase
 {
     public interface IReceiveEvent
     {
-        void ReveiveEvent(object obj,byte[] data, int len,string key);
+        bool ReveiveEvent(object obj,byte[] data, int len,string key);
     }
 }

@@ -64,7 +64,11 @@ namespace SocketBase
                         if (_IRecevieEvnet != null)
                         {
                             string msg = Encoding.Default.GetString(_data);
-                            _IRecevieEvnet.ReveiveEvent(this, _data, _data.Length, msg);
+                            if (_IRecevieEvnet.ReveiveEvent(this, _data, _data.Length, msg) == false)
+                            {
+                                IsExit = true;
+
+                            }
                         }
                     }
                 }
@@ -102,6 +106,8 @@ namespace SocketBase
         {
             IsExit = true;
             _client.Close();
+            _client = null;
+            
             if (_thReceive != null)
             {
                 _thReceive.Join();
@@ -110,7 +116,11 @@ namespace SocketBase
 
         public void Close()
         {
-            _client.Close();
+            if (_client != null)
+            {
+                _client.Close();
+            }
+            
         }
     }
 }

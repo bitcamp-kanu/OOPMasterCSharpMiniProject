@@ -616,6 +616,7 @@ namespace OOP_PJ
                     }
                 }
             }
+            PublishData();
 
         }
     }   // commandManger
