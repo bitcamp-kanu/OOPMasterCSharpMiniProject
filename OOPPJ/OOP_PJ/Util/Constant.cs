@@ -34,7 +34,8 @@ namespace OOP_PJ
             LeftUpResize,
             LeftDownResize,
             RightUpResize,
-            RightDownResize
+            RightDownResize,
+            Hand
         }
 
         public enum ShapeType
@@ -58,7 +59,8 @@ namespace OOP_PJ
             SizeNESW,
             SizeNS,
             SizeNWSE,
-            SizeWE
+            SizeWE,
+            Hand
         }
     }
 

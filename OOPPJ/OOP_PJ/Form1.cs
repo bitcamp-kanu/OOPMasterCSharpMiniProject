@@ -84,11 +84,7 @@ namespace OOP_PJ
             theInfomation.FillColor = Color.White; // 채우기 색 Default White
             this.AllowDrop = true;
             
-
-            //// 수정후 사용 예정 //////
-             theInfomation.LineColor = WIUtility.colorSet[0];
-             theInfomation.FillColor = WIUtility.colorSet[5];
-            ///////////////////////////////////
+            
         }
 
 
@@ -96,9 +92,10 @@ namespace OOP_PJ
         {
             try
             {
-                
                 myCommandManager.CursorTypeDecision(theInfomation, this);
+                
                 label4.Text = "X: " + e.X.ToString() + ", Y: " + e.Y.ToString(); // 삭제예정
+              
                 // 마우스 다운
                 if (e.X >= 0 && e.X <= this.Width && e.Y >= 0 && e.Y <= this.Height) // 폼안에서 이벤트 시작
                 {
@@ -247,6 +244,7 @@ namespace OOP_PJ
             }
             else if (sender == BtnText)
             {
+                // 시간 되면 구현
             }
             else if (sender == BtnChoice)
             {
@@ -257,6 +255,14 @@ namespace OOP_PJ
             }
             else if (sender == BtnFill)
             {
+                // 페인트 채우기
+                if (BtnFill.Checked)
+                {
+                    theInfomation.UseFill = true;
+                    theInfomation.ActionType = Constant.ActionType.Fill;
+                }
+
+
             }
             else if (sender == BtnImg)
             {
@@ -546,13 +552,6 @@ namespace OOP_PJ
             myCommandManager.ChangeFillColor(theInfomation);
             Invalidate();
         }
-
-        private void BtnFill_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
 
 
         /// <summary>

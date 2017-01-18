@@ -10,7 +10,6 @@ namespace OOP_PJ
 
         public override void Draw(Graphics g)
         {
-            Console.WriteLine("draw");
             if (base.HasFill)
             {
                 SolidBrush brush = new SolidBrush(base.FillColor);

@@ -238,7 +238,7 @@ namespace OOP_PJ
                     break;
 
                 case Constant.ActionType.Fill:
-
+                    myForm.Cursor = Cursors.WaitCursor;
                     // 페인트 아이콘
                     break;
 

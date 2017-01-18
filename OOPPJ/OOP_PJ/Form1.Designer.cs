@@ -73,6 +73,9 @@
             this.보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Undo_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gobottom_btn = new System.Windows.Forms.Button();
+            this.gotop_btn = new System.Windows.Forms.Button();
+            this.delete_btn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Backward_btn = new System.Windows.Forms.Button();
@@ -81,9 +84,6 @@
             this.FillChk = new System.Windows.Forms.CheckBox();
             this.statusBottom = new System.Windows.Forms.StatusStrip();
             this.trackZooin = new System.Windows.Forms.TrackBar();
-            this.delete_btn = new System.Windows.Forms.Button();
-            this.gotop_btn = new System.Windows.Forms.Button();
-            this.gobottom_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -510,7 +510,6 @@
             this.BtnFill.Size = new System.Drawing.Size(29, 31);
             this.BtnFill.TabIndex = 1;
             this.BtnFill.UseVisualStyleBackColor = true;
-            this.BtnFill.CheckedChanged += new System.EventHandler(this.BtnFill_CheckedChanged);
             this.BtnFill.Click += new System.EventHandler(this.PolygonClick_Click);
             // 
             // BtnChoice
@@ -693,6 +692,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test용 지우지마세요";
             // 
+            // gobottom_btn
+            // 
+            this.gobottom_btn.Location = new System.Drawing.Point(6, 115);
+            this.gobottom_btn.Name = "gobottom_btn";
+            this.gobottom_btn.Size = new System.Drawing.Size(116, 36);
+            this.gobottom_btn.TabIndex = 53;
+            this.gobottom_btn.Text = "도형 제일 뒤로";
+            this.gobottom_btn.UseVisualStyleBackColor = true;
+            this.gobottom_btn.Click += new System.EventHandler(this.gobottom_btn_Click);
+            // 
+            // gotop_btn
+            // 
+            this.gotop_btn.Location = new System.Drawing.Point(6, 78);
+            this.gotop_btn.Name = "gotop_btn";
+            this.gotop_btn.Size = new System.Drawing.Size(116, 31);
+            this.gotop_btn.TabIndex = 52;
+            this.gotop_btn.Text = "도형 제일 위로";
+            this.gotop_btn.UseVisualStyleBackColor = true;
+            this.gotop_btn.Click += new System.EventHandler(this.gotop_btn_Click);
+            // 
+            // delete_btn
+            // 
+            this.delete_btn.Location = new System.Drawing.Point(6, 25);
+            this.delete_btn.Name = "delete_btn";
+            this.delete_btn.Size = new System.Drawing.Size(75, 23);
+            this.delete_btn.TabIndex = 51;
+            this.delete_btn.Text = "삭제";
+            this.delete_btn.UseVisualStyleBackColor = true;
+            this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -773,36 +802,6 @@
             this.trackZooin.Name = "trackZooin";
             this.trackZooin.Size = new System.Drawing.Size(149, 28);
             this.trackZooin.TabIndex = 3;
-            // 
-            // delete_btn
-            // 
-            this.delete_btn.Location = new System.Drawing.Point(6, 25);
-            this.delete_btn.Name = "delete_btn";
-            this.delete_btn.Size = new System.Drawing.Size(75, 23);
-            this.delete_btn.TabIndex = 51;
-            this.delete_btn.Text = "삭제";
-            this.delete_btn.UseVisualStyleBackColor = true;
-            this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
-            // 
-            // gotop_btn
-            // 
-            this.gotop_btn.Location = new System.Drawing.Point(6, 78);
-            this.gotop_btn.Name = "gotop_btn";
-            this.gotop_btn.Size = new System.Drawing.Size(116, 31);
-            this.gotop_btn.TabIndex = 52;
-            this.gotop_btn.Text = "도형 제일 위로";
-            this.gotop_btn.UseVisualStyleBackColor = true;
-            this.gotop_btn.Click += new System.EventHandler(this.gotop_btn_Click);
-            // 
-            // gobottom_btn
-            // 
-            this.gobottom_btn.Location = new System.Drawing.Point(6, 115);
-            this.gobottom_btn.Name = "gobottom_btn";
-            this.gobottom_btn.Size = new System.Drawing.Size(116, 36);
-            this.gobottom_btn.TabIndex = 53;
-            this.gobottom_btn.Text = "도형 제일 뒤로";
-            this.gobottom_btn.UseVisualStyleBackColor = true;
-            this.gobottom_btn.Click += new System.EventHandler(this.gobottom_btn_Click);
             // 
             // Form1
             // 
