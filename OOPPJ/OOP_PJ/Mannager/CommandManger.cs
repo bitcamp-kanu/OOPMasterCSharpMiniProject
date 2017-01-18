@@ -16,8 +16,7 @@ namespace OOP_PJ
     // 명령 관리자
     public class CommandManager
     {
-        SocketBase.UDPServerEx _serverEx = new UDPServerEx();
-
+        SocketBase.UDPServerEx _serverEx = null;
         Stack<Shape> backup;
         Shape dummyShape;
         ShapeManager shapeManager;
@@ -28,15 +27,13 @@ namespace OOP_PJ
         int startHeight;
 
 
-        public CommandManager()
+        public CommandManager(SocketBase.UDPServerEx server)
         {
             backup = new Stack<Shape>();
             shapeManager = new ShapeManager();
             startPoint.X = 0;
             startPoint.Y = 0;
-            _serverEx.InitSocket();
-            _serverEx.StartRecevie();
-            _serverEx.StartQueue();
+            _serverEx = server;
         }
 
         public void CreateMain(Infomation newInfomation)

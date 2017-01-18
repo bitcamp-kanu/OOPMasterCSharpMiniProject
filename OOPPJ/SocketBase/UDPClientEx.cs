@@ -74,7 +74,11 @@ namespace SocketBase
                 {
                     if (SocketErrorHandler != null)
                     {
-
+                        SocketErrorHandler(this, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.Assert(true,ex.ToString());
                     }
                     //Thread 를 종료 한다.
                     IsExit = true;
