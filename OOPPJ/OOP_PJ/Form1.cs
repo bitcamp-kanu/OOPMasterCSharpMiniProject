@@ -30,6 +30,7 @@ namespace OOP_PJ
 
         void Form1_MouseClick(object sender, MouseEventArgs e)      // ContextBox
         {
+            
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 //RightClickMenu.Parent = this;
@@ -41,13 +42,15 @@ namespace OOP_PJ
                     // 선택모드일때 
                     도형순서위로ToolStripMenuItem1.Enabled = true;
                     도형순서뒤로ToolStripMenuItem1.Enabled = true;
-                    RightClickMenu.Show(new Point(e.X, e.Y));
+                    //RightClickMenu.Show(new Point(e.X, e.Y));
+                    RightClickMenu.Show();
                 }
                 else
                 {
                     도형순서위로ToolStripMenuItem1.Enabled = false;
                     도형순서뒤로ToolStripMenuItem1.Enabled = false;
-                    RightClickMenu.Show(new Point(e.X, e.Y));
+                    //RightClickMenu.Show(new Point(e.X, e.Y));
+                    RightClickMenu.Show();
                 }
                 
             }
@@ -109,8 +112,6 @@ namespace OOP_PJ
             theInfomation.LineColor = Color.Black; // 선 색 Default Black
             theInfomation.FillColor = Color.White; // 채우기 색 Default White
             this.AllowDrop = true;
-            
-            
         }
 
 

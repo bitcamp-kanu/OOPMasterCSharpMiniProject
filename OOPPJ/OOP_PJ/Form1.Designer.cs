@@ -780,21 +780,21 @@
             // 실행취소ToolStripMenuItem1
             // 
             this.실행취소ToolStripMenuItem1.Name = "실행취소ToolStripMenuItem1";
-            this.실행취소ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.실행취소ToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.실행취소ToolStripMenuItem1.Text = "실행 취소";
             this.실행취소ToolStripMenuItem1.Click += new System.EventHandler(this.실행취소ToolStripMenuItem1_Click);
             // 
             // 도형순서위로ToolStripMenuItem1
             // 
             this.도형순서위로ToolStripMenuItem1.Name = "도형순서위로ToolStripMenuItem1";
-            this.도형순서위로ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.도형순서위로ToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.도형순서위로ToolStripMenuItem1.Text = "도형순서 위로";
             this.도형순서위로ToolStripMenuItem1.Click += new System.EventHandler(this.도형순서위로ToolStripMenuItem1_Click);
             // 
             // 도형순서뒤로ToolStripMenuItem1
             // 
             this.도형순서뒤로ToolStripMenuItem1.Name = "도형순서뒤로ToolStripMenuItem1";
-            this.도형순서뒤로ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.도형순서뒤로ToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.도형순서뒤로ToolStripMenuItem1.Text = "도형순서 뒤로";
             this.도형순서뒤로ToolStripMenuItem1.Click += new System.EventHandler(this.도형순서뒤로ToolStripMenuItem1_Click);
             // 
@@ -804,6 +804,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(986, 568);
+            this.ContextMenuStrip = this.RightClickMenu;
             this.Controls.Add(this.trackZooin);
             this.Controls.Add(this.statusBottom);
             this.Controls.Add(this.groupBox1);
