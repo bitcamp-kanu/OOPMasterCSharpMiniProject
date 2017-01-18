@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace OOP_PJ
 { 
+    [Serializable]
     public abstract class Shape
     {
         protected Stack<Shape> mHistory;

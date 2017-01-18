@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2650BDFD-A223-4238-9A5B-E539FAA545F7}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F870FCBA-477F-41F4-813B-F4080BCFE707}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OOP_PJ</RootNamespace>
-    <AssemblyName>OOP_PJ</AssemblyName>
+    <RootNamespace>OOP_PJ_CLIENT</RootNamespace>
+    <AssemblyName>OOP_PJ_CLIENT</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -33,9 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,18 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mannager\CommandManger.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="frmClint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmClint.Designer.cs">
+      <DependentUpon>frmClint.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mannager\ShapeManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmClint.resx">
+      <DependentUpon>frmClint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,8 +65,8 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -83,44 +78,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BtnChoice_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnEllipse_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnFill_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnHexa_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnImg_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnLine_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnPencil_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnPentagon_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnRec_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnStar_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnText_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnTri_nomal.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\OOP_PJ_BASE\OOP_PJ_BASE.csproj">
-      <Project>{CF9B7EBA-9470-48F2-B156-A34E2C914930}</Project>
+      <Project>{526BEA65-8330-47C8-88D6-D469CC3AC652}</Project>
       <Name>OOP_PJ_BASE</Name>
     </ProjectReference>
     <ProjectReference Include="..\SocketBase\SocketBase.csproj">

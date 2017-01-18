@@ -8,16 +8,17 @@ using System.Windows.Forms;
 
 namespace OOP_PJ
 {
+    [Serializable]
     public class CPen : Shape
     {
-        Pen pen = null;
+        
         public CPen(Rectangle recParam)
             : base(recParam)
         {
-            pen = new Pen(base.LineColor, base.Thickness);
         }
         public override void Draw(Graphics g)
         {
+            Pen pen = new Pen(base.LineColor, base.Thickness);
             pen.Color = LineColor;
             pen.Width = Thickness;
             Point[] ps = pointList.ToArray();

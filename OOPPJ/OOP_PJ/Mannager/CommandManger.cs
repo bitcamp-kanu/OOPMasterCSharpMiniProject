@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using SocketBase;
 
 
 namespace OOP_PJ
@@ -15,6 +16,7 @@ namespace OOP_PJ
     // 명령 관리자
     public class CommandManager
     {
+        SocketBase.UDPServerEx _serverEx = null;
         Stack<Shape> backup;
         Shape dummyShape;
         ShapeManager shapeManager;
@@ -30,7 +32,7 @@ namespace OOP_PJ
         int startHeight;
 
 
-        public CommandManager()
+        public CommandManager(SocketBase.UDPServerEx server)
         {
             backup = new Stack<Shape>();
             shapeManager = new ShapeManager();
@@ -38,9 +40,11 @@ namespace OOP_PJ
             startPoint.X = 0;
             startPoint.Y = 0;
 
+
             paint.FillColor = Color.White;
 
             paint.Save();
+            _serverEx = server;
         }
 
         public void CreateMain(Infomation newInfomation)
@@ -331,11 +335,13 @@ namespace OOP_PJ
                     backup.Push(dummyShape);
                     dummyShape.Save();
                     dummyShape = null;
+                    PublishData();
                 }
                 else if (newInformation.ActionType.Equals(Constant.ActionType.Select)) // 선택 이동 모드
                 {
                     backup.Push(dummyShape);
                     dummyShape.Save();
+                    PublishData();
                 }
             }
         }
@@ -479,6 +485,7 @@ namespace OOP_PJ
                 dummyShape.LineColor = theInfomation.LineColor;
                 backup.Push(dummyShape);
                 dummyShape.Save();
+                PublishData();
             }
         }
 
@@ -494,6 +501,7 @@ namespace OOP_PJ
                 dummyShape.FillColor = theInfomation.FillColor;
                 backup.Push(dummyShape);
                 dummyShape.Save();
+                PublishData();
             }
         }
 
@@ -505,6 +513,7 @@ namespace OOP_PJ
                 {
                     backup.Push(dummyShape);
                     dummyShape.Save();
+                    PublishData();
                 }
             }
         }
@@ -517,6 +526,7 @@ namespace OOP_PJ
                 {
                     backup.Push(dummyShape);
                     dummyShape.Save();
+                    PublishData();
                 }
             }
         }
@@ -529,10 +539,10 @@ namespace OOP_PJ
                 backup.Push(dummyShape);
                 dummyShape.Save();
                 dummyShape = null;
+                PublishData();
             }
             
         }
-
         //public void MoveShapeFrontDirect()  // 도형 제일 앞으로
         //{
         //    if (dummyShape != null)
@@ -560,6 +570,34 @@ namespace OOP_PJ
             
         //}
 
-      
+
+
+        public bool ShowContextBox(Infomation newInfomation)
+        {
+             dummyShape = shapeManager.ChoicedShape(newInfomation);
+
+             if (dummyShape != null)
+             {
+                 dummyShape.IsSelected = true;
+
+                 return true;
+             }
+             return false;
+        }
+
+        //PublishData 함수 추가 각각의 클라이언트에 데이터를 전송 한다.
+        public void PublishData()
+        {
+            SocketBase.StartPacket sta = new SocketBase.StartPacket();
+            sta.totolCnt = shapeManager.GetListCount();
+            _serverEx.AddSendData(Packet.Serialize(new SocketBase.StartPacket()));
+            foreach (Shape sh in shapeManager.Shapes)
+            {
+                _serverEx.AddSendData(Packet.Serialize(sh));
+            }
+            _serverEx.AddSendData(Packet.Serialize(new SocketBase.LastPacket()));
+        }
+
+
     }   // commandManger
 }   // namespace

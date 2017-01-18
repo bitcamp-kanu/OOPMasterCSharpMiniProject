@@ -5,6 +5,7 @@ using System.Drawing;
 namespace OOP_PJ
 {
     // 라인 만들자
+    [Serializable]
     public class CLine : Shape
     {
         public CLine(Rectangle recParam) : base(recParam) { }

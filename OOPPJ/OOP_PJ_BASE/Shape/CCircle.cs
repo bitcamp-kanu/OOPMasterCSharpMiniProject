@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace OOP_PJ
 {
-
+    [Serializable]
     public class CCircle : Shape
     {
         public CCircle(Rectangle recParam) : base(recParam) { }
